@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Thin.otf") format("opentype");
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Thin-Italic.otf") format("opentype");
+	font-weight: 100;
+	font-style: italic;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-ExtraLight.otf") format("opentype");
+	font-weight: 200;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-ExtraLight-Italic.otf") format("opentype");
+	font-weight: 200;
+	font-style: italic;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Light.otf") format("opentype");
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Light-Italic.otf") format("opentype");
+	font-weight: 300;
+	font-style: italic;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode.otf") format("opentype");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Italic.otf") format("opentype");
+	font-weight: 400;
+	font-style: italic;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Medium.otf") format("opentype");
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Medium-Italic.otf") format("opentype");
+	font-weight: 500;
+	font-style: italic;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-DemiBold.otf") format("opentype");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-DemiBold-Italic.otf") format("opentype");
+	font-weight: 600;
+	font-style: italic;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Bold.otf") format("opentype");
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Bold-Italic.otf") format("opentype");
+	font-weight: 700;
+	font-style: italic;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-ExtraBold.otf") format("opentype");
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-ExtraBold-Italic.otf") format("opentype");
+	font-weight: 800;
+	font-style: italic;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Black.otf") format("opentype");
+	font-weight: 900;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PixelCode";
+	src: url("/fonts/PixelCode-Black-Italic.otf") format("opentype");
+	font-weight: 900;
+	font-style: italic;
+}
+
+@theme {
+	--font-pixelcode: "PixelCode", monospace, sans-serif;
+	--font-sans: "PixelCode", monospace, sans-serif;
+	--font-mono: "Space Mono", "JetBrains Mono", monospace;
+}
+
+:root {
+	font-family: var(--font-pixelcode);
+}
+
+body {
+	font-family: var(--font-pixelcode);
+	margin: 0;
+	overflow-x: hidden;
+	background-color: #f0f0f0;
+}
