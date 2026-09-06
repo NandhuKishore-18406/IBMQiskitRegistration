@@ -3,7 +3,7 @@ import TallyEmbed from "./TallyEmbed";
 
 export default function Registration() {
 	return (
-		<div className="w-full flex flex-col gap-6 py-2 px-1 text-left max-w-6xl mx-auto pb-16 sm:pb-8">
+		<div className="w-full flex flex-col gap-6 py-2 px-1 text-left max-w-6xl mx-auto pb-20 sm:pb-24">
 			{/* Header */}
 			<div className="flex flex-col items-center text-center space-y-3">
 				<div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#31135e]/15 border border-[#31135e]/25 text-[#31135e] text-xs font-semibold uppercase tracking-wider">
@@ -28,6 +28,9 @@ export default function Registration() {
 				transparentBackground={true}
 				minHeight="650px"
 			/>
+
+			{/* Extra bottom scroll buffer to ensure full visibility of next/submit buttons */}
+			<div className="h-12 sm:h-20 w-full shrink-0" />
 		</div>
 	);
 }

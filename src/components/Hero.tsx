@@ -80,7 +80,7 @@ export default function Hero() {
 				</header>
 
 				{/* Central Content Area Replacing Hero Content - Scrollable without visible scrollbars */}
-				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col items-center justify-start md:justify-center px-2 sm:px-4 md:px-6 pt-2 pb-24 sm:py-6 md:py-10 overflow-y-auto no-scrollbar">
+				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col items-center justify-start px-2 sm:px-4 md:px-6 pt-2 pb-28 sm:pt-4 sm:pb-36 overflow-y-auto no-scrollbar">
 					<AnimatePresence mode="wait">
 						{activeView === "home" && (
 							<motion.div
