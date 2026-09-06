@@ -71,7 +71,7 @@ export default function TallyEmbed({
 	}, [embedUrl]);
 
 	return (
-		<div className={`w-full relative overflow-y-auto no-scrollbar rounded-2xl ${className}`}>
+		<div className={`w-full relative overflow-visible rounded-2xl ${className}`}>
 			{isLoading && (
 				<div className="absolute inset-0 bg-white/70 backdrop-blur-xs z-10 flex items-center justify-center p-6 text-center">
 					<div className="w-8 h-8 border-3 border-[#31135e]/20 border-t-[#31135e] rounded-full animate-spin" />

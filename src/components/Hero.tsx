@@ -1,7 +1,6 @@
 import { ArrowLeft, Calendar, FileText } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import BottomLeftCard from "./BottomLeftCard";
 import BottomRightCorner from "./BottomRightCorner";
 import Registration from "./Registration";
 import Timeline from "./Timeline";
@@ -16,7 +15,7 @@ export default function Hero() {
 	const [activeView, setActiveView] = useState<HeroView>("home");
 
 	return (
-		<div className="w-full h-screen flex items-center justify-center p-3 sm:p-4 md:p-5 lg:p-6 bg-[#f2f4f8] box-border overflow-hidden select-none">
+		<div className="w-full h-screen h-[100dvh] flex items-center justify-center p-2.5 sm:p-4 md:p-5 lg:p-6 bg-[#f2f4f8] box-border overflow-hidden select-none">
 			<section className="relative w-full h-full rounded-[1.5rem] md:rounded-[3rem] overflow-hidden shadow-none flex flex-col items-center justify-between bg-white/10 group">
 				{/* Background Image Covered Over Entire Hero Card */}
 				<img
@@ -26,7 +25,7 @@ export default function Hero() {
 				/>
 
 				{/* Floating Header View Bar inside Hero Card */}
-				<header className="relative z-30 w-full pt-3 sm:pt-6 px-2 sm:px-4 flex items-center justify-center">
+				<header className="relative z-30 w-full pt-3 sm:pt-6 px-2 sm:px-4 flex items-center justify-center shrink-0">
 					<AnimatePresence>
 						{activeView !== "home" && (
 							<motion.div
@@ -81,7 +80,7 @@ export default function Hero() {
 				</header>
 
 				{/* Central Content Area Replacing Hero Content - Scrollable without visible scrollbars */}
-				<div className="relative z-10 w-full h-full flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 py-4 sm:py-6 md:py-10 overflow-y-auto no-scrollbar">
+				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col items-center justify-start md:justify-center px-2 sm:px-4 md:px-6 pt-2 pb-24 sm:py-6 md:py-10 overflow-y-auto no-scrollbar">
 					<AnimatePresence mode="wait">
 						{activeView === "home" && (
 							<motion.div
@@ -174,7 +173,7 @@ export default function Hero() {
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -15 }}
 								transition={{ duration: 0.4 }}
-								className="w-full h-full select-text"
+								className="w-full min-h-full select-text flex flex-col justify-start"
 							>
 								<Registration />
 							</motion.div>
@@ -187,16 +186,13 @@ export default function Hero() {
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -15 }}
 								transition={{ duration: 0.4 }}
-								className="w-full h-full select-text"
+								className="w-full min-h-full select-text flex flex-col justify-start"
 							>
 								<Timeline onNavigateRegistration={() => setActiveView("registration")} />
 							</motion.div>
 						)}
 					</AnimatePresence>
 				</div>
-
-				{/* Bottom Left Card ONLY rendered on Home View */}
-				{activeView === "home" && <BottomLeftCard />}
 
 				{/* Bottom Right Corner */}
 				<BottomRightCorner />
