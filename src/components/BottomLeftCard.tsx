@@ -10,26 +10,29 @@ export default function BottomLeftCard() {
 			className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-6 md:right-auto md:bottom-6 lg:bottom-10 lg:left-10 p-3 md:p-4 lg:p-5 rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[2.2rem] bg-white/30 backdrop-blur-xl flex flex-col items-center md:items-start gap-2 lg:gap-3 min-w-[140px] md:min-w-[150px] lg:min-w-[180px] w-fit text-center md:text-left"
 		>
 			<div className="flex flex-col items-center md:items-start">
-				<span className="text-2xl md:text-3xl font-normal text-[rgba(30,50,90,0.9)] tracking-tight">
+				<span className="text-2xl md:text-3xl font-bold text-[#31135e] tracking-tight">
 					5.2K
 				</span>
-				<span className="text-[10px] md:text-[12px] font-normal text-[rgba(30,50,90,0.6)] uppercase tracking-wider">
+				<span className="text-[10px] md:text-[12px] font-semibold text-[#31135e]/70 uppercase tracking-wider">
 					Active Yielders
 				</span>
 			</div>
 
-			<motion.button
+			<motion.a
+				href="https://discord.gg"
+				target="_blank"
+				rel="noopener noreferrer"
 				whileHover={{ scale: 1.02 }}
 				whileTap={{ scale: 0.98 }}
-				className="flex items-center bg-white rounded-full pl-1.5 pr-5 py-1.5 gap-2 hover:bg-white/90 transition-colors self-center md:self-start group"
+				className="flex items-center bg-white rounded-full pl-1.5 pr-5 py-1.5 gap-2 hover:bg-white/90 transition-colors self-center md:self-start group cursor-pointer"
 			>
-				<div className="bg-[rgba(30,50,90,0.1)] p-1 rounded-full flex items-center justify-center">
-					<ArrowUpRight className="w-4 h-4 text-[rgba(30,50,90,0.9)]" />
+				<div className="bg-[#31135e]/10 p-1 rounded-full flex items-center justify-center">
+					<ArrowUpRight className="w-4 h-4 text-[#31135e]" />
 				</div>
-				<span className="text-[14px] font-normal text-[rgba(30,50,90,0.9)]">
+				<span className="text-[14px] font-semibold text-[#31135e]">
 					Join Discord
 				</span>
-			</motion.button>
+			</motion.a>
 		</motion.div>
 	);
 }
