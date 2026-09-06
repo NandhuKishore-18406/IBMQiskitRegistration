@@ -15,8 +15,8 @@ export default function Hero() {
 	const [activeView, setActiveView] = useState<HeroView>("home");
 
 	return (
-		<div className="w-full h-screen h-[100dvh] flex items-center justify-center p-2.5 sm:p-4 md:p-5 lg:p-6 bg-[#f2f4f8] box-border overflow-hidden select-none">
-			<section className="relative w-full h-full rounded-[1.5rem] md:rounded-[3rem] overflow-hidden shadow-none flex flex-col items-center justify-between bg-white/10 group">
+		<div className="w-full h-screen h-[100dvh] flex items-center justify-center p-1.5 sm:p-3 md:p-4 lg:p-5 bg-[#f2f4f8] box-border overflow-hidden select-none">
+			<section className="relative w-full h-full rounded-[1.2rem] sm:rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-none flex flex-col items-center justify-between bg-white/10 group">
 				{/* Background Image Covered Over Entire Hero Card */}
 				<img
 					src={IMG_URL}
@@ -25,7 +25,7 @@ export default function Hero() {
 				/>
 
 				{/* Floating Header View Bar inside Hero Card */}
-				<header className="relative z-30 w-full pt-3 sm:pt-6 px-2 sm:px-4 flex items-center justify-center shrink-0">
+				<header className="relative z-30 w-full pt-2 sm:pt-4 px-1.5 sm:px-3 flex items-center justify-center shrink-0">
 					<AnimatePresence>
 						{activeView !== "home" && (
 							<motion.div
@@ -79,8 +79,8 @@ export default function Hero() {
 					</AnimatePresence>
 				</header>
 
-				{/* Central Content Area Replacing Hero Content - Scrollable without visible scrollbars */}
-				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col items-center justify-start px-2 sm:px-4 md:px-6 pt-2 pb-28 sm:pt-4 sm:pb-36 overflow-y-auto no-scrollbar">
+				{/* Central Content Area Replacing Hero Content - Scrollable with custom transparent scrollbar */}
+				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col items-center justify-start px-1 sm:px-2 md:px-3 pt-1.5 pb-24 sm:pt-3 sm:pb-32 overflow-y-auto custom-scrollbar">
 					<AnimatePresence mode="wait">
 						{activeView === "home" && (
 							<motion.div
