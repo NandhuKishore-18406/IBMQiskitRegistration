@@ -251,14 +251,14 @@ export default function PastEvents() {
 	const data = EDITIONS_DATA[activeYear];
 
 	return (
-		<div className="w-full max-w-6xl mx-auto py-2 sm:py-6 px-2 sm:px-6 space-y-10 sm:space-y-14 select-text">
+		<div className="w-full max-w-6xl mx-auto py-2 sm:py-6 px-2 sm:px-6 space-y-6 sm:space-y-8 pb-16 sm:pb-24 select-text">
 			{/* Top Year Switcher - Clean Glass Pill Bar */}
 			<div className="flex flex-col items-center justify-center space-y-3">
 				<span className="text-xs sm:text-sm font-bold text-[#31135e]/70 tracking-widest uppercase">
 					Previous Event Archives
 				</span>
 
-				<div className="flex items-center justify-center p-1.5 rounded-full bg-white/30 backdrop-blur-2xl border border-white/50 shadow-sm gap-2">
+				<div className="flex items-center justify-center p-1 sm:p-1.5 rounded-full bg-white/30 backdrop-blur-2xl border border-white/50 shadow-sm gap-1 sm:gap-2">
 					{(["2023", "2022", "2021"] as YearEdition[]).map((year) => {
 						const isActive = activeYear === year;
 						return (
@@ -266,13 +266,14 @@ export default function PastEvents() {
 								key={year}
 								type="button"
 								onClick={() => setActiveYear(year)}
-								className={`px-5 sm:px-8 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer ${
+								className={`px-3.5 sm:px-8 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer touch-manipulation active:scale-95 ${
 									isActive
 										? "bg-[#31135e] text-white shadow-md scale-105"
 										: "text-[#31135e] hover:bg-white/40"
 								}`}
 							>
-								{year} Edition
+								<span className="hidden xs:inline">{year} Edition</span>
+								<span className="xs:hidden">{year}</span>
 							</button>
 						);
 					})}
@@ -287,7 +288,7 @@ export default function PastEvents() {
 					animate={{ opacity: 1, y: 0 }}
 					exit={{ opacity: 0, y: -15 }}
 					transition={{ duration: 0.4 }}
-					className="space-y-12 sm:space-y-16"
+					className="space-y-6 sm:space-y-8"
 				>
 					{/* Open Hero Canvas */}
 					<div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12 py-2">
@@ -419,13 +420,13 @@ export default function PastEvents() {
 						</div>
 
 						{/* Gallery Slider */}
-						<div className="flex items-center gap-5 overflow-x-auto no-scrollbar py-3 px-1">
+						<div className="flex items-center gap-3 sm:gap-5 overflow-x-auto no-scrollbar py-3 px-1 touch-manipulation">
 							{data.gallery.map((item, idx) => (
 								<motion.div
 									key={idx}
 									whileHover={{ y: -8, scale: 1.03 }}
 									onClick={() => setActiveLightboxImage(item)}
-									className="min-w-[280px] sm:min-w-[340px] h-[220px] rounded-3xl overflow-hidden relative cursor-pointer shadow-lg border border-white/80 shrink-0 group"
+									className="min-w-[230px] xs:min-w-[270px] sm:min-w-[340px] h-[180px] sm:h-[220px] rounded-2xl sm:rounded-3xl overflow-hidden relative cursor-pointer shadow-lg border border-white/80 shrink-0 group"
 								>
 									<img
 										src={item.url}
@@ -551,6 +552,9 @@ export default function PastEvents() {
 							))}
 						</div>
 					</div>
+
+					{/* Bottom Scroll Padding Buffer */}
+					<div className="h-12 sm:h-20 w-full shrink-0" />
 				</motion.div>
 			</AnimatePresence>
 

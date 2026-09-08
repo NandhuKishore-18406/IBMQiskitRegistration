@@ -15,7 +15,7 @@ export default function Registration({
 	hideTallyTitle = true,
 }: RegistrationProps) {
 	return (
-		<div className="w-full flex flex-col gap-4 sm:gap-6 py-1 px-0.5 sm:px-1 text-left max-w-7xl mx-auto pb-16 sm:pb-20">
+		<div className="w-full flex flex-col gap-4 sm:gap-6 py-1 px-0.5 sm:px-1 text-left max-w-7xl mx-auto pb-20 sm:pb-28">
 			{showHeader && (
 				<div className="flex flex-col items-center text-center space-y-2 mb-2 sm:mb-4">
 					<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#31135e] tracking-tight">
@@ -38,7 +38,7 @@ export default function Registration({
 			/>
 
 			{/* Extra bottom scroll buffer to ensure full visibility of next/submit buttons */}
-			<div className="h-10 sm:h-16 w-full shrink-0" />
+			<div className="h-14 sm:h-24 w-full shrink-0" />
 		</div>
 	);
 }

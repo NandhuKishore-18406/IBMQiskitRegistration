@@ -161,7 +161,7 @@ export default function SpeakerCarousel({ year }: SpeakerCarouselProps) {
 			{/* Circular Avatar Carousel Reel */}
 			<div
 				ref={scrollRef}
-				className="w-full flex items-center justify-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar py-4 px-4 scroll-smooth"
+				className="w-full flex items-center justify-center gap-2.5 sm:gap-6 overflow-x-auto no-scrollbar py-2 sm:py-4 px-2 sm:px-4 scroll-smooth touch-manipulation"
 			>
 				{speakers.map((speaker, idx) => {
 					const isActive = idx === activeIdx;
@@ -171,11 +171,11 @@ export default function SpeakerCarousel({ year }: SpeakerCarouselProps) {
 							whileHover={{ scale: 1.08 }}
 							whileTap={{ scale: 0.95 }}
 							onClick={() => setActiveIdx(idx)}
-							className="flex flex-col items-center shrink-0 cursor-pointer group"
+							className="flex flex-col items-center shrink-0 cursor-pointer group touch-manipulation"
 						>
 							{/* Borderless Circular Avatar */}
 							<div
-								className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden transition-all duration-300 ${
+								className={`w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden transition-all duration-300 ${
 									isActive
 										? "scale-110 shadow-lg"
 										: "opacity-60 group-hover:opacity-100 scale-95"
