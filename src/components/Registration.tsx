@@ -1,4 +1,3 @@
-import { Sparkles } from "lucide-react";
 import TallyEmbed from "./TallyEmbed";
 
 interface RegistrationProps {
@@ -17,20 +16,14 @@ export default function Registration({
 }: RegistrationProps) {
 	return (
 		<div className="w-full flex flex-col gap-4 sm:gap-6 py-1 px-0.5 sm:px-1 text-left max-w-7xl mx-auto pb-16 sm:pb-20">
-			{/* Header (Toggle SHOW_HEADER_DEFAULT = true or pass showHeader={true} to recover) */}
 			{showHeader && (
-				<div className="flex flex-col items-center text-center space-y-3">
-					<div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#31135e]/15 border border-[#31135e]/25 text-[#31135e] text-xs font-semibold uppercase tracking-wider">
-						<Sparkles className="w-3.5 h-3.5" />
-						<span>For Inquiry</span>
-					</div>
-
+				<div className="flex flex-col items-center text-center space-y-2 mb-2 sm:mb-4">
 					<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#31135e] tracking-tight">
-						Inquiry for CIT - IBM Qiskit Fall Fest 2026
+						Inquiry Form
 					</h2>
 
 					<p className="text-xs sm:text-sm text-[#5E6470] max-w-xl font-normal leading-relaxed">
-						fill this inquiry form to get more details about CIT - IBM Qiskit Fall Fest 2026.
+						Fill this inquiry form to get complete details about CIT - IBM Qiskit Fall Fest 2026.
 					</p>
 				</div>
 			)}

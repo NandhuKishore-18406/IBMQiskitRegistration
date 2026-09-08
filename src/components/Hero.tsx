@@ -1,6 +1,6 @@
-import { ArrowLeft, Calendar, FileText, Users } from "lucide-react";
+import { Calendar, FileText, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Organizers from "./Organizers";
 import Registration from "./Registration";
 import Timeline from "./Timeline";
@@ -10,10 +10,25 @@ const LOGO1_URL = `${import.meta.env.BASE_URL}assets/logo.png`;
 const LOGO2_URL = `${import.meta.env.BASE_URL}assets/images-removebg-preview(1)(1).png`;
 const LOGO3_URL = `${import.meta.env.BASE_URL}assets/iic.webp`;
 
+const DYNAMIC_SLOGANS = [
+	"Eager to learn & hone your skills in Quantum Computing?",
+	"Ready to explore quantum algorithms & real quantum hardware?",
+	"Want to innovate with IBM Qiskit & quantum computing?",
+	"Passionate about building the future of Quantum Technologies?",
+];
+
 type HeroView = "home" | "registration" | "timeline" | "organizers";
 
 export default function Hero() {
 	const [activeView, setActiveView] = useState<HeroView>("home");
+	const [sloganIndex, setSloganIndex] = useState(0);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setSloganIndex((prev) => (prev + 1) % DYNAMIC_SLOGANS.length);
+		}, 3800);
+		return () => clearInterval(interval);
+	}, []);
 
 	return (
 		<div className="w-full h-screen h-[100dvh] flex items-center justify-center p-1.5 sm:p-3 md:p-4 lg:p-5 bg-[#f2f4f8] box-border overflow-hidden select-none">
@@ -25,77 +40,91 @@ export default function Hero() {
 					className="absolute inset-0 w-full h-full object-cover object-[65%] lg:object-center z-0"
 				/>
 
-				{/* Floating Header View Bar inside Hero Card */}
-				<header className="relative z-30 w-full pt-2 sm:pt-4 px-1.5 sm:px-3 flex items-center justify-center shrink-0">
-					<AnimatePresence>
-						{activeView !== "home" && (
-							<motion.div
-								initial={{ opacity: 0, y: -15, scale: 0.95 }}
-								animate={{ opacity: 1, y: 0, scale: 1 }}
-								exit={{ opacity: 0, y: -15, scale: 0.95 }}
-								transition={{ duration: 0.3 }}
-								className="p-1 sm:p-1.5 rounded-full bg-white/35 backdrop-blur-2xl border border-white/50 shadow-md flex items-center gap-1 sm:gap-2 max-w-[95%] overflow-x-auto no-scrollbar"
+				{/* Persistent Top Header Bar with Logos & Navigation */}
+				<header className="relative z-30 w-full pt-2 sm:pt-4 px-2 sm:px-4 md:px-6 shrink-0 flex items-center justify-center">
+					<div className="w-full max-w-6xl px-3 py-2 sm:px-5 sm:py-2.5 rounded-2xl sm:rounded-3xl md:rounded-full bg-white/25 backdrop-blur-2xl border border-white/40 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+						{/* Left: Brand Logos */}
+						<div
+							onClick={() => setActiveView("home")}
+							className="flex items-center justify-center gap-2 sm:gap-4 cursor-pointer hover:opacity-95 transition-opacity"
+						>
+							<img
+								src={LOGO1_URL}
+								alt="CIT Logo"
+								className="h-7 sm:h-9 md:h-11 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
+							/>
+							<div className="w-px h-5 sm:h-7 bg-[#31135e]/30 rounded-full shrink-0" />
+							<img
+								src={LOGO3_URL}
+								alt="IIC Logo"
+								className="h-7 sm:h-9 md:h-11 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
+							/>
+							<div className="w-px h-5 sm:h-7 bg-[#31135e]/30 rounded-full shrink-0" />
+							<img
+								src={LOGO2_URL}
+								alt="IBM Logo"
+								className="h-7 sm:h-9 md:h-11 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
+							/>
+						</div>
+
+						{/* Right: Navigation Tabs */}
+						<nav className="flex items-center gap-1 sm:gap-1.5 p-1 rounded-full bg-white/30 backdrop-blur-md border border-white/40 overflow-x-auto no-scrollbar max-w-full">
+							<button
+								type="button"
+								onClick={() => setActiveView("home")}
+								className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+									activeView === "home"
+										? "bg-[#31135e] text-white shadow-xs"
+										: "text-[#31135e] hover:bg-white/50"
+								}`}
 							>
-								{/* Back to Home Button */}
-								<button
-									type="button"
-									onClick={() => setActiveView("home")}
-									className="px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-white/90 text-[#31135e] hover:bg-white transition-all flex items-center gap-1 cursor-pointer shadow-2xs whitespace-nowrap"
-								>
-									<ArrowLeft className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-									<span>Overview</span>
-								</button>
+								<span>Overview</span>
+							</button>
 
-								<span className="w-px h-3.5 bg-black/10 mx-0.5 flex-shrink-0" />
+							<button
+								type="button"
+								onClick={() => setActiveView("timeline")}
+								className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+									activeView === "timeline"
+										? "bg-[#31135e] text-white shadow-xs"
+										: "text-[#31135e] hover:bg-white/50"
+								}`}
+							>
+								<Calendar className="w-3.5 h-3.5" />
+								<span>Timeline</span>
+							</button>
 
-								{/* Timeline Switcher */}
-								<button
-									type="button"
-									onClick={() => setActiveView("timeline")}
-									className={`px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
-										activeView === "timeline"
-											? "bg-[#31135e] text-white shadow-xs"
-											: "bg-white/40 text-[#5E6470] hover:bg-white/80 hover:text-[#31135e]"
-									}`}
-								>
-									<Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-									<span>Timeline</span>
-								</button>
+							<button
+								type="button"
+								onClick={() => setActiveView("registration")}
+								className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+									activeView === "registration"
+										? "bg-[#31135e] text-white shadow-xs"
+										: "text-[#31135e] hover:bg-white/50"
+								}`}
+							>
+								<FileText className="w-3.5 h-3.5" />
+								<span>For Inquiry</span>
+							</button>
 
-								{/* Registration Switcher */}
-								<button
-									type="button"
-									onClick={() => setActiveView("registration")}
-									className={`px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
-										activeView === "registration"
-											? "bg-[#31135e] text-white shadow-xs"
-											: "bg-white/40 text-[#5E6470] hover:bg-white/80 hover:text-[#31135e]"
-									}`}
-								>
-									<FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-									<span>For Inquiry</span>
-								</button>
-
-								{/* Organizers Switcher */}
-								<button
-									type="button"
-									onClick={() => setActiveView("organizers")}
-									className={`px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
-										activeView === "organizers"
-											? "bg-[#31135e] text-white shadow-xs"
-											: "bg-white/40 text-[#5E6470] hover:bg-white/80 hover:text-[#31135e]"
-									}`}
-								>
-									<Users className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-									<span>Organizers</span>
-								</button>
-							</motion.div>
-						)}
-					</AnimatePresence>
+							<button
+								type="button"
+								onClick={() => setActiveView("organizers")}
+								className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+									activeView === "organizers"
+										? "bg-[#31135e] text-white shadow-xs"
+										: "text-[#31135e] hover:bg-white/50"
+								}`}
+							>
+								<Users className="w-3.5 h-3.5" />
+								<span>Organizers</span>
+							</button>
+						</nav>
+					</div>
 				</header>
 
-				{/* Central Content Area Replacing Hero Content - Scrollable with custom transparent scrollbar */}
-				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col items-center justify-start px-1 sm:px-2 md:px-3 pt-1.5 pb-24 sm:pt-3 sm:pb-32 overflow-y-auto custom-scrollbar">
+				{/* Central Content Area - Scrollable with custom transparent scrollbar */}
+				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col items-center justify-start px-2 sm:px-4 md:px-6 pt-2 pb-16 sm:pb-24 overflow-y-auto custom-scrollbar">
 					<AnimatePresence mode="wait">
 						{activeView === "home" && (
 							<motion.div
@@ -104,97 +133,79 @@ export default function Hero() {
 								animate={{ opacity: 1, scale: 1 }}
 								exit={{ opacity: 0, scale: 0.97 }}
 								transition={{ duration: 0.4 }}
-								className="w-full flex flex-col items-center text-center max-w-4xl my-auto select-text"
+								className="w-full h-full min-h-[460px] sm:min-h-[500px] flex flex-col items-center justify-between text-center max-w-5xl my-auto py-2 sm:py-4 select-text"
 							>
-								{/* Compact transparent glass container holding logos + vertical separators */}
-								<motion.div
-									initial={{ opacity: 0, y: -10 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.8, delay: 0.1 }}
-									className="mx-auto mb-4 sm:mb-6 w-fit max-w-full px-3.5 py-1.5 sm:px-5 sm:py-2 md:px-6 md:py-2.5 rounded-xl sm:rounded-2xl md:rounded-full bg-white/20 backdrop-blur-xl border border-white/30 shadow-sm flex items-center justify-center gap-2.5 sm:gap-4 md:gap-5"
-								>
-									<img
-										src={LOGO1_URL}
-										alt="CIT Logo"
-										className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
-									/>
-									<div className="w-px h-5 sm:h-7 md:h-9 bg-[#31135e]/30 rounded-full shrink-0 mx-0.5" />
-									<img
-										src={LOGO3_URL}
-										alt="IIC Logo"
-										className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
-									/>
-									<div className="w-px h-5 sm:h-7 md:h-9 bg-[#31135e]/30 rounded-full shrink-0 mx-0.5" />
-									<img
-										src={LOGO2_URL}
-										alt="IBM Logo"
-										className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
-									/>
-								</motion.div>
+								{/* Main H1 Title Area with Dynamic Slogan */}
+								<div className="my-auto py-4 sm:py-8 flex flex-col items-center gap-4 sm:gap-6 max-w-4xl">
+									{/* Dynamic Rotating Slogan Area */}
+									<div className="flex flex-col items-center justify-center w-full px-3 py-2 sm:px-6 sm:py-4">
+										<div className="min-h-[60px] sm:min-h-[84px] md:min-h-[100px] flex items-center justify-center overflow-hidden w-full px-2 sm:px-6">
+											<AnimatePresence mode="wait">
+												<motion.p
+													key={sloganIndex}
+													initial={{ opacity: 0, y: 14, scale: 0.98 }}
+													animate={{ opacity: 1, y: 0, scale: 1 }}
+													exit={{ opacity: 0, y: -14, scale: 0.98 }}
+													transition={{ duration: 0.5, ease: "easeInOut" }}
+													className="text-lg sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-[#31135e] max-w-4xl mx-auto leading-relaxed tracking-tight text-center drop-shadow-2xs"
+												>
+													{DYNAMIC_SLOGANS[sloganIndex]}
+												</motion.p>
+											</AnimatePresence>
+										</div>
 
-								<motion.h1
-									initial={{ opacity: 0, scale: 0.98 }}
-									animate={{ opacity: 1, scale: 1 }}
-									transition={{ duration: 0.8, delay: 0.2 }}
-									className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-bold text-[#31135e] mb-4 tracking-tight leading-[1.1] flex flex-wrap items-center justify-center gap-3 sm:gap-4"
-								>
-									<span>CIT - IBM</span>
-									<span className="bg-[#31135e] text-white px-5 py-1.5 md:px-8 md:py-2.5 rounded-full shadow-md inline-block font-mono font-light tracking-widest">
-										Qiskit
-									</span>
-									<span>FALL FEST 2026</span>
-								</motion.h1>
+										<motion.span
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											transition={{ duration: 0.8, delay: 0.3 }}
+											className="text-xs sm:text-base md:text-lg font-bold text-[#31135e]/80 tracking-wider uppercase mt-1 sm:mt-2"
+										>
+											Get ready for...
+										</motion.span>
+									</div>
 
-								{/* Action buttons replacing views */}
+									{/* H1 Headline */}
+									<motion.h1
+										initial={{ opacity: 0, scale: 0.98 }}
+										animate={{ opacity: 1, scale: 1 }}
+										transition={{ duration: 0.8, delay: 0.2 }}
+										className="text-3xl sm:text-5xl md:text-6xl lg:text-[70px] font-bold text-[#31135e] tracking-tight leading-[1.15] flex flex-wrap items-center justify-center gap-2.5 sm:gap-4"
+									>
+										<span>CIT - IBM</span>
+										<span className="bg-[#31135e] text-white px-4 py-1 sm:px-6 sm:py-1.5 md:px-7 md:py-2 rounded-full shadow-md inline-block font-mono font-light tracking-widest">
+											Qiskit
+										</span>
+										<span>FALL FEST 2026</span>
+									</motion.h1>
+								</div>
+
+								{/* Focused Action & Event Highlights Bar */}
 								<motion.div
 									initial={{ y: 20, opacity: 0 }}
 									animate={{ y: 0, opacity: 1 }}
 									transition={{ duration: 0.8, delay: 0.5 }}
-									className="mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6"
+									className="mt-auto w-full max-w-2xl px-2 sm:px-4 flex flex-wrap items-center justify-center gap-3 sm:gap-4 pb-2 sm:pb-4"
 								>
-									{/* Registration Button */}
+									{/* Main CTA Button */}
 									<motion.button
-										whileHover={{ scale: 1.04 }}
-										whileTap={{ scale: 0.96 }}
+										whileHover={{ scale: 1.03 }}
+										whileTap={{ scale: 0.97 }}
 										onClick={() => setActiveView("registration")}
-										className="p-3 md:p-4 rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[2.2rem] bg-white/30 backdrop-blur-xl flex items-center gap-3 border border-white/40 shadow-sm hover:bg-white/40 transition-all cursor-pointer group min-w-[160px] md:min-w-[180px] justify-center"
+										className="px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-[#31135e] hover:bg-[#230c45] text-white text-sm sm:text-base font-semibold shadow-lg transition-all cursor-pointer flex items-center gap-2.5"
 									>
-										<div className="bg-[#31135e]/10 p-1.5 rounded-full flex items-center justify-center">
-											<FileText className="w-4 h-4 text-[#31135e] transition-transform group-hover:scale-1.1" />
-										</div>
-										<span className="text-base md:text-lg font-semibold text-[#31135e]">
-											For Inquiry
-										</span>
+										<FileText className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+										<span>Submit Inquiry</span>
 									</motion.button>
 
-									{/* Timeline Button */}
+									{/* Date Highlight Badge */}
 									<motion.button
-										whileHover={{ scale: 1.04 }}
-										whileTap={{ scale: 0.96 }}
+										whileHover={{ scale: 1.03 }}
+										whileTap={{ scale: 0.97 }}
 										onClick={() => setActiveView("timeline")}
-										className="p-3 md:p-4 rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[2.2rem] bg-white/30 backdrop-blur-xl flex items-center gap-3 border border-white/40 shadow-sm hover:bg-white/40 transition-all cursor-pointer group min-w-[150px] md:min-w-[170px] justify-center"
+										className="px-5 py-3 sm:px-7 sm:py-4 rounded-full bg-white/35 backdrop-blur-xl border border-white/50 text-[#31135e] hover:bg-white/50 text-sm sm:text-base font-semibold shadow-sm transition-all cursor-pointer flex items-center gap-2.5"
 									>
-										<div className="bg-[#31135e]/10 p-1.5 rounded-full flex items-center justify-center">
-											<Calendar className="w-4 h-4 text-[#31135e] transition-transform group-hover:scale-1.1" />
-										</div>
-										<span className="text-base md:text-lg font-semibold text-[#31135e]">
-											Timeline
-										</span>
-									</motion.button>
-
-									{/* Organizers Button */}
-									<motion.button
-										whileHover={{ scale: 1.04 }}
-										whileTap={{ scale: 0.96 }}
-										onClick={() => setActiveView("organizers")}
-										className="p-3 md:p-4 rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[2.2rem] bg-white/30 backdrop-blur-xl flex items-center gap-3 border border-white/40 shadow-sm hover:bg-white/40 transition-all cursor-pointer group min-w-[150px] md:min-w-[170px] justify-center"
-									>
-										<div className="bg-[#31135e]/10 p-1.5 rounded-full flex items-center justify-center">
-											<Users className="w-4 h-4 text-[#31135e] transition-transform group-hover:scale-1.1" />
-										</div>
-										<span className="text-base md:text-lg font-semibold text-[#31135e]">
-											Organizers
-										</span>
+										<Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-[#31135e]" />
+										<span>Nov 20 – Nov 30, 2026</span>
 									</motion.button>
 								</motion.div>
 							</motion.div>

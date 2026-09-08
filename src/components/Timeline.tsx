@@ -47,7 +47,7 @@ export default function Timeline({ onNavigateRegistration }: TimelineProps) {
 						onClick={onNavigateRegistration}
 						className="mt-2 px-5 py-2.5 rounded-2xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs sm:text-sm font-semibold transition-all shadow-md cursor-pointer flex items-center gap-2"
 					>
-						<span>For Inquiry</span>
+						<span>Submit Inquiry</span>
 						<Sparkles className="w-4 h-4" />
 					</button>
 				)}
