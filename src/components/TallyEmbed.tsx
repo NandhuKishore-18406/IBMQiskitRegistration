@@ -25,7 +25,7 @@ export function extractTallyFormId(input?: string): string {
 
 export default function TallyEmbed({
 	formUrlOrId = "dWMdMK",
-	title = "CIT Qiskit Fall Fest 2026 Inquiry form",
+	title = "CIT - IBM Qiskit Fall Fest 2026 Inquiry form",
 	hideTitle = true,
 	transparentBackground = true,
 	minHeight = "600px",

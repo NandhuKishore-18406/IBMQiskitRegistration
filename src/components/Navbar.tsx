@@ -8,8 +8,9 @@ interface MenuItem {
 }
 
 const MENU_ITEMS: MenuItem[] = [
-	{ label: "Registration" },
+	{ label: "For Inquiry" },
 	{ label: "Timeline" },
+	{ label: "Organizers" },
 ];
 
 const LOGO_URL = `${import.meta.env.BASE_URL}assets/logo.png`;

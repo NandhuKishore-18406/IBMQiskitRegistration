@@ -22,15 +22,15 @@ export default function Registration({
 				<div className="flex flex-col items-center text-center space-y-3">
 					<div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#31135e]/15 border border-[#31135e]/25 text-[#31135e] text-xs font-semibold uppercase tracking-wider">
 						<Sparkles className="w-3.5 h-3.5" />
-						<span>Registration Open</span>
+						<span>For Inquiry</span>
 					</div>
 
 					<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#31135e] tracking-tight">
-						Register for CIT Qiskit Fall Fest 2026
+						Inquiry for CIT - IBM Qiskit Fall Fest 2026
 					</h2>
 
 					<p className="text-xs sm:text-sm text-[#5E6470] max-w-xl font-normal leading-relaxed">
-						fill this inquiry form to get more details about CIT Qiskit Fall Fest 2026.
+						fill this inquiry form to get more details about CIT - IBM Qiskit Fall Fest 2026.
 					</p>
 				</div>
 			)}
@@ -38,7 +38,7 @@ export default function Registration({
 			{/* Main Tally Embed Container */}
 			<TallyEmbed
 				formUrlOrId="dWMdMK"
-				title="CIT Qiskit Fall Fest 2026 Inquiry form"
+				title="CIT - IBM Qiskit Fall Fest 2026 Inquiry form"
 				hideTitle={hideTallyTitle}
 				transparentBackground={true}
 				minHeight="720px"

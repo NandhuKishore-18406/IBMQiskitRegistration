@@ -36,7 +36,7 @@ export default function Timeline({ onNavigateRegistration }: TimelineProps) {
 					</h2>
 
 					<p className="text-xs sm:text-sm text-[#5E6470] font-normal leading-relaxed">
-						The detailed schedule for CIT Qiskit Fall Fest 2026 is currently being finalized. Stay tuned for dates, keynotes, and workshop announcements!
+						The detailed schedule for CIT - IBM Qiskit Fall Fest 2026 is currently being finalized. Stay tuned for dates, keynotes, and workshop announcements!
 					</p>
 				</div>
 
@@ -47,7 +47,7 @@ export default function Timeline({ onNavigateRegistration }: TimelineProps) {
 						onClick={onNavigateRegistration}
 						className="mt-2 px-5 py-2.5 rounded-2xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs sm:text-sm font-semibold transition-all shadow-md cursor-pointer flex items-center gap-2"
 					>
-						<span>Register Now</span>
+						<span>For Inquiry</span>
 						<Sparkles className="w-4 h-4" />
 					</button>
 				)}

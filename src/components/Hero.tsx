@@ -1,15 +1,16 @@
-import { ArrowLeft, Calendar, FileText } from "lucide-react";
+import { ArrowLeft, Calendar, FileText, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import BottomRightCorner from "./BottomRightCorner";
+import Organizers from "./Organizers";
 import Registration from "./Registration";
 import Timeline from "./Timeline";
 
 const IMG_URL = `${import.meta.env.BASE_URL}assets/Untitled design.png`;
 const LOGO1_URL = `${import.meta.env.BASE_URL}assets/logo.png`;
 const LOGO2_URL = `${import.meta.env.BASE_URL}assets/images-removebg-preview(1)(1).png`;
+const LOGO3_URL = `${import.meta.env.BASE_URL}assets/iic.webp`;
 
-type HeroView = "home" | "registration" | "timeline";
+type HeroView = "home" | "registration" | "timeline" | "organizers";
 
 export default function Hero() {
 	const [activeView, setActiveView] = useState<HeroView>("home");
@@ -72,7 +73,21 @@ export default function Hero() {
 									}`}
 								>
 									<FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-									<span>Registration</span>
+									<span>For Inquiry</span>
+								</button>
+
+								{/* Organizers Switcher */}
+								<button
+									type="button"
+									onClick={() => setActiveView("organizers")}
+									className={`px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+										activeView === "organizers"
+											? "bg-[#31135e] text-white shadow-xs"
+											: "bg-white/40 text-[#5E6470] hover:bg-white/80 hover:text-[#31135e]"
+									}`}
+								>
+									<Users className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+									<span>Organizers</span>
 								</button>
 							</motion.div>
 						)}
@@ -91,25 +106,29 @@ export default function Hero() {
 								transition={{ duration: 0.4 }}
 								className="w-full flex flex-col items-center text-center max-w-4xl my-auto select-text"
 							>
-								{/* Transparent glass container holding both logos + X */}
+								{/* Compact transparent glass container holding logos + vertical separators */}
 								<motion.div
 									initial={{ opacity: 0, y: -10 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.8, delay: 0.1 }}
-									className="mx-auto mb-6 sm:mb-8 w-fit max-w-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-2xl sm:rounded-3xl md:rounded-full bg-white/20 backdrop-blur-xl border border-white/30 shadow-sm flex items-center justify-center gap-3 sm:gap-5 md:gap-7"
+									className="mx-auto mb-4 sm:mb-6 w-fit max-w-full px-3.5 py-1.5 sm:px-5 sm:py-2 md:px-6 md:py-2.5 rounded-xl sm:rounded-2xl md:rounded-full bg-white/20 backdrop-blur-xl border border-white/30 shadow-sm flex items-center justify-center gap-2.5 sm:gap-4 md:gap-5"
 								>
 									<img
 										src={LOGO1_URL}
 										alt="CIT Logo"
-										className="h-10 sm:h-16 md:h-20 lg:h-24 w-auto max-w-[35vw] sm:max-w-none object-contain drop-shadow-sm"
+										className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
 									/>
-									<span className="text-lg sm:text-2xl md:text-3xl font-light text-[#31135e] opacity-70 leading-none select-none px-1">
-										×
-									</span>
+									<div className="w-px h-5 sm:h-7 md:h-9 bg-[#31135e]/30 rounded-full shrink-0 mx-0.5" />
+									<img
+										src={LOGO3_URL}
+										alt="IIC Logo"
+										className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
+									/>
+									<div className="w-px h-5 sm:h-7 md:h-9 bg-[#31135e]/30 rounded-full shrink-0 mx-0.5" />
 									<img
 										src={LOGO2_URL}
 										alt="IBM Logo"
-										className="h-10 sm:h-16 md:h-20 lg:h-24 w-auto max-w-[35vw] sm:max-w-none object-contain drop-shadow-sm"
+										className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
 									/>
 								</motion.div>
 
@@ -119,7 +138,7 @@ export default function Hero() {
 									transition={{ duration: 0.8, delay: 0.2 }}
 									className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-bold text-[#31135e] mb-4 tracking-tight leading-[1.1] flex flex-wrap items-center justify-center gap-3 sm:gap-4"
 								>
-									<span>CIT</span>
+									<span>CIT - IBM</span>
 									<span className="bg-[#31135e] text-white px-5 py-1.5 md:px-8 md:py-2.5 rounded-full shadow-md inline-block font-mono font-light tracking-widest">
 										Qiskit
 									</span>
@@ -144,7 +163,7 @@ export default function Hero() {
 											<FileText className="w-4 h-4 text-[#31135e] transition-transform group-hover:scale-1.1" />
 										</div>
 										<span className="text-base md:text-lg font-semibold text-[#31135e]">
-											Registration
+											For Inquiry
 										</span>
 									</motion.button>
 
@@ -153,13 +172,28 @@ export default function Hero() {
 										whileHover={{ scale: 1.04 }}
 										whileTap={{ scale: 0.96 }}
 										onClick={() => setActiveView("timeline")}
-										className="p-3 md:p-4 rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[2.2rem] bg-white/30 backdrop-blur-xl flex items-center gap-3 border border-white/40 shadow-sm hover:bg-white/40 transition-all cursor-pointer group min-w-[160px] md:min-w-[180px] justify-center"
+										className="p-3 md:p-4 rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[2.2rem] bg-white/30 backdrop-blur-xl flex items-center gap-3 border border-white/40 shadow-sm hover:bg-white/40 transition-all cursor-pointer group min-w-[150px] md:min-w-[170px] justify-center"
 									>
 										<div className="bg-[#31135e]/10 p-1.5 rounded-full flex items-center justify-center">
 											<Calendar className="w-4 h-4 text-[#31135e] transition-transform group-hover:scale-1.1" />
 										</div>
 										<span className="text-base md:text-lg font-semibold text-[#31135e]">
 											Timeline
+										</span>
+									</motion.button>
+
+									{/* Organizers Button */}
+									<motion.button
+										whileHover={{ scale: 1.04 }}
+										whileTap={{ scale: 0.96 }}
+										onClick={() => setActiveView("organizers")}
+										className="p-3 md:p-4 rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[2.2rem] bg-white/30 backdrop-blur-xl flex items-center gap-3 border border-white/40 shadow-sm hover:bg-white/40 transition-all cursor-pointer group min-w-[150px] md:min-w-[170px] justify-center"
+									>
+										<div className="bg-[#31135e]/10 p-1.5 rounded-full flex items-center justify-center">
+											<Users className="w-4 h-4 text-[#31135e] transition-transform group-hover:scale-1.1" />
+										</div>
+										<span className="text-base md:text-lg font-semibold text-[#31135e]">
+											Organizers
 										</span>
 									</motion.button>
 								</motion.div>
@@ -191,11 +225,21 @@ export default function Hero() {
 								<Timeline onNavigateRegistration={() => setActiveView("registration")} />
 							</motion.div>
 						)}
+
+						{activeView === "organizers" && (
+							<motion.div
+								key="hero-organizers"
+								initial={{ opacity: 0, y: 15 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -15 }}
+								transition={{ duration: 0.4 }}
+								className="w-full min-h-full select-text flex flex-col justify-start"
+							>
+								<Organizers />
+							</motion.div>
+						)}
 					</AnimatePresence>
 				</div>
-
-				{/* Bottom Right Corner */}
-				<BottomRightCorner />
 			</section>
 		</div>
 	);

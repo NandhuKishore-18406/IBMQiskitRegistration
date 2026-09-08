@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -111,13 +111,14 @@
 }
 
 @theme {
-	--font-pixelcode: "PixelCode", monospace, sans-serif;
-	--font-sans: "PixelCode", monospace, sans-serif;
+	--font-quicksand: "Quicksand", sans-serif;
+	--font-sans: "Quicksand", sans-serif;
 	--font-mono: "Space Mono", "JetBrains Mono", monospace;
 }
 
 :root {
-	font-family: var(--font-pixelcode);
+	font-family: var(--font-quicksand);
+	font-weight: 600;
 }
 
 html,
@@ -132,7 +133,8 @@ body,
 }
 
 body {
-	font-family: var(--font-pixelcode);
+	font-family: var(--font-quicksand);
+	font-weight: 600;
 	background-color: #f2f4f8;
 }
 
