@@ -1,7 +1,7 @@
-import { Calendar, FileText, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import Organizers from "./Organizers";
+import PastEvents from "./PastEvents";
 import Registration from "./Registration";
 import Timeline from "./Timeline";
 
@@ -17,7 +17,7 @@ const DYNAMIC_SLOGANS = [
 	"Passionate about building the future of Quantum Technologies?",
 ];
 
-type HeroView = "home" | "registration" | "timeline" | "organizers";
+type HeroView = "home" | "registration" | "timeline" | "organizers" | "past-events";
 
 export default function Hero() {
 	const [activeView, setActiveView] = useState<HeroView>("home");
@@ -72,52 +72,61 @@ export default function Hero() {
 							<button
 								type="button"
 								onClick={() => setActiveView("home")}
-								className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+								className={`px-3.5 sm:px-4.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
 									activeView === "home"
 										? "bg-[#31135e] text-white shadow-xs"
 										: "text-[#31135e] hover:bg-white/50"
 								}`}
 							>
-								<span>Overview</span>
+								Overview
 							</button>
 
 							<button
 								type="button"
 								onClick={() => setActiveView("timeline")}
-								className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+								className={`px-3.5 sm:px-4.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
 									activeView === "timeline"
 										? "bg-[#31135e] text-white shadow-xs"
 										: "text-[#31135e] hover:bg-white/50"
 								}`}
 							>
-								<Calendar className="w-3.5 h-3.5" />
-								<span>Timeline</span>
+								Timeline
 							</button>
 
 							<button
 								type="button"
 								onClick={() => setActiveView("registration")}
-								className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+								className={`px-3.5 sm:px-4.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
 									activeView === "registration"
 										? "bg-[#31135e] text-white shadow-xs"
 										: "text-[#31135e] hover:bg-white/50"
 								}`}
 							>
-								<FileText className="w-3.5 h-3.5" />
-								<span>For Inquiry</span>
+								For Inquiry
 							</button>
 
 							<button
 								type="button"
 								onClick={() => setActiveView("organizers")}
-								className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+								className={`px-3.5 sm:px-4.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
 									activeView === "organizers"
 										? "bg-[#31135e] text-white shadow-xs"
 										: "text-[#31135e] hover:bg-white/50"
 								}`}
 							>
-								<Users className="w-3.5 h-3.5" />
-								<span>Organizers</span>
+								Organizers
+							</button>
+
+							<button
+								type="button"
+								onClick={() => setActiveView("past-events")}
+								className={`px-3.5 sm:px-4.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
+									activeView === "past-events"
+										? "bg-[#31135e] text-white shadow-xs"
+										: "text-[#31135e] hover:bg-white/50"
+								}`}
+							>
+								Past Events
 							</button>
 						</nav>
 					</div>
@@ -177,6 +186,18 @@ export default function Hero() {
 										</span>
 										<span>FALL FEST 2026</span>
 									</motion.h1>
+
+									{/* Paraphrased Slogan below H1 */}
+									<motion.div
+										initial={{ opacity: 0, y: 10 }}
+										animate={{ opacity: 1, y: 0 }}
+										transition={{ duration: 0.8, delay: 0.4 }}
+										className="mt-2 sm:mt-4 px-4 py-1.5 sm:px-6 sm:py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-2xs inline-block"
+									>
+										<p className="text-xs sm:text-base md:text-lg font-bold text-[#31135e] tracking-widest uppercase">
+											10 Days · Infinite Qubits · One Mission
+										</p>
+									</motion.div>
 								</div>
 
 								{/* Focused Action & Event Highlights Bar */}
@@ -191,10 +212,9 @@ export default function Hero() {
 										whileHover={{ scale: 1.03 }}
 										whileTap={{ scale: 0.97 }}
 										onClick={() => setActiveView("registration")}
-										className="px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-[#31135e] hover:bg-[#230c45] text-white text-sm sm:text-base font-semibold shadow-lg transition-all cursor-pointer flex items-center gap-2.5"
+										className="px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-[#31135e] hover:bg-[#230c45] text-white text-sm sm:text-base font-semibold shadow-lg transition-all cursor-pointer"
 									>
-										<FileText className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-										<span>Submit Inquiry</span>
+										Submit Inquiry
 									</motion.button>
 
 									{/* Date Highlight Badge */}
@@ -202,10 +222,9 @@ export default function Hero() {
 										whileHover={{ scale: 1.03 }}
 										whileTap={{ scale: 0.97 }}
 										onClick={() => setActiveView("timeline")}
-										className="px-5 py-3 sm:px-7 sm:py-4 rounded-full bg-white/35 backdrop-blur-xl border border-white/50 text-[#31135e] hover:bg-white/50 text-sm sm:text-base font-semibold shadow-sm transition-all cursor-pointer flex items-center gap-2.5"
+										className="px-5 py-3 sm:px-7 sm:py-4 rounded-full bg-white/35 backdrop-blur-xl border border-white/50 text-[#31135e] hover:bg-white/50 text-sm sm:text-base font-semibold shadow-sm transition-all cursor-pointer"
 									>
-										<Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-[#31135e]" />
-										<span>Nov 20 – Nov 30, 2026</span>
+										Nov 20 – Nov 30, 2026
 									</motion.button>
 								</motion.div>
 							</motion.div>
@@ -247,6 +266,19 @@ export default function Hero() {
 								className="w-full min-h-full select-text flex flex-col justify-start"
 							>
 								<Organizers />
+							</motion.div>
+						)}
+
+						{activeView === "past-events" && (
+							<motion.div
+								key="hero-past-events"
+								initial={{ opacity: 0, y: 15 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -15 }}
+								transition={{ duration: 0.4 }}
+								className="w-full min-h-full select-text flex flex-col justify-start"
+							>
+								<PastEvents />
 							</motion.div>
 						)}
 					</AnimatePresence>

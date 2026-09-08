@@ -1,4 +1,4 @@
-import { Building2, ExternalLink, GraduationCap, Mail, Phone, ShieldCheck, Sparkles, UserCheck, Users } from "lucide-react";
+import { ExternalLink, Mail, Phone } from "lucide-react";
 import { motion } from "motion/react";
 
 interface Organizer {
@@ -61,9 +61,8 @@ export default function Organizers() {
 		<div className="w-full flex flex-col gap-6 sm:gap-8 py-2 px-1 sm:px-2 text-left max-w-6xl mx-auto pb-16 sm:pb-20">
 			{/* Page Header */}
 			<div className="flex flex-col items-center text-center space-y-3">
-				<div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#31135e]/15 border border-[#31135e]/25 text-[#31135e] text-xs font-semibold uppercase tracking-wider">
-					<Users className="w-3.5 h-3.5" />
-					<span>Organizing Committee</span>
+				<div className="inline-flex items-center px-3.5 py-1 rounded-full bg-[#31135e]/15 border border-[#31135e]/25 text-[#31135e] text-xs font-semibold uppercase tracking-wider">
+					Organizing Committee
 				</div>
 
 				<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#31135e] tracking-tight">
@@ -77,9 +76,8 @@ export default function Organizers() {
 
 			{/* Main Organizer Highlight Section */}
 			<div className="w-full">
-				<div className="text-xs font-bold uppercase tracking-wider text-[#31135e]/80 mb-3 flex items-center gap-2 px-1">
-					<ShieldCheck className="w-4 h-4 text-[#31135e]" />
-					<span>Lead Organizer</span>
+				<div className="text-xs font-bold uppercase tracking-wider text-[#31135e]/80 mb-3 px-1">
+					Lead Organizer
 				</div>
 
 				<motion.div
@@ -100,9 +98,8 @@ export default function Organizers() {
 								className="w-full h-full object-cover rounded-full bg-white"
 							/>
 						</div>
-						<div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#31135e] text-white text-[10px] sm:text-xs font-semibold whitespace-nowrap shadow-sm flex items-center gap-1">
-							<Sparkles className="w-3 h-3 text-yellow-300" />
-							<span>{MAIN_ORGANIZER.role}</span>
+						<div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#31135e] text-white text-[10px] sm:text-xs font-semibold whitespace-nowrap shadow-sm">
+							{MAIN_ORGANIZER.role}
 						</div>
 					</div>
 
@@ -121,8 +118,7 @@ export default function Organizers() {
 						</div>
 
 						<div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs sm:text-sm text-[#5E6470]">
-							<div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/50 border border-white/60">
-								<Building2 className="w-4 h-4 text-[#31135e]" />
+							<div className="px-3 py-1 rounded-xl bg-white/50 border border-white/60">
 								<span>{MAIN_ORGANIZER.department}</span>
 							</div>
 
@@ -148,9 +144,8 @@ export default function Organizers() {
 									rel="noopener noreferrer"
 									className="inline-flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-white/60 hover:bg-white/80 border border-white/80 text-[#31135e] text-xs sm:text-sm font-medium transition-all shadow-2xs"
 								>
-									<GraduationCap className="w-4 h-4" />
 									<span>Vidwan Profile</span>
-									<ExternalLink className="w-3 h-3 ml-0.5 opacity-60" />
+									<ExternalLink className="w-3 h-3 opacity-60" />
 								</a>
 							)}
 						</div>
@@ -160,9 +155,8 @@ export default function Organizers() {
 
 			{/* Co-Organizers Section */}
 			<div className="w-full space-y-3">
-				<div className="text-xs font-bold uppercase tracking-wider text-[#31135e]/80 flex items-center gap-2 px-1">
-					<UserCheck className="w-4 h-4 text-[#31135e]" />
-					<span>Co-Organizers</span>
+				<div className="text-xs font-bold uppercase tracking-wider text-[#31135e]/80 px-1">
+					Co-Organizers
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
@@ -203,8 +197,7 @@ export default function Organizers() {
 								</div>
 
 								<div className="flex flex-col gap-1.5 text-xs text-[#5E6470]">
-									<div className="flex items-center justify-center sm:justify-start gap-1.5">
-										<Building2 className="w-3.5 h-3.5 text-[#31135e]/80 shrink-0" />
+									<div className="text-[#31135e]/80">
 										<span>{org.department}</span>
 									</div>
 
@@ -230,7 +223,6 @@ export default function Organizers() {
 											rel="noopener noreferrer"
 											className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white/60 hover:bg-white/80 border border-white/80 text-[#31135e] text-xs font-medium transition-all shadow-3xs"
 										>
-											<GraduationCap className="w-3.5 h-3.5" />
 											<span>Vidwan Profile</span>
 											<ExternalLink className="w-3 h-3 opacity-60" />
 										</a>
