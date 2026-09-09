@@ -379,46 +379,7 @@ export default function PastEvents() {
 						</div>
 					</div>
 
-					{/* Soft Divider */}
-					<div className="w-full h-px bg-gradient-to-r from-transparent via-[#31135e]/20 to-transparent" />
 
-					{/* Event Archives */}
-					<div className="space-y-6 text-left">
-						<div className="flex items-center justify-between">
-							<h3 className="text-2xl sm:text-3xl font-extrabold text-[#31135e] tracking-tight">
-								Event Archives
-							</h3>
-							<span className="text-xs font-bold text-[#31135e]/60 hidden sm:block">
-								Click any item to expand
-							</span>
-						</div>
-
-						{/* Gallery Slider */}
-						<div className="flex items-center gap-3 sm:gap-5 overflow-x-auto no-scrollbar py-3 px-1 touch-manipulation">
-							{data.gallery.map((item, idx) => (
-								<motion.div
-									key={idx}
-									whileHover={{ y: -8, scale: 1.03 }}
-									onClick={() => setActiveLightboxImage(item)}
-									className="min-w-[230px] xs:min-w-[270px] sm:min-w-[340px] h-[180px] sm:h-[220px] rounded-2xl sm:rounded-3xl overflow-hidden relative cursor-pointer shadow-lg border border-white/80 shrink-0 group"
-								>
-									<img
-										src={item.url}
-										alt={item.title}
-										className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-									/>
-									<div className="absolute inset-0 bg-gradient-to-t from-[#31135e]/90 via-black/30 to-transparent p-5 flex flex-col justify-end">
-										<span className="text-[10px] font-extrabold uppercase tracking-widest text-yellow-300 bg-black/50 px-3 py-1 rounded-full w-fit backdrop-blur-md mb-1.5">
-											{item.category}
-										</span>
-										<h4 className="text-sm sm:text-base font-bold text-white leading-snug">
-											{item.title}
-										</h4>
-									</div>
-								</motion.div>
-							))}
-						</div>
-					</div>
 
 					{/* Soft Divider */}
 					<div className="w-full h-px bg-gradient-to-r from-transparent via-[#31135e]/20 to-transparent" />

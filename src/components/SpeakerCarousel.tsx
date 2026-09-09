@@ -151,12 +151,6 @@ export default function SpeakerCarousel({ year }: SpeakerCarouselProps) {
 
 	return (
 		<div className="w-full flex flex-col items-center justify-center space-y-6 py-4">
-			{/* Top Header Label */}
-			<div className="text-center space-y-1">
-				<span className="text-xs font-bold tracking-widest uppercase text-[#31135e]/70">
-					{year} Edition Speakers
-				</span>
-			</div>
 
 			{/* Circular Avatar Carousel Reel */}
 			<div
