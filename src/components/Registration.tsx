@@ -22,7 +22,7 @@ export default function Registration({
 						Enquiry/Interest Form
 					</h2>
 
-					<p className="text-xs sm:text-sm text-[#5E6470] max-w-xl font-normal leading-relaxed">
+					<p className="text-base sm:text-lg md:text-xl text-[#31135e]/85 max-w-2xl font-medium leading-relaxed">
 						Fill this enquiry/interest form to get complete details about CIT - IBM Qiskit Fall Fest 2026.
 					</p>
 				</div>

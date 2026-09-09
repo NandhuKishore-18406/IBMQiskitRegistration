@@ -1,3 +1,4 @@
+import { ExternalLink } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import Organizers from "./Organizers";
@@ -221,27 +222,45 @@ export default function Hero() {
 									initial={{ y: 20, opacity: 0 }}
 									animate={{ y: 0, opacity: 1 }}
 									transition={{ duration: 0.8, delay: 0.5 }}
-									className="mt-auto w-full max-w-2xl px-2 sm:px-4 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 pb-2 sm:pb-4 pt-2"
+									className="mt-auto w-full max-w-2xl px-2 sm:px-4 flex flex-col items-center justify-center gap-3 pb-2 sm:pb-4 pt-2"
 								>
-									{/* Main CTA Button */}
-									<motion.button
-										whileHover={{ scale: 1.03 }}
-										whileTap={{ scale: 0.97 }}
-										onClick={() => setActiveView("registration")}
-										className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-[#31135e] hover:bg-[#230c45] text-white text-sm sm:text-base font-semibold shadow-lg transition-all cursor-pointer touch-manipulation"
-									>
-										Enquiry/Interest Form
-									</motion.button>
+									<div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4">
+										{/* Main CTA Button */}
+										<motion.button
+											whileHover={{ scale: 1.03 }}
+											whileTap={{ scale: 0.97 }}
+											onClick={() => setActiveView("registration")}
+											className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-[#31135e] hover:bg-[#230c45] text-white text-sm sm:text-base font-semibold shadow-lg transition-all cursor-pointer touch-manipulation"
+										>
+											Enquiry/Interest Form
+										</motion.button>
 
-									{/* Date Highlight Badge */}
-									<motion.button
-										whileHover={{ scale: 1.03 }}
-										whileTap={{ scale: 0.97 }}
-										onClick={() => setActiveView("timeline")}
-										className="w-full sm:w-auto px-5 py-3 sm:px-7 sm:py-4 rounded-full bg-white/35 backdrop-blur-xl border border-white/50 text-[#31135e] hover:bg-white/50 text-sm sm:text-base font-semibold shadow-sm transition-all cursor-pointer touch-manipulation"
+										{/* Date Highlight Badge */}
+										<motion.button
+											whileHover={{ scale: 1.03 }}
+											whileTap={{ scale: 0.97 }}
+											onClick={() => setActiveView("timeline")}
+											className="w-full sm:w-auto px-5 py-3 sm:px-7 sm:py-4 rounded-full bg-white/35 backdrop-blur-xl border border-white/50 text-[#31135e] hover:bg-white/50 text-sm sm:text-base font-semibold shadow-sm transition-all cursor-pointer touch-manipulation"
+										>
+											Nov 20 – Nov 30, 2026
+										</motion.button>
+									</div>
+
+									{/* YouTube Channel Banner Link */}
+									<motion.a
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+										href="https://www.youtube.com/@citquantumhackathon1549/videos"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="mt-1 inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/45 hover:bg-white/70 border border-white/60 shadow-2xs text-[#31135e] text-xs sm:text-sm font-semibold transition-all group touch-manipulation"
 									>
-										Nov 20 – Nov 30, 2026
-									</motion.button>
+										<svg className="w-4 h-4 sm:w-5 sm:h-5 fill-[#FF0000] shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+											<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+										</svg>
+										<span>To view previous events – Visit our YouTube channel</span>
+										<ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 transition-transform" />
+									</motion.a>
 								</motion.div>
 							</motion.div>
 						)}

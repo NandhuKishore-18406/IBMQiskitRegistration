@@ -154,7 +154,7 @@ export default function SpeakerCarousel({ year }: SpeakerCarouselProps) {
 			{/* Top Header Label */}
 			<div className="text-center space-y-1">
 				<span className="text-xs font-bold tracking-widest uppercase text-[#31135e]/70">
-					{year} Edition Keynote Speakers & Mentors
+					{year} Edition Speakers
 				</span>
 			</div>
 

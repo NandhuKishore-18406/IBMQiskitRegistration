@@ -34,7 +34,6 @@ interface EventEditionData {
 	registrations: string;
 	speakersCount: string;
 	projectsCount: string;
-	summary: string;
 	heroImage: string;
 	gallery: GalleryImage[];
 	topics: string[];
@@ -50,24 +49,17 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 		year: "2023",
 		title: "CIT Quantum Challenge 2023",
 		subtitle: "The 3rd Annual Qiskit Fall Fest event hosted offline & online at Coimbatore Institute of Technology.",
-		dates: "October 26 – November 11, 2023",
+		dates: "October 26 – November 8, 2023",
 		mode: "Hybrid (Offline Workshops + Online Challenge)",
 		registrations: "100+ Participants",
 		speakersCount: "12 Speakers",
 		projectsCount: "50+ Challenge Submissions",
-		summary:
-			"Supported by IBM Quantum Education leads Brian Ingmanson and Serena Godwin, the 2023 edition brought 13 deep-dive technical sessions followed by a multi-checkpoint coding challenge on Python Qiskit.",
 		heroImage: `${BASE_URL}assets/past/2023_banner.png`,
 		gallery: [
 			{
 				url: `${BASE_URL}assets/past/2023_banner.png`,
 				title: "Official Quantum Banner 2023",
 				category: "Official Banner",
-			},
-			{
-				url: `${BASE_URL}assets/past/2023_circuit.png`,
-				title: "IBM Qiskit Circuit Composer Logic Slide",
-				category: "Technical Workshop",
 			},
 			{
 				url: `${BASE_URL}assets/past/2022_session.png`,
@@ -109,11 +101,9 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 		subtitle: "A two-week quantum journey featuring 22 international speakers and real IBM Quantum hardware execution.",
 		dates: "October 06 – October 19, 2022",
 		mode: "Global Online Hackathon & Talks",
-		registrations: "200+ Hackers",
+		registrations: "200+ Participants",
 		speakersCount: "22 Global Speakers",
 		projectsCount: "12 Submitted Quantum Projects",
-		summary:
-			"Keynote address delivered by Dr. L Venkata Subramaniam (IBM Quantum India Lead). Participants gained hands-on access to IBM Quantum hardware, running quantum circuits with zero noise mitigation errors.",
 		heroImage: `${BASE_URL}assets/past/2022_poster.png`,
 		gallery: [
 			{
@@ -123,8 +113,8 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 			},
 			{
 				url: `${BASE_URL}assets/past/2022_session.png`,
-				title: "Day 1 Technical Keynote Session Poster",
-				category: "Session Banner",
+				title: "Online Meet",
+				category: "Session",
 			},
 			{
 				url: `${BASE_URL}assets/past/2022_winner.png`,
@@ -173,29 +163,17 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 		year: "2021",
 		title: "CIT Quantum Hackathon 2021",
 		subtitle: "The pioneering inaugural event that started the Quantum Computing community at CIT.",
-		dates: "October 11 – October 25, 2021",
+		dates: "October 16 – October 22, 2021",
 		mode: "Virtual Hackathon & Workshops",
 		registrations: "272 Participants",
 		speakersCount: "8 Speakers",
 		projectsCount: "12 Team Projects",
-		summary:
-			"The debut event of IBM Qiskit Fall Fest at CIT! 272 passionate students registered to learn quantum gates, circuit design, and Qiskit SDK, concluding with a 48-hour competitive hackathon.",
 		heroImage: `${BASE_URL}assets/past/2021_poster_cit.png`,
 		gallery: [
 			{
 				url: `${BASE_URL}assets/past/2021_poster_cit.png`,
 				title: "Official CIT Quantum Hackathon 2021 Poster",
 				category: "Official Poster",
-			},
-			{
-				url: `${BASE_URL}assets/past/2021_main.png`,
-				title: "Pioneer CIT Quantum Hackathon 2021 Event Graphic",
-				category: "Event Graphic",
-			},
-			{
-				url: `${BASE_URL}assets/past/2021_banner.png`,
-				title: "Fall Fest Official Qiskit Header Banner",
-				category: "Event Banner",
 			},
 			{
 				url: `${BASE_URL}assets/past/2021_ceremony.jpg`,
@@ -221,13 +199,13 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 			{
 				rank: "2nd Place",
 				title: "Mid-Day Meals Scheme Optimization",
-				names: ["CIT Quantum Team B"],
+				names: [],
 				project: "Formulated combinatorial supply-chain logistics as a QAOA problem.",
 			},
 			{
 				rank: "3rd Place",
 				title: "Quantum Music Notes Generator",
-				names: ["CIT Quantum Team C"],
+				names: [],
 				project: "Used quantum superposition measurements to compose algorithmic harmony.",
 			},
 		],
@@ -237,7 +215,7 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 			{ name: "Dr. S. Manjula Gandhi", role: "CIT Quantum Club Convener", image: `${BASE_URL}assets/past/2022_manjula.jpg` },
 		],
 		insights: [
-			{ tag: "272 Hackers", text: "Massive turnout for CIT's first-ever quantum hackathon edition." },
+			{ tag: "272 Participants", text: "Massive turnout for CIT's first-ever quantum hackathon edition." },
 			{ tag: "Quantum Music!", text: "3rd place team built a music generator powered by quantum superposition." },
 			{ tag: "Birth of CIT Quantum", text: "Sparked the formation of the official CIT Quantum Student Chapter." },
 		],
@@ -309,10 +287,6 @@ export default function PastEvents() {
 
 							<p className="text-base sm:text-lg text-[#31135e]/90 leading-relaxed font-semibold">
 								{data.subtitle}
-							</p>
-
-							<p className="text-xs sm:text-sm text-gray-700 leading-relaxed max-w-xl">
-								{data.summary}
 							</p>
 
 							{/* Dynamic Metric Chips */}
@@ -408,11 +382,11 @@ export default function PastEvents() {
 					{/* Soft Divider */}
 					<div className="w-full h-px bg-gradient-to-r from-transparent via-[#31135e]/20 to-transparent" />
 
-					{/* Media & Event Archives */}
+					{/* Event Archives */}
 					<div className="space-y-6 text-left">
 						<div className="flex items-center justify-between">
 							<h3 className="text-2xl sm:text-3xl font-extrabold text-[#31135e] tracking-tight">
-								Media & Event Archives
+								Event Archives
 							</h3>
 							<span className="text-xs font-bold text-[#31135e]/60 hidden sm:block">
 								Click any item to expand
@@ -480,16 +454,18 @@ export default function PastEvents() {
 											</p>
 										)}
 
-										<div className="flex flex-wrap items-center gap-2 pt-1">
-											{winner.names.map((name, nIdx) => (
-												<span
-													key={nIdx}
-													className="px-3 py-1 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs font-bold"
-												>
-													{name}
-												</span>
-											))}
-										</div>
+										{winner.names && winner.names.length > 0 && (
+											<div className="flex flex-wrap items-center gap-2 pt-1">
+												{winner.names.map((name, nIdx) => (
+													<span
+														key={nIdx}
+														className="px-3 py-1 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs font-bold"
+													>
+														{name}
+													</span>
+												))}
+											</div>
+										)}
 									</div>
 
 									{winner.image && (
@@ -522,10 +498,10 @@ export default function PastEvents() {
 					{/* Soft Divider */}
 					<div className="w-full h-px bg-gradient-to-r from-transparent via-[#31135e]/20 to-transparent" />
 
-					{/* Keynote Speakers & Mentors (Circular Interactive Carousel) */}
+					{/* Speakers (Circular Interactive Carousel) */}
 					<div className="space-y-4 text-left">
 						<h3 className="text-2xl sm:text-3xl font-extrabold text-[#31135e] tracking-tight">
-							Keynote Speakers & Mentors
+							Speakers
 						</h3>
 
 						<SpeakerCarousel year={activeYear} />
