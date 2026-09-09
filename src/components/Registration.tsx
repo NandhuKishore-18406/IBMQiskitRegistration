@@ -19,11 +19,11 @@ export default function Registration({
 			{showHeader && (
 				<div className="flex flex-col items-center text-center space-y-2 mb-2 sm:mb-4">
 					<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#31135e] tracking-tight">
-						Inquiry Form
+						Enquiry/Interest Form
 					</h2>
 
 					<p className="text-xs sm:text-sm text-[#5E6470] max-w-xl font-normal leading-relaxed">
-						Fill this inquiry form to get complete details about CIT - IBM Qiskit Fall Fest 2026.
+						Fill this enquiry/interest form to get complete details about CIT - IBM Qiskit Fall Fest 2026.
 					</p>
 				</div>
 			)}

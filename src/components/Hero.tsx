@@ -9,6 +9,7 @@ const IMG_URL = `${import.meta.env.BASE_URL}assets/Untitled design.png`;
 const LOGO1_URL = `${import.meta.env.BASE_URL}assets/logo.png`;
 const LOGO2_URL = `${import.meta.env.BASE_URL}assets/images-removebg-preview(1)(1).png`;
 const LOGO3_URL = `${import.meta.env.BASE_URL}assets/iic.webp`;
+const LOGO4_URL = `${import.meta.env.BASE_URL}assets/qiskit.png`;
 
 const DYNAMIC_SLOGANS = [
 	"Eager to learn & hone your skills in Quantum Computing?",
@@ -49,38 +50,44 @@ export default function Hero() {
 				/>
 
 				{/* Persistent Top Header Bar with Logos & Navigation */}
-				<header className="relative z-30 w-full pt-1.5 sm:pt-4 px-1.5 sm:px-4 md:px-6 shrink-0 flex items-center justify-center">
-					<div className="w-full max-w-6xl px-2.5 py-1.5 sm:px-5 sm:py-2.5 rounded-2xl sm:rounded-3xl md:rounded-full bg-white/25 backdrop-blur-2xl border border-white/40 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
+				<header className="relative z-30 w-full shrink-0 flex items-center justify-center bg-white/25 backdrop-blur-2xl border-b border-white/40 shadow-xs">
+					<div className="w-full px-4 sm:px-8 md:px-10 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
 						{/* Left: Brand Logos */}
 						<div
 							onClick={() => setActiveView("home")}
-							className="flex items-center justify-center gap-1.5 sm:gap-4 cursor-pointer hover:opacity-95 transition-opacity py-0.5"
+							className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6 cursor-pointer hover:opacity-95 transition-opacity py-0.5"
 						>
 							<img
 								src={LOGO1_URL}
 								alt="CIT Logo"
-								className="h-6 sm:h-9 md:h-11 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
+								className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
 							/>
-							<div className="w-px h-4 sm:h-7 bg-[#31135e]/30 rounded-full shrink-0" />
+							<div className="w-px h-6 sm:h-9 md:h-10 bg-[#31135e]/30 rounded-full shrink-0" />
 							<img
 								src={LOGO3_URL}
 								alt="IIC Logo"
-								className="h-6 sm:h-9 md:h-11 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
+								className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
 							/>
-							<div className="w-px h-4 sm:h-7 bg-[#31135e]/30 rounded-full shrink-0" />
+							<div className="w-px h-6 sm:h-9 md:h-10 bg-[#31135e]/30 rounded-full shrink-0" />
 							<img
 								src={LOGO2_URL}
 								alt="IBM Logo"
-								className="h-6 sm:h-9 md:h-11 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
+								className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
+							/>
+							<div className="w-px h-6 sm:h-9 md:h-10 bg-[#31135e]/30 rounded-full shrink-0" />
+							<img
+								src={LOGO4_URL}
+								alt="Qiskit Logo"
+								className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
 							/>
 						</div>
 
 						{/* Right: Navigation Tabs */}
-						<nav className="flex items-center gap-1 sm:gap-1.5 p-1 rounded-full bg-white/30 backdrop-blur-md border border-white/40 overflow-x-auto no-scrollbar max-w-full touch-manipulation">
+						<nav className="flex items-center gap-1 sm:gap-2 p-1.5 rounded-full bg-white/30 backdrop-blur-md border border-white/40 overflow-x-auto no-scrollbar max-w-full touch-manipulation">
 							<button
 								type="button"
 								onClick={() => setActiveView("home")}
-								className={`px-3 sm:px-4.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
+								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
 									activeView === "home"
 										? "bg-[#31135e] text-white shadow-xs"
 										: "text-[#31135e] hover:bg-white/50"
@@ -92,7 +99,7 @@ export default function Hero() {
 							<button
 								type="button"
 								onClick={() => setActiveView("timeline")}
-								className={`px-3 sm:px-4.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
+								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
 									activeView === "timeline"
 										? "bg-[#31135e] text-white shadow-xs"
 										: "text-[#31135e] hover:bg-white/50"
@@ -104,19 +111,19 @@ export default function Hero() {
 							<button
 								type="button"
 								onClick={() => setActiveView("registration")}
-								className={`px-3 sm:px-4.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
+								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
 									activeView === "registration"
 										? "bg-[#31135e] text-white shadow-xs"
 										: "text-[#31135e] hover:bg-white/50"
 								}`}
 							>
-								For Inquiry
+								Enquiry/Interest Form
 							</button>
 
 							<button
 								type="button"
 								onClick={() => setActiveView("organizers")}
-								className={`px-3 sm:px-4.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
+								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
 									activeView === "organizers"
 										? "bg-[#31135e] text-white shadow-xs"
 										: "text-[#31135e] hover:bg-white/50"
@@ -128,7 +135,7 @@ export default function Hero() {
 							<button
 								type="button"
 								onClick={() => setActiveView("past-events")}
-								className={`px-3 sm:px-4.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
+								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
 									activeView === "past-events"
 										? "bg-[#31135e] text-white shadow-xs"
 										: "text-[#31135e] hover:bg-white/50"
@@ -192,9 +199,7 @@ export default function Hero() {
 										className="text-2xl sm:text-5xl md:text-6xl lg:text-[70px] font-bold text-[#31135e] tracking-tight leading-[1.15] flex flex-wrap items-center justify-center gap-2 sm:gap-4"
 									>
 										<span>CIT - IBM</span>
-										<span className="bg-[#31135e] text-white px-3 py-0.5 sm:px-6 sm:py-1.5 md:px-7 md:py-2 rounded-full shadow-md inline-block font-mono font-light tracking-widest text-xl sm:text-5xl md:text-6xl lg:text-[70px]">
-											Qiskit
-										</span>
+										<span className="font-ibm-mono font-medium tracking-normal text-[#31135e]">Qiskit</span>
 										<span>FALL FEST 2026</span>
 									</motion.h1>
 
@@ -206,7 +211,7 @@ export default function Hero() {
 										className="mt-1 sm:mt-4 px-3 py-1 sm:px-6 sm:py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-2xs inline-block max-w-full"
 									>
 										<p className="text-[10px] sm:text-base md:text-lg font-bold text-[#31135e] tracking-wider sm:tracking-widest uppercase">
-											10 Days · Infinite Qubits · One Mission
+											Infinite Qubits · One Mission
 										</p>
 									</motion.div>
 								</div>
@@ -225,7 +230,7 @@ export default function Hero() {
 										onClick={() => setActiveView("registration")}
 										className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-[#31135e] hover:bg-[#230c45] text-white text-sm sm:text-base font-semibold shadow-lg transition-all cursor-pointer touch-manipulation"
 									>
-										Submit Inquiry
+										Enquiry/Interest Form
 									</motion.button>
 
 									{/* Date Highlight Badge */}

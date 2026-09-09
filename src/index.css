@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -114,6 +114,11 @@
 	--font-quicksand: "Quicksand", sans-serif;
 	--font-sans: "Quicksand", sans-serif;
 	--font-mono: "Space Mono", "JetBrains Mono", monospace;
+	--font-ibm-mono: "IBM Plex Mono", monospace;
+}
+
+.font-ibm-mono {
+	font-family: "IBM Plex Mono", monospace !important;
 }
 
 :root {

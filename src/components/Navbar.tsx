@@ -8,7 +8,7 @@ interface MenuItem {
 }
 
 const MENU_ITEMS: MenuItem[] = [
-	{ label: "For Inquiry" },
+	{ label: "Enquiry/Interest Form" },
 	{ label: "Timeline" },
 	{ label: "Organizers" },
 ];
