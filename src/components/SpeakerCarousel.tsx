@@ -28,12 +28,14 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Mr. Ajhay V",
 			designation: "Quantum Computing Workshop Lead",
 			topic: "Working with Quantum Entanglement",
+			image: `${BASE_URL}assets/speakers/aghayv.jpeg`,
 		},
 		{
 			id: "gayathri-2023",
 			name: "Dr. S. Gayathri Devi",
 			designation: "Associate Professor, CIT",
 			topic: "Exploring IBMQ & Qiskit Developer Certification Exam",
+			image: `${BASE_URL}assets/speakers/gayathri.png`,
 		},
 		{
 			id: "midhun-2023",
@@ -47,6 +49,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Ms. M S Pooja Shri",
 			designation: "Quantum Algorithms Mentor",
 			topic: "Quantum Teleportation & Grover's Algorithm",
+			image: `${BASE_URL}assets/speakers/poojashri.jpeg`,
 		},
 		{
 			id: "karthick-2023",
@@ -67,6 +70,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Ms. B Srinithi",
 			designation: "Quantum Computing Researcher",
 			topic: "Shor's Factoring Algorithm",
+			image: `${BASE_URL}assets/speakers/srinithi.jpeg`,
 		},
 		{
 			id: "raghavendra-2023",
@@ -89,6 +93,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Ms. Lorraine Tsitsi Majjri",
 			designation: "Quantum Education Specialist",
 			topic: "Quantum States and Qubits",
+			image: `${BASE_URL}assets/speakers/LorraineTsitsiMajjri.jpg`,
 		},
 		{
 			id: "raghavendra-2022",
@@ -109,6 +114,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Dr. S. Gayathri Devi",
 			designation: "Associate Professor, CIT",
 			topic: "Qiskit Backends",
+			image: `${BASE_URL}assets/speakers/gayathri.png`,
 		},
 		{
 			id: "alain-2022",
@@ -136,6 +142,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Ms. Reshma",
 			designation: "Quantum Circuits Workshop Lead",
 			topic: "Implementing Classical Logic Gates using Quantum Gates",
+			image: `${BASE_URL}assets/speakers/reshma.jpg`,
 		},
 		{
 			id: "guncha-2022",
@@ -163,7 +170,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Ms. Soyoung Shin (Sophy)",
 			designation: "IBM Quantum Developer & Educator",
 			topic: "Qiskit Pulse Tutorial",
-			image: `${BASE_URL}assets/past/2022_soyoung.jpg`,
+			image: `${BASE_URL}assets/past/soyoungshin.jpg`,
 		},
 		{
 			id: "sabhyata-2022",
@@ -212,6 +219,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Mr. R K Rupesh",
 			designation: "Quantitative Quantum Developer",
 			topic: "Finding Currency Arbitrage using Quantum Computers",
+			image: `${BASE_URL}assets/speakers/rupeshrk.jpg`,
 		},
 		{
 			id: "manjula-2022",
@@ -262,6 +270,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Mr. Rajesh K. Jeyapaul",
 			designation: "IBM Research & AI Technical Leader",
 			topic: "What makes Machine Learning Quantum?",
+			image: `${BASE_URL}assets/speakers/Rageshjayapal.jpg`,
 		},
 		{
 			id: "chandia-2021",

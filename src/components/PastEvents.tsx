@@ -1,6 +1,6 @@
-import { Calendar, ZoomIn, X } from "lucide-react";
+import { Calendar, X, ZoomIn } from "lucide-react";
 
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import SpeakerCarousel from "./SpeakerCarousel";
 
@@ -391,7 +391,7 @@ export default function PastEvents() {
 								<div className="absolute inset-0 bg-gradient-to-t from-[#31135e]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-6">
 									<span className="text-white text-xs font-bold flex items-center gap-2 bg-black/50 px-4 py-2 rounded-full backdrop-blur-md">
 										<ZoomIn className="w-4 h-4" />
-										Inspect Poster High-Res
+										
 									</span>
 								</div>
 							</motion.div>
