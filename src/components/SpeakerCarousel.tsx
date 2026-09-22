@@ -170,7 +170,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			name: "Ms. Soyoung Shin (Sophy)",
 			designation: "IBM Quantum Developer & Educator",
 			topic: "Qiskit Pulse Tutorial",
-			image: `${BASE_URL}assets/past/soyoungshin.jpg`,
+			image: `${BASE_URL}assets/speakers/soyoungshin.jpg`,
 		},
 		{
 			id: "sabhyata-2022",

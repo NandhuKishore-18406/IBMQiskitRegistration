@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import Organizers from "./Organizers";
@@ -21,8 +21,17 @@ const DYNAMIC_SLOGANS = [
 
 type HeroView = "home" | "registration" | "timeline" | "organizers" | "past-events";
 
+const NAV_ITEMS: { id: HeroView; label: string }[] = [
+	{ id: "home", label: "Overview" },
+	{ id: "timeline", label: "Timeline" },
+	{ id: "registration", label: "Enquiry/Interest Form" },
+	{ id: "organizers", label: "Organizers" },
+	{ id: "past-events", label: "Past Events" },
+];
+
 export default function Hero() {
 	const [activeView, setActiveView] = useState<HeroView>("home");
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [sloganIndex, setSloganIndex] = useState(0);
 	const contentContainerRef = useRef<HTMLDivElement>(null);
 
@@ -50,102 +59,106 @@ export default function Hero() {
 					className="absolute inset-0 w-full h-full object-cover object-[65%] lg:object-center z-0"
 				/>
 
-				{/* Persistent Top Header Bar with Logos & Navigation */}
-				<header className="relative z-30 w-full shrink-0 flex items-center justify-center bg-white/25 backdrop-blur-2xl border-b border-white/40 shadow-xs">
-					<div className="w-full px-4 sm:px-8 md:px-10 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
+				{/* Persistent Top Header Bar with Logos & Dynamic Navigation */}
+				<header className="relative z-30 w-full shrink-0 bg-white/25 backdrop-blur-2xl border-b border-white/40 shadow-xs">
+					<div className="w-full px-3 sm:px-6 md:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-3">
 						{/* Left: Brand Logos */}
 						<div
-							onClick={() => setActiveView("home")}
-							className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6 cursor-pointer hover:opacity-95 transition-opacity py-0.5"
+							onClick={() => {
+								setActiveView("home");
+								setIsMobileMenuOpen(false);
+							}}
+							className="flex items-center justify-start gap-1.5 sm:gap-3 md:gap-4 cursor-pointer hover:opacity-95 transition-opacity py-0.5 shrink-0"
 						>
 							<img
 								src={LOGO1_URL}
 								alt="CIT Logo"
-								className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
+								className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
 							/>
-							<div className="w-px h-6 sm:h-9 md:h-10 bg-[#31135e]/30 rounded-full shrink-0" />
+							<div className="w-px h-5 sm:h-7 md:h-8 bg-[#31135e]/30 rounded-full shrink-0" />
 							<img
 								src={LOGO3_URL}
 								alt="IIC Logo"
-								className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
+								className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
 							/>
-							<div className="w-px h-6 sm:h-9 md:h-10 bg-[#31135e]/30 rounded-full shrink-0" />
+							<div className="w-px h-5 sm:h-7 md:h-8 bg-[#31135e]/30 rounded-full shrink-0" />
 							<img
 								src={LOGO2_URL}
 								alt="IBM Logo"
-								className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
+								className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
 							/>
-							<div className="w-px h-6 sm:h-9 md:h-10 bg-[#31135e]/30 rounded-full shrink-0" />
+							<div className="w-px h-5 sm:h-7 md:h-8 bg-[#31135e]/30 rounded-full shrink-0" />
 							<img
 								src={LOGO4_URL}
 								alt="Qiskit Logo"
-								className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[20vw] sm:max-w-none object-contain drop-shadow-sm"
+								className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
 							/>
 						</div>
 
-						{/* Right: Navigation Tabs */}
-						<nav className="flex items-center gap-1 sm:gap-2 p-1.5 rounded-full bg-white/30 backdrop-blur-md border border-white/40 overflow-x-auto no-scrollbar max-w-full touch-manipulation">
-							<button
-								type="button"
-								onClick={() => setActiveView("home")}
-								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
-									activeView === "home"
-										? "bg-[#31135e] text-white shadow-xs"
-										: "text-[#31135e] hover:bg-white/50"
-								}`}
-							>
-								Overview
-							</button>
-
-							<button
-								type="button"
-								onClick={() => setActiveView("timeline")}
-								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
-									activeView === "timeline"
-										? "bg-[#31135e] text-white shadow-xs"
-										: "text-[#31135e] hover:bg-white/50"
-								}`}
-							>
-								Timeline
-							</button>
-
-							<button
-								type="button"
-								onClick={() => setActiveView("registration")}
-								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
-									activeView === "registration"
-										? "bg-[#31135e] text-white shadow-xs"
-										: "text-[#31135e] hover:bg-white/50"
-								}`}
-							>
-								Enquiry/Interest Form
-							</button>
-
-							<button
-								type="button"
-								onClick={() => setActiveView("organizers")}
-								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
-									activeView === "organizers"
-										? "bg-[#31135e] text-white shadow-xs"
-										: "text-[#31135e] hover:bg-white/50"
-								}`}
-							>
-								Organizers
-							</button>
-
-							<button
-								type="button"
-								onClick={() => setActiveView("past-events")}
-								className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
-									activeView === "past-events"
-										? "bg-[#31135e] text-white shadow-xs"
-										: "text-[#31135e] hover:bg-white/50"
-								}`}
-							>
-								Past Events
-							</button>
+						{/* Right: Desktop Navigation Tabs (xl and above) */}
+						<nav className="hidden xl:flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-full bg-white/30 backdrop-blur-md border border-white/40">
+							{NAV_ITEMS.map((item) => (
+								<button
+									key={item.id}
+									type="button"
+									onClick={() => setActiveView(item.id)}
+									className={`px-3.5 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
+										activeView === item.id
+											? "bg-[#31135e] text-white shadow-xs"
+											: "text-[#31135e] hover:bg-white/50"
+									}`}
+								>
+									{item.label}
+								</button>
+							))}
 						</nav>
+
+						{/* Toggle Button for Mobile / Tablet View (< xl) */}
+						<button
+							type="button"
+							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+							className="xl:hidden p-2 sm:p-2.5 rounded-full bg-white/40 backdrop-blur-md border border-white/50 text-[#31135e] hover:bg-white/70 transition-colors shadow-xs focus:outline-none cursor-pointer"
+							aria-label="Toggle navigation menu"
+						>
+							{isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+						</button>
 					</div>
+
+					{/* Collapsible Mobile & Tablet Dropdown Navigation Menu */}
+					<AnimatePresence>
+						{isMobileMenuOpen && (
+							<motion.div
+								initial={{ opacity: 0, height: 0 }}
+								animate={{ opacity: 1, height: "auto" }}
+								exit={{ opacity: 0, height: 0 }}
+								transition={{ duration: 0.25, ease: "easeInOut" }}
+								className="xl:hidden w-full bg-white/90 backdrop-blur-2xl border-t border-white/40 px-4 py-3 shadow-lg overflow-hidden"
+							>
+								<nav className="flex flex-col gap-1.5 w-full">
+									{NAV_ITEMS.map((item) => (
+										<button
+											key={item.id}
+											type="button"
+											onClick={() => {
+												setActiveView(item.id);
+												setIsMobileMenuOpen(false);
+											}}
+											className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-between cursor-pointer ${
+												activeView === item.id
+													? "bg-[#31135e] text-white shadow-xs"
+													: "text-[#31135e] hover:bg-white/60"
+											}`}
+										>
+											<span>{item.label}</span>
+											{activeView === item.id && (
+												<div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+											)}
+										</button>
+									))}
+								</nav>
+							</motion.div>
+						)}
+					</AnimatePresence>
 				</header>
 
 				{/* Central Content Area - Scrollable with custom transparent scrollbar */}
@@ -287,7 +300,7 @@ export default function Hero() {
 								transition={{ duration: 0.4 }}
 								className="w-full min-h-full select-text flex flex-col justify-start"
 							>
-								<Timeline onNavigateRegistration={() => setActiveView("registration")} />
+								<Timeline />
 							</motion.div>
 						)}
 
