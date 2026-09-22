@@ -1,4 +1,4 @@
-import { Mail, GraduationCap } from "lucide-react";
+import { GraduationCap, Mail } from "lucide-react";
 import { motion } from "motion/react";
 
 interface Organizer {
@@ -58,7 +58,7 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 	},
 	{
 		id: "ashraff",
-		name: "Ashraff",
+		name: "Ashraff S",
 		department: "M.Sc. Software Systems",
 		year: "2nd Year",
 	},
