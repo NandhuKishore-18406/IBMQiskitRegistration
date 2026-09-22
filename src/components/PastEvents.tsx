@@ -1,4 +1,5 @@
 import { Calendar, ZoomIn, X } from "lucide-react";
+
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import SpeakerCarousel from "./SpeakerCarousel";
@@ -25,6 +26,13 @@ interface Winner {
 	image?: string;
 }
 
+interface ScheduleSession {
+	date: string;
+	time: string;
+	topic: string;
+	speaker: string;
+}
+
 interface EventEditionData {
 	year: string;
 	title: string;
@@ -40,6 +48,7 @@ interface EventEditionData {
 	winners: Winner[];
 	featuredSpeakers: Speaker[];
 	insights: { text: string; tag: string }[];
+	schedules: ScheduleSession[];
 }
 
 const BASE_URL = import.meta.env.BASE_URL;
@@ -52,7 +61,7 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 		dates: "October 26 – November 8, 2023",
 		mode: "Hybrid (Offline Workshops + Online Challenge)",
 		registrations: "100+ Participants",
-		speakersCount: "12 Speakers",
+		speakersCount: "9 Expert Speakers",
 		projectsCount: "50+ Challenge Submissions",
 		heroImage: `${BASE_URL}assets/past/2023_banner.png`,
 		gallery: [
@@ -84,25 +93,39 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 			{ rank: "Distinction", title: "Top Coders", names: ["James Titus (KIT)", "Raj Kishore S (CIT)"] },
 		],
 		featuredSpeakers: [
-			{ name: "Dr. S. Manjula Gandhi", role: "Associate Professor, CIT & Qiskit Advocate", image: `${BASE_URL}assets/past/2022_manjula.jpg` },
-			{ name: "Mr. Karthi Ganesh Durai", role: "Chief Quantum Architect, BosonQ Psi" },
-			{ name: "Dr. Raghavendra V", role: "PhD Computational Chemistry, Quantum Researcher" },
-			{ name: "Ms. V. Rohini", role: "IBM Certified Developer & Qiskit Advocate" },
+			{ name: "Dr. S. Manjula Gandhi", role: "Associate Professor, CIT & Qiskit Advocate", image: `${BASE_URL}assets/speakers/manjulagandhi.jpg` },
+			{ name: "Mr. Karthickganesh Durai", role: "Chief Quantum Architect, BosonQ Psi", image: `${BASE_URL}assets/speakers/karthiganeshdurai.jpg` },
+			{ name: "Dr. S. Gayathri Devi", role: "Associate Professor, CIT" },
+			{ name: "Ms. V. Rohini", role: "IBM Certified Developer & Qiskit Advocate", image: `${BASE_URL}assets/speakers/rohiniv.jpg` },
+			{ name: "Dr. Raghavendra V", role: "PhD Computational Chemistry", image: `${BASE_URL}assets/speakers/ragavendrav.jpg` },
 		],
 		insights: [
 			{ tag: "37 Global Universities", text: "CIT was selected among 37 international host campuses for IBM Qiskit Fall Fest 2023." },
 			{ tag: "Hands-on QML", text: "Live real-time execution of Quantum Machine Learning algorithms on IBM Quantum backends." },
 			{ tag: "Official Badges", text: "All top leaderboard coders received official IBM Quantum digital credentials." },
 		],
+		schedules: [
+			{ date: "26-10-2023", time: "9:30 AM – 10:00 AM", topic: "Inaugural Session", speaker: "CIT Quantum Team" },
+			{ date: "26-10-2023", time: "10:15 AM – 1:00 PM", topic: "Constructing Reversible Circuits using IBM Qiskit", speaker: "Dr. S. Manjula Gandhi" },
+			{ date: "26-10-2023", time: "2:00 PM – 4:30 PM", topic: "Working with Quantum Entanglement", speaker: "Mr. Ajhay V" },
+			{ date: "27-10-2023", time: "9:15 AM – 10:45 AM", topic: "Exploring IBMQ & How to crack Qiskit Developer Certification Exam", speaker: "Dr. S. Gayathri Devi" },
+			{ date: "27-10-2023", time: "11:15 AM – 12:45 PM", topic: "Deutsch's Algorithm, Deutsch Jozsa", speaker: "Mr. K. Midhun Chakkaravarthy" },
+			{ date: "27-10-2023", time: "2:00 PM – 4:45 PM", topic: "Quantum Teleportation, Grover's Algorithm", speaker: "Ms. M. S. Pooja Shri" },
+			{ date: "30-10-2023", time: "FN & AN", topic: "Quantum Machine Learning", speaker: "Mr. Karthickganesh Durai" },
+			{ date: "31-10-2023", time: "FN & AN", topic: "Quantum Machine Learning", speaker: "Mr. Karthickganesh Durai" },
+			{ date: "01-11-2023", time: "FN", topic: "Quantum Key Distribution", speaker: "Ms. V. Rohini" },
+			{ date: "01-11-2023", time: "FN", topic: "Shor's Factoring Algorithm", speaker: "Ms. B Srinithi" },
+			{ date: "01-11-2023", time: "AN", topic: "Quantum Finance", speaker: "Dr. Raghavendra V" },
+		],
 	},
 	"2022": {
 		year: "2022",
 		title: "CIT Quantum Hackathon 2022",
-		subtitle: "A two-week quantum journey featuring 22 international speakers and real IBM Quantum hardware execution.",
+		subtitle: "A two-week quantum journey featuring 21 global speakers and real IBM Quantum hardware execution.",
 		dates: "October 06 – October 19, 2022",
 		mode: "Global Online Hackathon & Talks",
 		registrations: "200+ Participants",
-		speakersCount: "22 Global Speakers",
+		speakersCount: "21 Expert Speakers",
 		projectsCount: "12 Submitted Quantum Projects",
 		heroImage: `${BASE_URL}assets/past/2022_poster.png`,
 		gallery: [
@@ -146,17 +169,40 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 			},
 		],
 		featuredSpeakers: [
-			{ name: "Dr. L Venkata Subramaniam", role: "IBM Quantum India Lead & IBM Fellow", image: `${BASE_URL}assets/past/2022_venkata.jpg` },
-			{ name: "Alain Chance", role: "Qiskit Advocate & Global Quantum Author", image: `${BASE_URL}assets/past/2022_alain.jpg` },
-			{ name: "Dr. Shesha Raghunathan", role: "IBM Quantum Educator", image: `${BASE_URL}assets/past/2022_shesha.png` },
+			{ name: "Dr. L Venkata Subramaniam", role: "IBM Quantum India Lead & IBM Fellow", image: `${BASE_URL}assets/speakers/lvenkatasubramaniyam.jpg` },
+			{ name: "Alain Chance", role: "Qiskit Advocate & Global Quantum Author", image: `${BASE_URL}assets/speakers/alainchance.jpg` },
+			{ name: "Dr. Shesha Raghunathan", role: "IBM Quantum Educator", image: `${BASE_URL}assets/speakers/SheshaRaghunathan.jpg` },
 			{ name: "Ms. Soyoung Shin", role: "IBM Quantum Developer & Educator", image: `${BASE_URL}assets/past/2022_soyoung.jpg` },
-			{ name: "Mr. Prajjwal Vijaywargiya", role: "Quantum Software Engineer", image: `${BASE_URL}assets/past/2022_prajjwal.jpg` },
-			{ name: "Mr. Balaji Seetharaman", role: "Quantum Computing Researcher", image: `${BASE_URL}assets/past/2022_balaji.jpg` },
+			{ name: "Mr. Prajjwal Vijaywargiya", role: "Quantum Software Engineer", image: `${BASE_URL}assets/speakers/prajjwal.jpg` },
+			{ name: "Mr. Balaji Seetharaman", role: "Quantum Computing Researcher", image: `${BASE_URL}assets/speakers/balajiseetaraman.jpg` },
 		],
 		insights: [
-			{ tag: "22 Global Speakers", text: "World-class keynotes from IBM Research India, USA, France, and Singapore." },
+			{ tag: "21 Global Speakers", text: "World-class keynotes from IBM Research India, USA, France, and Singapore." },
 			{ tag: "Hardware Jobs", text: "Over 1,200 quantum circuits executed directly on IBM Quantum ibm_perth and ibm_nairobi." },
 			{ tag: "1st Place Publication", text: "Winning project extended into an academic research paper on graph state transfer." },
+		],
+		schedules: [
+			{ date: "October 6, 2022", time: "11:00 AM", topic: "Are You Ready for the Quantum Computing Revolution?", speaker: "Dr. L. Venkata Subramaniam" },
+			{ date: "October 6, 2022", time: "2:30 PM", topic: "Quantum States and Qubits", speaker: "Ms. Lorraine Tsitsi Majiri" },
+			{ date: "October 6, 2022", time: "3:30 PM", topic: "Quantum Gates", speaker: "Dr. Raghavendra" },
+			{ date: "October 7, 2022", time: "11:00 AM", topic: "Quantum algorithms in near-term quantum computers", speaker: "Dr. Shesha Raghunathan" },
+			{ date: "October 7, 2022", time: "2:00 PM", topic: "Qiskit Backends", speaker: "Dr. S. Gayathri Devi" },
+			{ date: "October 7, 2022", time: "5:00 PM", topic: "Simulating interferometric sensing of a quantum superposition of enantiomer states with Qiskit code", speaker: "Mr. Alain Chance" },
+			{ date: "October 8, 2022", time: "10:00 AM", topic: "Quantum Entanglement", speaker: "Ms. Rohini V" },
+			{ date: "October 8, 2022", time: "11:30 AM", topic: "Quantum Teleportation", speaker: "Mr. Prajjwal Vijaywargiya" },
+			{ date: "October 8, 2022", time: "2:00 PM", topic: "Implementing classical logic gates using quantum gates", speaker: "Ms. Reshma" },
+			{ date: "October 9, 2022", time: "10:00 AM", topic: "Factoring Integers – The Shor's way", speaker: "Ms. Guncha Malik" },
+			{ date: "October 9, 2022", time: "11:30 AM", topic: "Variational Quantum Methods", speaker: "Mr. Vishnu" },
+			{ date: "October 9, 2022", time: "2:00 PM", topic: "Qiskit Simulators", speaker: "Mr. Jayesh" },
+			{ date: "October 10, 2022", time: "10:00 AM", topic: "Qiskit Pulse Tutorial", speaker: "Ms. Soyoung Shin (Sophy)" },
+			{ date: "October 10, 2022", time: "11:30 AM", topic: "An essay from Grade 5 and Quantum Computing", speaker: "Ms. Sabyata Gupta" },
+			{ date: "October 10, 2022", time: "2:00 PM", topic: "Quantum Cryptography", speaker: "Mr. Kaushal" },
+			{ date: "October 11, 2022", time: "10:00 AM", topic: "Quantum Computing demystification in machine learning", speaker: "Ms. Kavitha S.S." },
+			{ date: "October 11, 2022", time: "11:30 AM", topic: "Deploying a QML model on web", speaker: "Mr. Balaji Seetharaman" },
+			{ date: "October 11, 2022", time: "2:00 PM", topic: "Quantum Games", speaker: "Dr. Jayakumar V" },
+			{ date: "October 12, 2022", time: "10:00 AM", topic: "Fault Tolerant Quantum Computing", speaker: "Mr. Manan" },
+			{ date: "October 12, 2022", time: "11:30 AM", topic: "Finding Currency Arbitrage using Quantum Computers", speaker: "Mr. R.K. Rupesh" },
+			{ date: "October 12, 2022", time: "2:00 PM", topic: "How to become a Qiskit Advocate?", speaker: "Dr. S. Manjula Gandhi" },
 		],
 	},
 	"2021": {
@@ -166,7 +212,7 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 		dates: "October 16 – October 22, 2021",
 		mode: "Virtual Hackathon & Workshops",
 		registrations: "272 Participants",
-		speakersCount: "8 Speakers",
+		speakersCount: "7 Expert Speakers",
 		projectsCount: "12 Team Projects",
 		heroImage: `${BASE_URL}assets/past/2021_poster_cit.png`,
 		gallery: [
@@ -210,14 +256,24 @@ const EDITIONS_DATA: Record<YearEdition, EventEditionData> = {
 			},
 		],
 		featuredSpeakers: [
-			{ name: "Chandia", role: "Qiskit Advocate & Keynote Speaker", image: `${BASE_URL}assets/past/2021_speaker1.png` },
-			{ name: "Vishal", role: "Quantum Algorithms Mentor", image: `${BASE_URL}assets/past/2021_speaker2.png` },
-			{ name: "Dr. S. Manjula Gandhi", role: "CIT Quantum Club Convener", image: `${BASE_URL}assets/past/2022_manjula.jpg` },
+			{ name: "Dr. L. Venkata Subramaniam", role: "IBM Quantum India Lead & IBM Fellow", image: `${BASE_URL}assets/speakers/lvenkatasubramaniyam.jpg` },
+			{ name: "Dr. S. Manjula Gandhi", role: "CIT Quantum Club Convener", image: `${BASE_URL}assets/speakers/manjulagandhi.jpg` },
+			{ name: "Mr. Rajesh K. Jeyapaul", role: "IBM Quantum Lead" },
+			{ name: "Ms. Guncha Malik", role: "IBM & Qiskit Advocate" },
+			{ name: "Mr. Vishnu", role: "Qiskit Advocate & Mentor", image: `${BASE_URL}assets/speakers/vishal.jpg` },
 		],
 		insights: [
 			{ tag: "272 Participants", text: "Massive turnout for CIT's first-ever quantum hackathon edition." },
 			{ tag: "Quantum Music!", text: "3rd place team built a music generator powered by quantum superposition." },
 			{ tag: "Birth of CIT Quantum", text: "Sparked the formation of the official CIT Quantum Student Chapter." },
+		],
+		schedules: [
+			{ date: "October 16, 2021", time: "09:30", topic: "Preparing for the Quantum Era", speaker: "Dr. L. Venkata Subramaniam, IBM" },
+			{ date: "October 16, 2021", time: "11:00", topic: "Quantum Circuits and Quantum Gates", speaker: "Dr. S. Manjula Gandhi, CIT & Qiskit Advocate" },
+			{ date: "October 16, 2021", time: "14:00", topic: "Uncertainty Principle", speaker: "Mr. Jayesh Parashar, Qiskit Advocate" },
+			{ date: "October 17, 2021", time: "10:00", topic: "Quantum Cryptography", speaker: "Ms. Guncha Malik, IBM & Qiskit Advocate" },
+			{ date: "October 17, 2021", time: "14:00", topic: "Quantum Cryptography Protocols – QKD and BB84", speaker: "Mr. Vishnu, Qiskit Advocate" },
+			{ date: "October 18, 2021", time: "10:00", topic: "What makes Machine Learning Quantum?", speaker: "Mr. Rajesh K. Jeyapaul, IBM" },
 		],
 	},
 };
@@ -379,8 +435,6 @@ export default function PastEvents() {
 						</div>
 					</div>
 
-
-
 					{/* Soft Divider */}
 					<div className="w-full h-px bg-gradient-to-r from-transparent via-[#31135e]/20 to-transparent" />
 
@@ -462,14 +516,13 @@ export default function PastEvents() {
 					{/* Speakers (Circular Interactive Carousel) */}
 					<div className="space-y-4 text-left">
 						<h3 className="text-2xl sm:text-3xl font-extrabold text-[#31135e] tracking-tight">
-							Speakers
+							Speakers Spotlight
 						</h3>
 
 						<SpeakerCarousel year={activeYear} />
 					</div>
 
-					{/* Soft Divider */}
-					<div className="w-full h-px bg-gradient-to-r from-transparent via-[#31135e]/20 to-transparent" />
+
 
 					{/* Technical Topics Covered */}
 					<div className="space-y-4 text-left py-2">
@@ -541,3 +594,4 @@ export default function PastEvents() {
 		</div>
 	);
 }
+
