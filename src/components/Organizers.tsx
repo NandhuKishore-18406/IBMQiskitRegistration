@@ -28,7 +28,7 @@ const MAIN_ORGANIZER: Organizer = {
 	role: "Main Organizer",
 	designation: "IBM Qiskit Advocate, Professor and Head",
 	qualifications: "M.C.A., M.S., Ph.D.",
-	department: "Department of Copmputing - Software Systems, CIT",
+	department: "Department of Computing - Software Systems, CIT",
 	email: "hodss@cit.edu.in",
 	phone: "",
 };
@@ -40,7 +40,7 @@ const CO_ORGANIZERS: Organizer[] = [
 		role: "Co-Organizer",
 		designation: "IBM Qiskit Advocate, Associate Professor",
 		qualifications: "M.Sc., M.Phil., Ph.D.",
-		department: "Department of Copmputing - Data Science, CIT",
+		department: "Department of Computing - Data Science, CIT",
 		email: "sgayathridevi@cit.edu.in",
 		phone: "+91 9944561345",
 	},
@@ -50,7 +50,7 @@ const CO_ORGANIZERS: Organizer[] = [
 		role: "Co-Organizer",
 		designation: "Assistant Professor (Sl.Gr.)",
 		qualifications: "M.C.A., M.Phil., Ph.D.",
-		department: "Department of Copmputing - Software Systems, CIT",
+		department: "Department of Computing - Software Systems, CIT",
 		email: "anandhi@cit.edu.in",
 		phone: "+91 9842219092",
 	},
@@ -60,18 +60,18 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 	{
 		id: "nandhu",
 		name: "Nandhu Kishore S",
-		department: "Department of Computing - Sofware Systems, CIT",
+		department: "Department of Computing - Software Systems, CIT",
 		year: "3rd Year",
 		role: "Student Lead",
-		phone:"+91 9489622705",
+		phone: "+91 9489622705",
 	},
 	{
 		id: "ashraff",
 		name: "Ashraf S",
-		department: "Department of computing - Software Systems, CIT",
+		department: "Department of Computing - Software Systems, CIT",
 		year: "2nd Year",
 		role: "Student Organizer",
-		phone:"",
+		phone: "",
 	},
 ];
 
@@ -110,16 +110,18 @@ export default function Organizers() {
 
 					{/* Profile Info */}
 					<div className="flex-1 space-y-2">
-						
 						<h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#31135e] tracking-tight flex flex-wrap items-baseline gap-x-2">
-							<span>{MAIN_ORGANIZER.name},</span>
-							<span className="text-sm sm:text-lg md:text-xl font-semibold text-[#31135e]/80">
-								{MAIN_ORGANIZER.qualifications}
-							</span>
-							<span className="text-xs font-semibold text-[#31135e] opacity-80 uppercase tracking-wide">
-							{MAIN_ORGANIZER.designation}
-						</span>
+							<span>{MAIN_ORGANIZER.name}</span>
+							{MAIN_ORGANIZER.qualifications && (
+								<span className="text-sm sm:text-lg md:text-xl font-semibold text-[#31135e]/80">
+									, {MAIN_ORGANIZER.qualifications}
+								</span>
+							)}
 						</h3>
+
+						<div className="text-xs sm:text-sm md:text-base font-semibold text-[#31135e] opacity-90 uppercase tracking-wide">
+							{MAIN_ORGANIZER.designation}
+						</div>
 
 						<div className="pt-1 flex flex-wrap items-center gap-2.5 text-xs sm:text-sm text-[#5E6470]">
 							<div className="px-3 py-1 rounded-xl bg-white/50 border border-white/60 font-medium text-[#31135e]">
@@ -158,17 +160,18 @@ export default function Organizers() {
 						>
 							{/* Info */}
 							<div className="space-y-2">
-								
 								<h4 className="text-base sm:text-xl font-bold text-[#31135e] tracking-tight flex flex-wrap items-baseline gap-x-1.5">
-									<span>{org.name},</span>
-				
-									<span className="text-xs sm:text-sm font-semibold text-[#31135e]/80">
-										{org.qualifications}
-									</span>
-									<span className="text-[11px] font-semibold text-[#31135e]/75 uppercase tracking-wide">
-									{org.designation}
-								</span>
+									<span>{org.name}</span>
+									{org.qualifications && (
+										<span className="text-xs sm:text-sm font-semibold text-[#31135e]/80">
+											, {org.qualifications}
+										</span>
+									)}
 								</h4>
+
+								<div className="text-xs sm:text-sm font-semibold text-[#31135e]/85 uppercase tracking-wide">
+									{org.designation}
+								</div>
 
 								<div className="pt-1">
 									<span className="inline-block px-2.5 py-1 rounded-lg bg-white/50 border border-white/60 text-xs font-medium text-[#31135e]/80">
