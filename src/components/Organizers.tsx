@@ -1,4 +1,4 @@
-import { GraduationCap, Mail } from "lucide-react";
+import { GraduationCap, Mail, Phone } from "lucide-react";
 import { motion } from "motion/react";
 
 interface Organizer {
@@ -177,15 +177,25 @@ export default function Organizers() {
 								</div>
 							</div>
 
-							<div className="pt-2 flex items-center">
-								<a
-									href={`mailto:${org.email}`}
-									className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs font-medium transition-all shadow-2xs touch-manipulation active:scale-95"
-								>
-									<Mail className="w-3.5 h-3.5" />
-									<span>{org.email}</span>
-									<span>{org.phone}</span>
-								</a>
+							<div className="pt-2 flex flex-wrap items-center gap-2">
+								{org.email && (
+									<a
+										href={`mailto:${org.email}`}
+										className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs font-medium transition-all shadow-2xs touch-manipulation active:scale-95"
+									>
+										<Mail className="w-3.5 h-3.5" />
+										<span>{org.email}</span>
+									</a>
+								)}
+								{org.phone && (
+									<a
+										href={`tel:${org.phone}`}
+										className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs font-medium transition-all shadow-2xs touch-manipulation active:scale-95"
+									>
+										<Phone className="w-3.5 h-3.5" />
+										<span>{org.phone}</span>
+									</a>
+								)}
 							</div>
 						</motion.div>
 					))}
@@ -227,16 +237,27 @@ export default function Organizers() {
 									{student.department}
 								</div>
 
-								{/* Line 4: Optional Email Button */}
-								{student.phone && (
-									<div className="pt-2 flex items-center">
-										<a
-											href={`mailto:${student.phone}`}
-											className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs font-medium transition-all shadow-2xs touch-manipulation active:scale-95"
-										>
-											<Mail className="w-3.5 h-3.5" />
-											<span>{student.phone}</span>
-										</a>
+								{/* Line 4: Email & Phone Buttons */}
+								{(student.email || student.phone) && (
+									<div className="pt-2 flex flex-wrap items-center gap-2">
+										{student.email && (
+											<a
+												href={`mailto:${student.email}`}
+												className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs font-medium transition-all shadow-2xs touch-manipulation active:scale-95"
+											>
+												<Mail className="w-3.5 h-3.5" />
+												<span>{student.email}</span>
+											</a>
+										)}
+										{student.phone && (
+											<a
+												href={`tel:${student.phone}`}
+												className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs font-medium transition-all shadow-2xs touch-manipulation active:scale-95"
+											>
+												<Phone className="w-3.5 h-3.5" />
+												<span>{student.phone}</span>
+											</a>
+										)}
 									</div>
 								)}
 							</div>
