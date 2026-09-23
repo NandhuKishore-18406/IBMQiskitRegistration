@@ -195,14 +195,17 @@ export default function Hero() {
 											</AnimatePresence>
 										</div>
 
-										<motion.span
+										<motion.div
 											initial={{ opacity: 0 }}
 											animate={{ opacity: 1 }}
 											transition={{ duration: 0.8, delay: 0.3 }}
-											className="text-[11px] sm:text-base md:text-lg font-bold text-[#31135e]/80 tracking-wider uppercase mt-1 sm:mt-2"
+											className="flex flex-wrap items-center justify-center gap-2 mt-1 sm:mt-2"
 										>
-											Get ready for...
-										</motion.span>
+											<span className="text-[11px] sm:text-base md:text-lg font-bold text-[#31135e]/80 tracking-wider uppercase">
+												Get ready for...
+											</span>
+											
+										</motion.div>
 									</div>
 
 									{/* H1 Headline */}
@@ -222,11 +225,12 @@ export default function Hero() {
 										initial={{ opacity: 0, y: 10 }}
 										animate={{ opacity: 1, y: 0 }}
 										transition={{ duration: 0.8, delay: 0.4 }}
-										className="mt-1 sm:mt-4 px-3 py-1 sm:px-6 sm:py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-2xs inline-block max-w-full"
+										className="mt-1 sm:mt-4 px-3.5 py-1.5 sm:px-6 sm:py-2.5 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-2xs inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 max-w-full"
 									>
 										<p className="text-[10px] sm:text-base md:text-lg font-bold text-[#31135e] tracking-wider sm:tracking-widest uppercase">
 											Infinite Qubits · One Mission
 										</p>
+										
 									</motion.div>
 								</div>
 
@@ -235,7 +239,7 @@ export default function Hero() {
 									initial={{ y: 20, opacity: 0 }}
 									animate={{ y: 0, opacity: 1 }}
 									transition={{ duration: 0.8, delay: 0.5 }}
-									className="mt-auto w-full max-w-2xl px-2 sm:px-4 flex flex-col items-center justify-center gap-3 pb-2 sm:pb-4 pt-2"
+									className="mt-auto w-full max-w-3xl px-2 sm:px-4 flex flex-col items-center justify-center gap-3 pb-2 sm:pb-4 pt-2"
 								>
 									<div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4">
 										{/* Main CTA Button */}
@@ -257,6 +261,18 @@ export default function Hero() {
 										>
 											Nov 20 – Nov 30, 2026
 										</motion.button>
+
+										{/* Mode Badge Button */}
+										<motion.div
+											whileHover={{ scale: 1.03 }}
+											className="w-full sm:w-auto px-5 py-3 sm:px-6 sm:py-4 rounded-full bg-emerald-500/15 backdrop-blur-xl border border-emerald-600/30 text-[#31135e] text-sm sm:text-base font-bold shadow-sm transition-all flex items-center justify-center gap-2"
+										>
+											<span className="relative flex h-2.5 w-2.5 shrink-0">
+												<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+												<span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+											</span>
+											<span>Mode: Online</span>
+										</motion.div>
 									</div>
 
 									{/* YouTube Channel Banner Link */}

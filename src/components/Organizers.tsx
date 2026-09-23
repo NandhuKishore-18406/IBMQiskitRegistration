@@ -16,6 +16,8 @@ interface StudentOrganizer {
 	name: string;
 	department: string;
 	year: string;
+	role?: string;
+	email?: string;
 }
 
 const MAIN_ORGANIZER: Organizer = {
@@ -55,12 +57,14 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 		name: "Nandhu Kishore S",
 		department: "M.Sc. Software Systems",
 		year: "3rd Year",
+		role: "Student Lead",
 	},
 	{
 		id: "ashraff",
 		name: "Ashraff S",
 		department: "M.Sc. Software Systems",
 		year: "2nd Year",
+		role: "Student Organizer",
 	},
 ];
 
@@ -102,12 +106,12 @@ export default function Organizers() {
 						<span className="text-xs font-semibold text-[#31135e] opacity-80 uppercase tracking-wide">
 							{MAIN_ORGANIZER.designation}
 						</span>
-						<h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#31135e] tracking-tight">
-							{MAIN_ORGANIZER.name}
+						<h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#31135e] tracking-tight flex flex-wrap items-baseline gap-x-2">
+							<span>{MAIN_ORGANIZER.name},</span>
+							<span className="text-sm sm:text-lg md:text-xl font-semibold text-[#31135e]/80">
+								{MAIN_ORGANIZER.qualifications}
+							</span>
 						</h3>
-						<p className="text-xs sm:text-sm font-medium text-[#31135e]/70">
-							{MAIN_ORGANIZER.qualifications}
-						</p>
 
 						<div className="pt-1 flex flex-wrap items-center gap-2.5 text-xs sm:text-sm text-[#5E6470]">
 							<div className="px-3 py-1 rounded-xl bg-white/50 border border-white/60 font-medium text-[#31135e]">
@@ -149,12 +153,12 @@ export default function Organizers() {
 								<span className="text-[11px] font-semibold text-[#31135e]/75 uppercase tracking-wide">
 									{org.designation}
 								</span>
-								<h4 className="text-base sm:text-xl font-bold text-[#31135e] tracking-tight">
-									{org.name}
+								<h4 className="text-base sm:text-xl font-bold text-[#31135e] tracking-tight flex flex-wrap items-baseline gap-x-1.5">
+									<span>{org.name},</span>
+									<span className="text-xs sm:text-sm font-semibold text-[#31135e]/80">
+										{org.qualifications}
+									</span>
 								</h4>
-								<p className="text-xs font-medium text-[#31135e]/70">
-									{org.qualifications}
-								</p>
 
 								<div className="pt-1">
 									<span className="inline-block px-2.5 py-1 rounded-lg bg-white/50 border border-white/60 text-xs font-medium text-[#31135e]/80">
@@ -177,7 +181,7 @@ export default function Organizers() {
 				</div>
 			</div>
 
-			{/* Student Organizers Section */}
+			{/* Student Organizers Section (Multiline layout) */}
 			<div className="w-full space-y-3">
 				<h3 className="text-xl sm:text-2xl font-bold text-[#31135e] tracking-tight px-1">
 					Student Organizers
@@ -190,21 +194,42 @@ export default function Organizers() {
 							initial={{ opacity: 0, y: 15 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.4, delay: 0.1 * (index + 3) }}
-							className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-md hover:shadow-lg transition-all flex flex-col justify-between gap-4 relative"
+							className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-md hover:shadow-lg transition-all flex flex-col justify-between gap-3 relative"
 						>
-							<div className="space-y-2">
-								<div className="flex items-center justify-between">
-									<h4 className="text-base sm:text-xl font-bold text-[#31135e] tracking-tight">
-										{student.name}
-									</h4>
-									<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs font-semibold">
+							<div className="flex flex-col gap-2">
+								{/* Line 1: Role & Year Badges */}
+								<div className="flex items-center justify-between gap-2">
+									<span className="text-[11px] font-semibold text-[#31135e]/75 uppercase tracking-wide">
+										{student.role || "Student Organizer"}
+									</span>
+									<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs font-semibold shrink-0">
 										<GraduationCap className="w-3.5 h-3.5" />
 										{student.year}
 									</span>
 								</div>
-								<p className="text-xs sm:text-sm font-medium text-[#31135e]/70">
+
+								{/* Line 2: Student Name */}
+								<h4 className="text-lg sm:text-xl font-bold text-[#31135e] tracking-tight pt-0.5">
+									{student.name}
+								</h4>
+
+								{/* Line 3: Department (Multiline formatting supported) */}
+								<div className="text-xs sm:text-sm font-medium text-[#31135e]/80 whitespace-pre-line leading-relaxed">
 									{student.department}
-								</p>
+								</div>
+
+								{/* Line 4: Optional Email Button */}
+								{student.email && (
+									<div className="pt-2 flex items-center">
+										<a
+											href={`mailto:${student.email}`}
+											className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs font-medium transition-all shadow-2xs touch-manipulation active:scale-95"
+										>
+											<Mail className="w-3.5 h-3.5" />
+											<span>{student.email}</span>
+										</a>
+									</div>
+								)}
 							</div>
 						</motion.div>
 					))}
