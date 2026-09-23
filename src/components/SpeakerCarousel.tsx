@@ -272,13 +272,7 @@ export const SPEAKERS_BY_YEAR: Record<YearEdition, SpeakerData[]> = {
 			topic: "What makes Machine Learning Quantum?",
 			image: `${BASE_URL}assets/speakers/Rageshjayapal.jpg`,
 		},
-		{
-			id: "chandia-2021",
-			name: "Chandia",
-			designation: "Qiskit Advocate & Keynote Speaker",
-			topic: "Pioneering Quantum Computing at CIT",
-			image: `${BASE_URL}assets/speakers/chandia.jpg`,
-		},
+		
 	],
 };
 

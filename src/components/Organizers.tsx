@@ -9,6 +9,7 @@ interface Organizer {
 	qualifications: string;
 	department: string;
 	email: string;
+	phone: string;
 }
 
 interface StudentOrganizer {
@@ -18,16 +19,18 @@ interface StudentOrganizer {
 	year: string;
 	role?: string;
 	email?: string;
+	phone?: string;
 }
 
 const MAIN_ORGANIZER: Organizer = {
 	id: "manjula",
 	name: "Dr. S. Manjula Gandhi",
 	role: "Main Organizer",
-	designation: "Professor and Head",
+	designation: "IBM Qiskit Advocate, Professor and Head",
 	qualifications: "M.C.A., M.S., Ph.D.",
-	department: "M.Sc. Software Systems",
+	department: "Department of Copmputing - Software Systems, CIT",
 	email: "hodss@cit.edu.in",
+	phone: "",
 };
 
 const CO_ORGANIZERS: Organizer[] = [
@@ -35,10 +38,11 @@ const CO_ORGANIZERS: Organizer[] = [
 		id: "gayathri",
 		name: "Dr. S. Gayathri Devi",
 		role: "Co-Organizer",
-		designation: "Associate Professor",
+		designation: "IBM Qiskit Advocate, Associate Professor",
 		qualifications: "M.Sc., M.Phil., Ph.D.",
-		department: "M.Sc. Data Science",
+		department: "Department of Copmputing - Data Science, CIT",
 		email: "sgayathridevi@cit.edu.in",
+		phone: "+91 9944561345",
 	},
 	{
 		id: "anandhi",
@@ -46,8 +50,9 @@ const CO_ORGANIZERS: Organizer[] = [
 		role: "Co-Organizer",
 		designation: "Assistant Professor (Sl.Gr.)",
 		qualifications: "M.C.A., M.Phil., Ph.D.",
-		department: "M.Sc. Software Systems",
+		department: "Department of Copmputing - Software Systems, CIT",
 		email: "anandhi@cit.edu.in",
+		phone: "+91 9842219092",
 	},
 ];
 
@@ -55,16 +60,18 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 	{
 		id: "nandhu",
 		name: "Nandhu Kishore S",
-		department: "M.Sc. Software Systems",
+		department: "Department of Computing - Sofware Systems, CIT",
 		year: "3rd Year",
 		role: "Student Lead",
+		phone:"+91 9489622705",
 	},
 	{
 		id: "ashraff",
-		name: "Ashraff S",
-		department: "M.Sc. Software Systems",
+		name: "Ashraf S",
+		department: "Department of computing - Software Systems, CIT",
 		year: "2nd Year",
 		role: "Student Organizer",
+		phone:"",
 	},
 ];
 
@@ -103,14 +110,15 @@ export default function Organizers() {
 
 					{/* Profile Info */}
 					<div className="flex-1 space-y-2">
-						<span className="text-xs font-semibold text-[#31135e] opacity-80 uppercase tracking-wide">
-							{MAIN_ORGANIZER.designation}
-						</span>
+						
 						<h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#31135e] tracking-tight flex flex-wrap items-baseline gap-x-2">
 							<span>{MAIN_ORGANIZER.name},</span>
 							<span className="text-sm sm:text-lg md:text-xl font-semibold text-[#31135e]/80">
 								{MAIN_ORGANIZER.qualifications}
 							</span>
+							<span className="text-xs font-semibold text-[#31135e] opacity-80 uppercase tracking-wide">
+							{MAIN_ORGANIZER.designation}
+						</span>
 						</h3>
 
 						<div className="pt-1 flex flex-wrap items-center gap-2.5 text-xs sm:text-sm text-[#5E6470]">
@@ -150,14 +158,16 @@ export default function Organizers() {
 						>
 							{/* Info */}
 							<div className="space-y-2">
-								<span className="text-[11px] font-semibold text-[#31135e]/75 uppercase tracking-wide">
-									{org.designation}
-								</span>
+								
 								<h4 className="text-base sm:text-xl font-bold text-[#31135e] tracking-tight flex flex-wrap items-baseline gap-x-1.5">
 									<span>{org.name},</span>
+				
 									<span className="text-xs sm:text-sm font-semibold text-[#31135e]/80">
 										{org.qualifications}
 									</span>
+									<span className="text-[11px] font-semibold text-[#31135e]/75 uppercase tracking-wide">
+									{org.designation}
+								</span>
 								</h4>
 
 								<div className="pt-1">
@@ -174,6 +184,7 @@ export default function Organizers() {
 								>
 									<Mail className="w-3.5 h-3.5" />
 									<span>{org.email}</span>
+									<span>{org.phone}</span>
 								</a>
 							</div>
 						</motion.div>
@@ -199,9 +210,7 @@ export default function Organizers() {
 							<div className="flex flex-col gap-2">
 								{/* Line 1: Role & Year Badges */}
 								<div className="flex items-center justify-between gap-2">
-									<span className="text-[11px] font-semibold text-[#31135e]/75 uppercase tracking-wide">
-										{student.role || "Student Organizer"}
-									</span>
+									
 									<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs font-semibold shrink-0">
 										<GraduationCap className="w-3.5 h-3.5" />
 										{student.year}
@@ -219,14 +228,14 @@ export default function Organizers() {
 								</div>
 
 								{/* Line 4: Optional Email Button */}
-								{student.email && (
+								{student.phone && (
 									<div className="pt-2 flex items-center">
 										<a
-											href={`mailto:${student.email}`}
+											href={`mailto:${student.phone}`}
 											className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs font-medium transition-all shadow-2xs touch-manipulation active:scale-95"
 										>
 											<Mail className="w-3.5 h-3.5" />
-											<span>{student.email}</span>
+											<span>{student.phone}</span>
 										</a>
 									</div>
 								)}
