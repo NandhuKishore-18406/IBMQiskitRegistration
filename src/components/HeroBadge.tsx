@@ -1,18 +1,27 @@
-import { Sparkles } from "lucide-react";
+import { Atom, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 
-export default function HeroBadge() {
+interface HeroBadgeProps {
+	text?: string;
+	icon?: "atom" | "sparkles";
+}
+
+export default function HeroBadge({ text = "Department of Computing", icon = "atom" }: HeroBadgeProps) {
 	return (
 		<motion.div
-			initial={{ opacity: 0, y: 20 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.6, ease: "easeOut" }}
-			className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-white/20 mx-auto mb-3 w-fit"
+			initial={{ opacity: 0, y: 10, scale: 0.95 }}
+			animate={{ opacity: 1, y: 0, scale: 1 }}
+			transition={{ duration: 0.5, ease: "easeOut" }}
+			className="inline-flex items-center gap-2 text-[#31135e] font-black text-base sm:text-xl md:text-2xl tracking-wide"
 		>
-			<Sparkles className="w-4 h-4 text-[rgba(30,50,90,0.8)]" />
-			<span className="text-[14px] font-normal text-[rgba(30,50,90,0.9)]">
-				Fluid Staking
-			</span>
+			{icon === "atom" ? (
+				<Atom className="w-5 h-5 sm:w-6 sm:h-6 text-[#31135e] animate-spin-slow shrink-0" />
+			) : (
+				<Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-[#31135e] shrink-0" />
+			)}
+			<span>{text}</span>
 		</motion.div>
 	);
 }
+
+

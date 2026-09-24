@@ -1,6 +1,10 @@
-import { ExternalLink, Menu, X } from "lucide-react";
+import { ArrowUpRight, Calendar, ExternalLink, Info } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+
+import AboutProgram from "./AboutProgram";
+import HeroBadge from "./HeroBadge";
+import Navbar, { HeroView, NAV_ITEMS } from "./Navbar";
 import Organizers from "./Organizers";
 import PastEvents from "./PastEvents";
 import Registration from "./Registration";
@@ -12,35 +16,16 @@ const LOGO2_URL = `${import.meta.env.BASE_URL}assets/images-removebg-preview(1)(
 const LOGO3_URL = `${import.meta.env.BASE_URL}assets/iic.webp`;
 const LOGO4_URL = `${import.meta.env.BASE_URL}assets/qiskit.png`;
 
-const DYNAMIC_SLOGANS = [
-	"Eager to learn & hone your skills in Quantum Computing?",
-	"Ready to explore quantum algorithms & real quantum hardware?",
-	"Want to innovate with IBM Qiskit & quantum computing?",
-	"Passionate about building the future of Quantum Technologies?",
-];
-
-type HeroView = "home" | "registration" | "timeline" | "organizers" | "past-events";
-
-const NAV_ITEMS: { id: HeroView; label: string }[] = [
-	{ id: "home", label: "Overview" },
-	{ id: "timeline", label: "Timeline" },
-	{ id: "registration", label: "Enquiry/Interest Form" },
-	{ id: "organizers", label: "Organizers" },
-	{ id: "past-events", label: "Past Events" },
+const MARQUEE_LOGOS = [
+	{ src: LOGO3_URL, alt: "IIC Logo", className: "h-10 sm:h-13 w-auto object-contain drop-shadow-sm" },
+	{ src: LOGO2_URL, alt: "IBM Quantum Logo", className: "h-12 sm:h-16 w-auto object-contain drop-shadow-sm" },
+	{ src: LOGO4_URL, alt: "Qiskit Logo", className: "h-10 sm:h-13 w-auto object-contain drop-shadow-sm" },
 ];
 
 export default function Hero() {
 	const [activeView, setActiveView] = useState<HeroView>("home");
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [sloganIndex, setSloganIndex] = useState(0);
+	const [showAboutRight, setShowAboutRight] = useState(false);
 	const contentContainerRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setSloganIndex((prev) => (prev + 1) % DYNAMIC_SLOGANS.length);
-		}, 3800);
-		return () => clearInterval(interval);
-	}, []);
 
 	// Auto scroll to top on activeView transition
 	useEffect(() => {
@@ -51,7 +36,7 @@ export default function Hero() {
 
 	return (
 		<div className="w-full min-h-screen min-h-[100dvh] md:h-screen md:h-[100dvh] flex items-center justify-center p-1 sm:p-3 md:p-4 lg:p-5 bg-[#f2f4f8] box-border overflow-x-hidden md:overflow-hidden select-none">
-			<section className="relative w-full min-h-screen min-h-[100dvh] md:min-h-0 md:h-full rounded-xl sm:rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-none flex flex-col items-center justify-between bg-white/10 group">
+			<section className="relative w-full min-h-screen min-h-[100dvh] md:min-h-0 md:h-full rounded-xl sm:rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden flex flex-col justify-between bg-white/10 group">
 				{/* Background Image Covered Over Entire Hero Card */}
 				<img
 					src={IMG_URL}
@@ -59,293 +44,343 @@ export default function Hero() {
 					className="absolute inset-0 w-full h-full object-cover object-[65%] lg:object-center z-0"
 				/>
 
-				{/* Persistent Top Header Bar with Logos & Dynamic Navigation */}
-				<header className="relative z-30 w-full shrink-0 bg-white/25 backdrop-blur-2xl border-b border-white/40 shadow-xs">
-					<div className="w-full px-3 sm:px-6 md:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-3">
-						{/* Left: Brand Logos */}
-						<div
-							onClick={() => {
-								setActiveView("home");
-								setIsMobileMenuOpen(false);
-							}}
-							className="flex items-center justify-start gap-1.5 sm:gap-3 md:gap-4 cursor-pointer hover:opacity-95 transition-opacity py-0.5 shrink-0"
-						>
-							<img
-								src={LOGO1_URL}
-								alt="CIT Logo"
-								className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
-							/>
-							<div className="w-px h-5 sm:h-7 md:h-8 bg-[#31135e]/30 rounded-full shrink-0" />
-							<img
-								src={LOGO3_URL}
-								alt="IIC Logo"
-								className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
-							/>
-							<div className="w-px h-5 sm:h-7 md:h-8 bg-[#31135e]/30 rounded-full shrink-0" />
-							<img
-								src={LOGO2_URL}
-								alt="IBM Logo"
-								className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
-							/>
-							<div className="w-px h-5 sm:h-7 md:h-8 bg-[#31135e]/30 rounded-full shrink-0" />
-							<img
-								src={LOGO4_URL}
-								alt="Qiskit Logo"
-								className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[22vw] sm:max-w-none object-contain drop-shadow-sm"
-							/>
-						</div>
+				{/* Header Navigation Bar (Visible on sub-pages only) */}
+				{activeView !== "home" && (
+					<Navbar activeView={activeView} onViewChange={setActiveView} />
+				)}
 
-						{/* Right: Desktop Navigation Tabs (xl and above) */}
-						<nav className="hidden xl:flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-full bg-white/30 backdrop-blur-md border border-white/40">
-							{NAV_ITEMS.map((item) => (
-								<button
-									key={item.id}
-									type="button"
-									onClick={() => setActiveView(item.id)}
-									className={`px-3.5 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation ${
-										activeView === item.id
-											? "bg-[#31135e] text-white shadow-xs"
-											: "text-[#31135e] hover:bg-white/50"
-									}`}
-								>
-									{item.label}
-								</button>
-							))}
-						</nav>
-
-						{/* Toggle Button for Mobile / Tablet View (< xl) */}
-						<button
-							type="button"
-							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-							className="xl:hidden p-2 sm:p-2.5 rounded-full bg-white/40 backdrop-blur-md border border-white/50 text-[#31135e] hover:bg-white/70 transition-colors shadow-xs focus:outline-none cursor-pointer"
-							aria-label="Toggle navigation menu"
-						>
-							{isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
-						</button>
-					</div>
-
-					{/* Collapsible Mobile & Tablet Dropdown Navigation Menu */}
-					<AnimatePresence>
-						{isMobileMenuOpen && (
-							<motion.div
-								initial={{ opacity: 0, height: 0 }}
-								animate={{ opacity: 1, height: "auto" }}
-								exit={{ opacity: 0, height: 0 }}
-								transition={{ duration: 0.25, ease: "easeInOut" }}
-								className="xl:hidden w-full bg-white/90 backdrop-blur-2xl border-t border-white/40 px-4 py-3 shadow-lg overflow-hidden"
-							>
-								<nav className="flex flex-col gap-1.5 w-full">
-									{NAV_ITEMS.map((item) => (
-										<button
-											key={item.id}
-											type="button"
-											onClick={() => {
-												setActiveView(item.id);
-												setIsMobileMenuOpen(false);
-											}}
-											className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-between cursor-pointer ${
-												activeView === item.id
-													? "bg-[#31135e] text-white shadow-xs"
-													: "text-[#31135e] hover:bg-white/60"
-											}`}
-										>
-											<span>{item.label}</span>
-											{activeView === item.id && (
-												<div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-											)}
-										</button>
-									))}
-								</nav>
-							</motion.div>
-						)}
-					</AnimatePresence>
-				</header>
-
-				{/* Central Content Area - Scrollable with custom transparent scrollbar */}
-				<div
-					ref={contentContainerRef}
-					className="relative z-10 w-full flex-1 min-h-0 flex flex-col items-center justify-start px-2 sm:px-4 md:px-6 pt-2 pb-20 sm:pb-32 overflow-y-auto custom-scrollbar scroll-smooth"
-				>
+				{/* Main Body Layout */}
+				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col justify-between overflow-hidden">
+					
 					<AnimatePresence mode="wait">
-						{activeView === "home" && (
+						{activeView === "home" ? (
 							<motion.div
-								key="hero-main"
-								initial={{ opacity: 0, scale: 0.97 }}
-								animate={{ opacity: 1, scale: 1 }}
-								exit={{ opacity: 0, scale: 0.97 }}
-								transition={{ duration: 0.4 }}
-								className="w-full h-full min-h-[420px] sm:min-h-[500px] flex flex-col items-center justify-between text-center max-w-5xl my-auto py-2 sm:py-4 select-text"
+								key="home-layout"
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}
+								transition={{ duration: 0.3 }}
+								className="w-full h-full min-h-0 flex flex-col lg:flex-row items-stretch justify-between gap-4 lg:gap-8 p-3 sm:p-6 md:p-8 overflow-hidden"
 							>
-								{/* Main H1 Title Area with Dynamic Slogan */}
-								<div className="my-auto py-2 sm:py-8 flex flex-col items-center gap-3 sm:gap-6 max-w-4xl">
-									{/* Dynamic Rotating Slogan Area */}
-									<div className="flex flex-col items-center justify-center w-full px-2 py-1 sm:px-6 sm:py-4">
-										<div className="min-h-[64px] sm:min-h-[84px] md:min-h-[100px] flex items-center justify-center overflow-hidden w-full px-1 sm:px-6">
+								{/* LEFT HALF: Main Info & Action Stack */}
+								<div
+									ref={contentContainerRef}
+									className="flex-1 h-full min-h-0 overflow-y-auto [::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth flex flex-col justify-between text-left py-1 sm:py-2 select-text space-y-4"
+								>
+									{/* Top Header Information Stack with CIT Logo */}
+									<div className="w-full flex flex-col items-start justify-start gap-2.5 sm:gap-3 max-w-4xl">
+										
+										{/* CIT Logo at top left */}
+										<motion.img
+											initial={{ opacity: 0, y: -10 }}
+											animate={{ opacity: 1, y: 0 }}
+											transition={{ duration: 0.5 }}
+											src={LOGO1_URL}
+											alt="Coimbatore Institute of Technology Logo"
+											className="h-10 sm:h-14 md:h-16 lg:h-20 w-auto object-contain drop-shadow-md mb-0.5"
+										/>
+
+										{/* Line 1 -> Coimbatore Institute of technology */}
+										<motion.h2
+											initial={{ opacity: 0, x: -15 }}
+											animate={{ opacity: 1, x: 0 }}
+											transition={{ duration: 0.5, delay: 0.1 }}
+											className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-[#31135e] uppercase tracking-wider text-left drop-shadow-xs leading-tight"
+										>
+											Coimbatore Institute of technology
+										</motion.h2>
+
+										{/* Line 2 -> Department of Computing Badge */}
+										<motion.div
+											initial={{ opacity: 0, scale: 0.95 }}
+											animate={{ opacity: 1, scale: 1 }}
+											transition={{ duration: 0.5, delay: 0.2 }}
+										>
+											<HeroBadge text="Department of Computing" icon="atom" />
+										</motion.div>
+
+										{/* Line 3 -> Collaboration Statement */}
+										<motion.p
+											initial={{ opacity: 0, x: -15 }}
+											animate={{ opacity: 1, x: 0 }}
+											transition={{ duration: 0.5, delay: 0.3 }}
+											className="text-xs sm:text-base md:text-lg font-bold text-[#31135e]/85 italic tracking-wide text-left"
+										>
+											in collaboration with IIC and IBM Qiskit
+										</motion.p>
+
+										{/* Line 4 -> Main Title: CIT - IBM qiskit fall fest 2026 */}
+										<motion.h1
+											initial={{ opacity: 0, scale: 0.98 }}
+											animate={{ opacity: 1, scale: 1 }}
+											transition={{ duration: 0.6, delay: 0.4 }}
+											className="text-3xl sm:text-5xl md:text-6xl lg:text-[76px] xl:text-[84px] font-black text-[#31135e] tracking-tight leading-[1.02] text-left drop-shadow-xs my-1"
+										>
+											CIT - IBM qiskit fall fest 2026
+										</motion.h1>
+
+										{/* Page Navigation Links directly below title */}
+										<motion.div
+											initial={{ opacity: 0, y: 10 }}
+											animate={{ opacity: 1, y: 0 }}
+											transition={{ duration: 0.5, delay: 0.45 }}
+											className="w-full mt-3 sm:mt-5 mb-1 sm:mb-2"
+										>
+											<div className="flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-8">
+												{NAV_ITEMS.filter((item) => item.id !== "home").map((item) => (
+													<button
+														key={item.id}
+														type="button"
+														onClick={() => setActiveView(item.id)}
+														className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-transparent hover:bg-[#31135e]/10 text-[#31135e] text-sm sm:text-base md:text-lg font-black transition-all group cursor-pointer active:scale-95"
+													>
+														<span>{item.label}</span>
+														{item.badge && (
+															<span className="text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider bg-emerald-600 text-white shadow-2xs">
+																{item.badge}
+															</span>
+														)}
+														<ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#31135e] opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+													</button>
+												))}
+											</div>
+										</motion.div>
+
+										{/* Below Page Links: Show ONE line partner logos when About Program is active, OR Large Event Date when inactive */}
+										<div className="w-full my-2 sm:my-3 min-h-[64px] flex items-center">
 											<AnimatePresence mode="wait">
-												<motion.p
-													key={sloganIndex}
-													initial={{ opacity: 0, y: 14, scale: 0.98 }}
-													animate={{ opacity: 1, y: 0, scale: 1 }}
-													exit={{ opacity: 0, y: -14, scale: 0.98 }}
-													transition={{ duration: 0.5, ease: "easeInOut" }}
-													className="text-base sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-[#31135e] max-w-4xl mx-auto leading-snug sm:leading-relaxed tracking-tight text-center drop-shadow-2xs"
-												>
-													{DYNAMIC_SLOGANS[sloganIndex]}
-												</motion.p>
+												{showAboutRight ? (
+													<motion.div
+														key="logos-under-links"
+														initial={{ opacity: 0, y: 6 }}
+														animate={{ opacity: 1, y: 0 }}
+														exit={{ opacity: 0, y: -6 }}
+														transition={{ duration: 0.25, ease: "easeInOut" }}
+														className="w-full flex flex-wrap items-center justify-start gap-4 sm:gap-6 md:gap-8 bg-transparent"
+													>
+														<motion.img
+															whileHover={{ scale: 1.06 }}
+															src={LOGO3_URL}
+															alt="IIC Logo"
+															className="h-9 sm:h-12 md:h-14 w-auto object-contain drop-shadow-md"
+														/>
+														<motion.img
+															whileHover={{ scale: 1.06 }}
+															src={LOGO4_URL}
+															alt="Qiskit Logo"
+															className="h-8 sm:h-11 md:h-13 w-auto object-contain drop-shadow-md"
+														/>
+														<motion.img
+															whileHover={{ scale: 1.06 }}
+															src={LOGO2_URL}
+															alt="IBM Quantum Logo"
+															className="h-9 sm:h-12 md:h-14 w-auto object-contain drop-shadow-md"
+														/>
+													</motion.div>
+												) : (
+													<motion.div
+														key="large-date-under-links"
+														initial={{ opacity: 0, y: 6 }}
+														animate={{ opacity: 1, y: 0 }}
+														exit={{ opacity: 0, y: -6 }}
+														transition={{ duration: 0.25, ease: "easeInOut" }}
+														onClick={() => setActiveView("timeline")}
+														className="w-full flex items-center gap-3.5 bg-transparent cursor-pointer group"
+													>
+														<div className="p-2.5 sm:p-3 rounded-2xl bg-[#31135e]/15 border border-[#31135e]/25 text-[#31135e] shrink-0 shadow-2xs group-hover:bg-[#31135e] group-hover:text-white transition-colors">
+															<Calendar className="w-6 h-6 sm:w-8 sm:h-8" />
+														</div>
+														<div>
+															<div className="text-xs sm:text-sm font-black text-[#31135e]/70 uppercase tracking-wider">Event Dates</div>
+															<div className="text-xl sm:text-3xl md:text-4xl font-black text-[#31135e] tracking-tight">Nov 20 – Nov 30, 2026</div>
+														</div>
+													</motion.div>
+												)}
 											</AnimatePresence>
 										</div>
 
-										<motion.div
-											initial={{ opacity: 0 }}
-											animate={{ opacity: 1 }}
-											transition={{ duration: 0.8, delay: 0.3 }}
-											className="flex flex-wrap items-center justify-center gap-2 mt-1 sm:mt-2"
-										>
-											<span className="text-[11px] sm:text-base md:text-lg font-bold text-[#31135e]/80 tracking-wider uppercase">
-												Get ready for...
-											</span>
-											
-										</motion.div>
 									</div>
 
-									{/* H1 Headline */}
-									<motion.h1
-										initial={{ opacity: 0, scale: 0.98 }}
-										animate={{ opacity: 1, scale: 1 }}
-										transition={{ duration: 0.8, delay: 0.2 }}
-										className="text-2xl sm:text-5xl md:text-6xl lg:text-[70px] font-bold text-[#31135e] tracking-tight leading-[1.15] flex flex-wrap items-center justify-center gap-2 sm:gap-4"
-									>
-										<span>CIT - IBM</span>
-										<span className="font-ibm-mono font-medium tracking-normal text-[#31135e]">Qiskit</span>
-										<span>FALL FEST 2026</span>
-									</motion.h1>
-
-									{/* Paraphrased Slogan below H1 */}
+									{/* Action Buttons Cluster with Smooth Layout Transitions */}
 									<motion.div
-										initial={{ opacity: 0, y: 10 }}
-										animate={{ opacity: 1, y: 0 }}
-										transition={{ duration: 0.8, delay: 0.4 }}
-										className="mt-1 sm:mt-4 px-3.5 py-1.5 sm:px-6 sm:py-2.5 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-2xs inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 max-w-full"
+										initial={{ y: 15, opacity: 0 }}
+										animate={{ y: 0, opacity: 1 }}
+										transition={{ duration: 0.5 }}
+										className="w-full flex flex-col items-start justify-start gap-3 pt-1 pb-2"
 									>
-										<p className="text-[10px] sm:text-base md:text-lg font-bold text-[#31135e] tracking-wider sm:tracking-widest uppercase">
-											Infinite Qubits · One Mission
-										</p>
-										
+										<motion.div layout className="w-full flex flex-wrap items-center justify-start gap-2.5 sm:gap-3.5">
+											{/* DESKTOP ONLY: About Program Toggle Button */}
+											<motion.button
+												layout
+												whileHover={{ scale: 1.03 }}
+												whileTap={{ scale: 0.97 }}
+												transition={{ type: "spring", stiffness: 400, damping: 30 }}
+												onClick={() => setShowAboutRight(!showAboutRight)}
+												className={`hidden lg:flex h-10 sm:h-12 px-4 sm:px-6 rounded-full text-xs sm:text-sm font-extrabold shadow-md transition-colors duration-200 cursor-pointer touch-manipulation items-center justify-center gap-2 ${
+													showAboutRight
+														? "bg-[#31135e] text-white border border-white/30"
+														: "bg-white/60 backdrop-blur-xl border border-[#31135e]/30 text-[#31135e] hover:bg-white/80"
+												}`}
+											>
+												<Info className="w-4 h-4" />
+												<span>About Program</span>
+											</motion.button>
+
+											{/* Timeline Date Badge Button (Visible when about program is active) */}
+											<AnimatePresence mode="popLayout">
+												{showAboutRight && (
+													<motion.button
+														layout
+														initial={{ opacity: 0, scale: 0.85, x: -10 }}
+														animate={{ opacity: 1, scale: 1, x: 0 }}
+														exit={{ opacity: 0, scale: 0.85, x: -10 }}
+														transition={{ type: "spring", stiffness: 380, damping: 28 }}
+														whileHover={{ scale: 1.03 }}
+														whileTap={{ scale: 0.97 }}
+														onClick={() => setActiveView("timeline")}
+														className="h-10 sm:h-12 px-4 sm:px-6 rounded-full bg-white/50 backdrop-blur-xl border border-white/70 text-[#31135e] hover:bg-white/70 text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 cursor-pointer touch-manipulation flex items-center justify-center"
+													>
+														Nov 20 – Nov 30, 2026
+													</motion.button>
+												)}
+											</AnimatePresence>
+
+											{/* Mode Indicator Badge (Hidden when about program is active) */}
+											<AnimatePresence mode="popLayout">
+												{!showAboutRight && (
+													<motion.div
+														layout
+														initial={{ opacity: 0, scale: 0.85, x: -10 }}
+														animate={{ opacity: 1, scale: 1, x: 0 }}
+														exit={{ opacity: 0, scale: 0.85, x: -10 }}
+														transition={{ type: "spring", stiffness: 380, damping: 28 }}
+														whileHover={{ scale: 1.03 }}
+														className="h-10 sm:h-12 px-4 sm:px-5 rounded-full bg-emerald-500/15 backdrop-blur-xl border border-emerald-600/30 text-[#31135e] text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 flex items-center justify-center gap-2"
+													>
+														<span className="relative flex h-2 w-2 shrink-0">
+															<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+															<span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+														</span>
+														<span>Mode: Online</span>
+													</motion.div>
+												)}
+											</AnimatePresence>
+										</motion.div>
+
+										{/* YouTube Channel Banner Link (Enlarged chip) */}
+										<motion.a
+											whileHover={{ scale: 1.03 }}
+											whileTap={{ scale: 0.97 }}
+											href="https://www.youtube.com/@citquantumhackathon1549/videos"
+											target="_blank"
+											rel="noopener noreferrer"
+											className="mt-1.5 inline-flex items-center gap-2.5 px-4.5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-white/60 hover:bg-white/90 border border-white/80 shadow-md text-[#31135e] text-xs sm:text-sm md:text-base font-bold transition-all group touch-manipulation cursor-pointer"
+										>
+											<svg className="w-5 h-5 sm:w-6 sm:h-6 fill-[#FF0000] shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+												<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+											</svg>
+											<span>To view previous events – Visit our YouTube channel</span>
+											<ExternalLink className="w-4 h-4 sm:w-4.5 sm:h-4.5 opacity-70 group-hover:translate-x-0.5 transition-transform" />
+										</motion.a>
+
+										{/* MOBILE ONLY: About Program Embedded Section (Below buttons on mobile) */}
+										<div className="lg:hidden w-full pt-4 border-t border-[#31135e]/15">
+											<AboutProgram onViewChange={setActiveView} />
+										</div>
 									</motion.div>
 								</div>
 
-								{/* Focused Action & Event Highlights Bar */}
-								<motion.div
-									initial={{ y: 20, opacity: 0 }}
-									animate={{ y: 0, opacity: 1 }}
-									transition={{ duration: 0.8, delay: 0.5 }}
-									className="mt-auto w-full max-w-3xl px-2 sm:px-4 flex flex-col items-center justify-center gap-3 pb-2 sm:pb-4 pt-2"
-								>
-									<div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4">
-										{/* Main CTA Button */}
-										<motion.button
-											whileHover={{ scale: 1.03 }}
-											whileTap={{ scale: 0.97 }}
-											onClick={() => setActiveView("registration")}
-											className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-[#31135e] hover:bg-[#230c45] text-white text-sm sm:text-base font-semibold shadow-lg transition-all cursor-pointer touch-manipulation"
-										>
-											Enquiry/Interest Form
-										</motion.button>
+								{/* DESKTOP RIGHT HALF: Shows AboutProgram when showAboutRight is true, OR partner logos in old format when showAboutRight is false */}
+								<div className="hidden lg:flex w-[460px] xl:w-[540px] 2xl:w-[600px] shrink-0 h-full min-h-0 flex-col justify-end items-end relative select-none p-2 pb-4">
+									<AnimatePresence mode="wait">
+										{showAboutRight ? (
+											<motion.div
+												key="about-panel-desktop"
+												initial={{ opacity: 0, x: 20, scale: 0.95 }}
+												animate={{ opacity: 1, x: 0, scale: 1 }}
+												exit={{ opacity: 0, x: 20, scale: 0.95 }}
+												transition={{ duration: 0.35, ease: "easeInOut" }}
+												className="w-full h-full"
+											>
+												<AboutProgram
+													onViewChange={setActiveView}
+													onClose={() => setShowAboutRight(false)}
+												/>
+											</motion.div>
+										) : (
+											<motion.div
+												key="logos-desktop-old"
+												initial={{ opacity: 0, scale: 0.95 }}
+												animate={{ opacity: 1, scale: 1 }}
+												exit={{ opacity: 0, scale: 0.95 }}
+												transition={{ duration: 0.35, ease: "easeInOut" }}
+												className="flex flex-col items-end justify-end gap-4 w-full max-w-[380px] bg-transparent shrink-0"
+											>
+												{/* Line 1: IIC Logo and Qiskit Logo together side-by-side */}
+												<div className="flex items-center justify-end gap-5 w-full bg-transparent">
+													<motion.img
+														whileHover={{ scale: 1.08 }}
+														src={LOGO3_URL}
+														alt="IIC Logo"
+														className="h-14 lg:h-18 w-auto object-contain drop-shadow-md"
+													/>
+													<motion.img
+														whileHover={{ scale: 1.08 }}
+														src={LOGO4_URL}
+														alt="Qiskit Logo"
+														className="h-13 lg:h-16 w-auto object-contain drop-shadow-md"
+													/>
+												</div>
 
-										{/* Date Highlight Badge */}
-										<motion.button
-											whileHover={{ scale: 1.03 }}
-											whileTap={{ scale: 0.97 }}
-											onClick={() => setActiveView("timeline")}
-											className="w-full sm:w-auto px-5 py-3 sm:px-7 sm:py-4 rounded-full bg-white/35 backdrop-blur-xl border border-white/50 text-[#31135e] hover:bg-white/50 text-sm sm:text-base font-semibold shadow-sm transition-all cursor-pointer touch-manipulation"
-										>
-											Nov 20 – Nov 30, 2026
-										</motion.button>
-
-										{/* Mode Badge Button */}
-										<motion.div
-											whileHover={{ scale: 1.03 }}
-											className="w-full sm:w-auto px-5 py-3 sm:px-6 sm:py-4 rounded-full bg-emerald-500/15 backdrop-blur-xl border border-emerald-600/30 text-[#31135e] text-sm sm:text-base font-bold shadow-sm transition-all flex items-center justify-center gap-2"
-										>
-											<span className="relative flex h-2.5 w-2.5 shrink-0">
-												<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-												<span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-											</span>
-											<span>Mode: Online</span>
-										</motion.div>
-									</div>
-
-									{/* YouTube Channel Banner Link */}
-									<motion.a
-										whileHover={{ scale: 1.02 }}
-										whileTap={{ scale: 0.98 }}
-										href="https://www.youtube.com/@citquantumhackathon1549/videos"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="mt-1 inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/45 hover:bg-white/70 border border-white/60 shadow-2xs text-[#31135e] text-xs sm:text-sm font-semibold transition-all group touch-manipulation"
-									>
-										<svg className="w-4 h-4 sm:w-5 sm:h-5 fill-[#FF0000] shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
-											<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-										</svg>
-										<span>To view previous events – Visit our YouTube channel</span>
-										<ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 transition-transform" />
-									</motion.a>
-								</motion.div>
+												{/* Line 2: IBM Quantum Logo matching the width of line 1 */}
+												<div className="w-full pt-1 flex items-center justify-center bg-transparent">
+													<motion.img
+														whileHover={{ scale: 1.06 }}
+														src={LOGO2_URL}
+														alt="IBM Quantum Logo"
+														className="h-16 lg:h-20 w-full object-contain drop-shadow-md"
+													/>
+												</div>
+											</motion.div>
+										)}
+									</AnimatePresence>
+								</div>
 							</motion.div>
-						)}
-
-						{activeView === "registration" && (
+						) : (
+							/* OTHER SUB-VIEWS: Full Screen View (Registration / Timeline / Organizers / Past Events) */
 							<motion.div
-								key="hero-registration"
+								key="sub-view-layout"
 								initial={{ opacity: 0, y: 15 }}
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -15 }}
-								transition={{ duration: 0.4 }}
-								className="w-full min-h-full select-text flex flex-col justify-start"
+								transition={{ duration: 0.3 }}
+								className="w-full h-full min-h-0 overflow-y-auto [::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth p-4 sm:p-6 select-text"
 							>
-								<Registration />
-							</motion.div>
-						)}
-
-						{activeView === "timeline" && (
-							<motion.div
-								key="hero-timeline"
-								initial={{ opacity: 0, y: 15 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -15 }}
-								transition={{ duration: 0.4 }}
-								className="w-full min-h-full select-text flex flex-col justify-start"
-							>
-								<Timeline />
-							</motion.div>
-						)}
-
-						{activeView === "organizers" && (
-							<motion.div
-								key="hero-organizers"
-								initial={{ opacity: 0, y: 15 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -15 }}
-								transition={{ duration: 0.4 }}
-								className="w-full min-h-full select-text flex flex-col justify-start"
-							>
-								<Organizers />
-							</motion.div>
-						)}
-
-						{activeView === "past-events" && (
-							<motion.div
-								key="hero-past-events"
-								initial={{ opacity: 0, y: 15 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -15 }}
-								transition={{ duration: 0.4 }}
-								className="w-full min-h-full select-text flex flex-col justify-start"
-							>
-								<PastEvents />
+								{activeView === "registration" && <Registration />}
+								{activeView === "timeline" && <Timeline />}
+								{activeView === "organizers" && <Organizers />}
+								{activeView === "past-events" && <PastEvents />}
 							</motion.div>
 						)}
 					</AnimatePresence>
+
+					{/* MOBILE ONLY: Bottom Partner Logos Infinite Marquee */}
+					{activeView === "home" && (
+						<div className="lg:hidden w-full overflow-hidden py-3 bg-white/20 backdrop-blur-md border-t border-white/30 shrink-0 select-none">
+							<motion.div
+								animate={{ x: ["0%", "-50%"] }}
+								transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
+								className="flex items-center gap-12 whitespace-nowrap w-max"
+							>
+								{[...MARQUEE_LOGOS, ...MARQUEE_LOGOS, ...MARQUEE_LOGOS, ...MARQUEE_LOGOS].map((item, idx) => (
+									<div key={idx} className="flex items-center justify-center shrink-0 px-4">
+										<img src={item.src} alt={item.alt} className={item.className} />
+									</div>
+								))}
+							</motion.div>
+						</div>
+					)}
+
 				</div>
 			</section>
 		</div>
