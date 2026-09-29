@@ -104,10 +104,10 @@ export default function Hero() {
 											transition={SMOOTH_EASE}
 											className={`flex flex-col gap-1 w-full ${showAboutRight ? "items-start text-left" : "items-center text-center"}`}
 										>
-											<h2 className={`font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight ${
+											<h2 className={`font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight whitespace-nowrap ${
 												showAboutRight
-													? "text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
-													: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+													? "text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-[44px]"
+													: "text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px]"
 											}`}>
 												Coimbatore Institute of Technology
 											</h2>

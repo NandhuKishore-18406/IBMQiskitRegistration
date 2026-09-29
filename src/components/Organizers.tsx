@@ -13,7 +13,7 @@ interface FacultyOrganizer {
 	name: string;
 	role: string;
 	designation: string;
-	qualifications: string;
+	qualifications?: string;
 	department: string;
 	email: string;
 	phone: string;
@@ -57,6 +57,12 @@ const PATRONS: LeadershipMember[] = [
 		designation: "Chief Academic Officer",
 		institution: "CIT and CIT Sandwich Polytechnic College Coimbatore",
 	},
+	{
+		id: "umamaheswari",
+		name: "Dr. Umamaheswari .K",
+		designation: "Dean - Computing",
+		institution: "Coimbatore Institute of Technology",
+	},
 ];
 
 const MAIN_ORGANIZER: FacultyOrganizer = {
@@ -64,7 +70,6 @@ const MAIN_ORGANIZER: FacultyOrganizer = {
 	name: "Dr. S. Manjula Gandhi",
 	role: "Main Organizer",
 	designation: "IBM Qiskit Advocate, Professor and Head",
-	qualifications: "M.C.A., M.S., Ph.D.",
 	department: "Department of Computing - Software Systems, CIT",
 	email: "hodss@cit.edu.in",
 	phone: "",
@@ -76,7 +81,6 @@ const CO_ORGANIZERS: FacultyOrganizer[] = [
 		name: "Dr. S. Gayathri Devi",
 		role: "Co-Organizer",
 		designation: "IBM Qiskit Advocate, Associate Professor",
-		qualifications: "M.Sc., M.Phil., Ph.D.",
 		department: "Department of Computing - Data Science, CIT",
 		email: "sgayathridevi@cit.edu.in",
 		phone: "+91 9944561345",
@@ -86,7 +90,6 @@ const CO_ORGANIZERS: FacultyOrganizer[] = [
 		name: "Dr. D. Anandhi",
 		role: "Co-Organizer",
 		designation: "Assistant Professor (Sl.Gr.)",
-		qualifications: "M.C.A., M.Phil., Ph.D.",
 		department: "Department of Computing - Software Systems, CIT",
 		email: "anandhi@cit.edu.in",
 		phone: "+91 9842219092",
@@ -205,13 +208,8 @@ export default function Organizers() {
 					className="p-5 sm:p-6 rounded-3xl bg-white/45 backdrop-blur-2xl border border-white/70 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative overflow-hidden"
 				>
 					<div className="flex-1 space-y-1.5">
-						<h3 className="text-lg sm:text-2xl font-black text-[#31135e] tracking-tight flex flex-wrap items-baseline gap-x-1.5">
-							<span>{MAIN_ORGANIZER.name}</span>
-							{MAIN_ORGANIZER.qualifications && (
-								<span className="text-xs sm:text-base font-bold text-[#31135e]/80">
-									, {MAIN_ORGANIZER.qualifications}
-								</span>
-							)}
+						<h3 className="text-lg sm:text-2xl font-black text-[#31135e] tracking-tight">
+							{MAIN_ORGANIZER.name}
 						</h3>
 
 						<div className="text-xs sm:text-sm font-extrabold text-[#31135e] opacity-90 uppercase tracking-wide">
@@ -251,13 +249,8 @@ export default function Organizers() {
 							className="p-4 sm:p-5 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-md flex flex-col justify-between gap-3"
 						>
 							<div className="space-y-1">
-								<h4 className="text-base sm:text-lg font-black text-[#31135e] tracking-tight flex flex-wrap items-baseline gap-x-1.5">
-									<span>{org.name}</span>
-									{org.qualifications && (
-										<span className="text-xs font-bold text-[#31135e]/80">
-											, {org.qualifications}
-										</span>
-									)}
+								<h4 className="text-base sm:text-lg font-black text-[#31135e] tracking-tight">
+									{org.name}
 								</h4>
 
 								<div className="text-xs font-extrabold text-[#31135e]/85 uppercase tracking-wide">
