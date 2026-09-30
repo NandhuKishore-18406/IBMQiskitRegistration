@@ -54,7 +54,7 @@ export default function Hero() {
 				)}
 
 				{/* Main Body Layout */}
-				<div className="relative z-10 w-full flex-1 flex flex-col justify-between min-h-0">
+				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col justify-between overflow-hidden">
 					
 					<AnimatePresence mode="wait">
 						{activeView === "home" ? (
@@ -64,7 +64,7 @@ export default function Hero() {
 								animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }}
 								transition={SMOOTH_EASE}
-								className="w-full flex-1 flex flex-col lg:flex-row items-stretch justify-between gap-4 lg:gap-6 p-3 sm:p-5 md:p-6 lg:p-7 min-h-0"
+								className="w-full h-full min-h-0 flex flex-col lg:flex-row items-stretch justify-between gap-4 lg:gap-6 p-3 sm:p-5 md:p-6 lg:p-7 overflow-hidden"
 							>
 								{/* LEFT / MAIN HALF: Information & Action Stack */}
 								<motion.div
@@ -72,7 +72,7 @@ export default function Hero() {
 									ref={contentContainerRef}
 									animate={{ width: showAboutRight ? "50%" : "100%" }}
 									transition={SMOOTH_EASE}
-									className={`w-full flex-1 min-h-0 overflow-y-auto custom-scrollbar scroll-smooth flex flex-col py-2 sm:py-4 select-text space-y-3 sm:space-y-4 shrink-0 ${
+									className={`w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth flex flex-col py-2 sm:py-4 select-text space-y-3 sm:space-y-4 shrink-0 ${
 										showAboutRight 
 											? "items-start justify-start text-left" 
 											: "items-center justify-start lg:justify-center text-center lg:my-auto"
@@ -332,7 +332,7 @@ export default function Hero() {
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -15 }}
 								transition={SMOOTH_EASE}
-								className="w-full flex-1 min-h-0 overflow-y-auto custom-scrollbar scroll-smooth p-4 sm:p-6 select-text"
+								className="w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth p-4 sm:p-6 select-text"
 							>
 								{activeView === "registration" && <Registration />}
 								{activeView === "timeline" && <Timeline />}
