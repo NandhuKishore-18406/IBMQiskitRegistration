@@ -2,7 +2,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
-export type HeroView = "home" | "timeline" | "registration" | "organizers" | "past-events";
+export type HeroView = "home" | "about" | "timeline" | "registration" | "organizers" | "past-events";
 
 interface NavbarProps {
 	activeView?: HeroView;
@@ -10,14 +10,18 @@ interface NavbarProps {
 }
 
 export const NAV_ITEMS: { id: HeroView; label: string; badge?: string }[] = [
-	{ id: "home", label: "About the Program" },
+	{ id: "home", label: "Home" },
+	{ id: "about", label: "About the Program" },
 	{ id: "timeline", label: "Timeline" },
 	{ id: "registration", label: "Interest Form", badge: "Open" },
 	{ id: "organizers", label: "Organizers" },
 	{ id: "past-events", label: "Past Events" },
 ];
 
-const LOGO_URL = `${import.meta.env.BASE_URL}assets/logo.png`;
+const LOGO1_URL = `${import.meta.env.BASE_URL}assets/logo.png`;
+const LOGO2_URL = `${import.meta.env.BASE_URL}assets/images-removebg-preview(1)(1).png`;
+const LOGO3_URL = `${import.meta.env.BASE_URL}assets/iic.webp`;
+const LOGO4_URL = `${import.meta.env.BASE_URL}assets/qiskit.png`;
 
 export default function Navbar({ activeView = "home", onViewChange }: NavbarProps) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -26,40 +30,59 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 		if (onViewChange) {
 			onViewChange(viewId);
 		}
-		if (viewId === "home" && window.innerWidth < 1024) {
-			setTimeout(() => {
-				const el = document.getElementById("mobile-about-section");
-				if (el) el.scrollIntoView({ behavior: "smooth" });
-			}, 100);
-		}
 		setIsOpen(false);
 	};
 
 	return (
-		<nav className="w-full relative z-30 bg-white/30 backdrop-blur-2xl border-b border-white/50 shadow-sm px-3 sm:px-6 md:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-4">
-			{/* Left: Brand Identity */}
+		<nav className="w-full relative z-40 bg-white/50 backdrop-blur-2xl border-b border-white/60 shadow-sm px-3 sm:px-5 md:px-6 py-2 sm:py-3 flex items-center justify-between gap-2 sm:gap-4 box-border shrink-0 select-none">
+			{/* Left: Brand Identity with CIT & Partner Logos */}
 			<div
 				onClick={() => handleSelect("home")}
-				className="flex items-center gap-3 cursor-pointer hover:opacity-95 transition-opacity shrink-0"
+				className="flex items-center gap-2 sm:gap-3 cursor-pointer hover:opacity-95 transition-opacity shrink-0 min-w-0"
 			>
-				<img
-					src={LOGO_URL}
-					alt="CIT Logo"
-					className="h-9 sm:h-11 md:h-12 w-auto object-contain drop-shadow-sm"
-				/>
-				<div className="hidden md:flex flex-col text-left">
-					<span className="text-xs sm:text-sm font-black text-[#31135e] uppercase tracking-wider">
+				{/* Logos Cluster Row */}
+				<div className="flex items-center gap-1 sm:gap-2 shrink-0">
+					{/* CIT Logo */}
+					<img
+						src={LOGO1_URL}
+						alt="CIT Logo"
+						className="h-7 sm:h-9 md:h-10 lg:h-11 w-auto object-contain drop-shadow-xs shrink-0"
+					/>
+					<div className="h-4 sm:h-5 w-[1px] bg-[#31135e]/30 shrink-0 mx-0.5" />
+					{/* IIC Logo */}
+					<img
+						src={LOGO3_URL}
+						alt="IIC Logo"
+						className="h-4.5 sm:h-6 md:h-7 w-auto object-contain drop-shadow-xs shrink-0"
+					/>
+					{/* Qiskit Logo */}
+					<img
+						src={LOGO4_URL}
+						alt="Qiskit Logo"
+						className="h-4 sm:h-5 md:h-6 w-auto object-contain drop-shadow-xs shrink-0"
+					/>
+					{/* IBM Quantum Logo */}
+					<img
+						src={LOGO2_URL}
+						alt="IBM Quantum Logo"
+						className="h-4.5 sm:h-6 md:h-7 w-auto object-contain drop-shadow-xs shrink-0"
+					/>
+				</div>
+
+				{/* Responsive Text Branding Block */}
+				<div className="hidden md:flex flex-col text-left justify-center min-w-0">
+					<span className="text-xs sm:text-sm lg:text-base font-black text-[#31135e] uppercase tracking-wide leading-tight truncate">
 						Coimbatore Institute of Technology
 					</span>
-					<span className="text-[10px] sm:text-xs font-bold text-[#31135e]/80">
+					<span className="text-[10px] sm:text-xs font-bold text-[#31135e]/85 truncate">
 						Department of Computing · IBM Qiskit Fall Fest 2026
 					</span>
 				</div>
 			</div>
 
-			{/* Right-Aligned Desktop Navigation Bar */}
-			<div className="hidden xl:flex items-center justify-end flex-1 ml-auto">
-				<ul className="flex items-center gap-1 p-1.5 rounded-full bg-white/40 backdrop-blur-xl border border-white/60 shadow-xs">
+			{/* Right-Aligned Desktop Navigation Bar (Visible on lg and larger screens: 1024px+) */}
+			<div className="hidden lg:flex items-center justify-end flex-1 ml-auto">
+				<ul className="flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-white/60 backdrop-blur-xl border border-white/80 shadow-xs">
 					{NAV_ITEMS.map((item) => {
 						const isActive = activeView === item.id;
 						return (
@@ -67,7 +90,7 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 								<button
 									type="button"
 									onClick={() => handleSelect(item.id)}
-									className={`relative px-4 py-2 rounded-full text-xs lg:text-sm font-extrabold transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+									className={`relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs lg:text-sm font-extrabold transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
 										isActive
 											? "text-white"
 											: "text-[#31135e] hover:bg-[#31135e]/15 hover:text-[#31135e]"
@@ -99,15 +122,15 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 				</ul>
 			</div>
 
-			{/* Right: Hamburger Toggle Button for Mobile / Tablet */}
-			<div className="flex items-center gap-2 sm:gap-3 shrink-0">
+			{/* Right: Hamburger Toggle Button for Mobile / Tablet (<1024px) */}
+			<div className="flex items-center gap-2 shrink-0 lg:hidden">
 				<button
 					type="button"
 					onClick={() => setIsOpen(!isOpen)}
-					className="xl:hidden p-2 sm:p-2.5 rounded-full bg-[#31135e] text-white hover:bg-[#230c45] transition-colors shadow-md focus:outline-none cursor-pointer"
+					className="p-2 sm:p-2.5 rounded-full bg-[#31135e] text-white hover:bg-[#230c45] active:scale-95 transition-all shadow-md focus:outline-none cursor-pointer"
 					aria-label="Toggle navigation menu"
 				>
-					{isOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+					{isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
 				</button>
 			</div>
 
@@ -119,7 +142,7 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 						animate={{ opacity: 1, height: "auto", y: 0 }}
 						exit={{ opacity: 0, height: 0, y: -5 }}
 						transition={{ duration: 0.25, ease: "easeInOut" }}
-						className="xl:hidden absolute top-full left-0 right-0 w-full bg-white/98 backdrop-blur-2xl border-b border-[#31135e]/20 px-4 py-4 shadow-2xl z-50 overflow-hidden"
+						className="lg:hidden absolute top-full left-0 right-0 w-full bg-white/98 backdrop-blur-2xl border-b border-[#31135e]/20 px-4 py-4 shadow-2xl z-50 overflow-hidden"
 					>
 						<ul className="flex flex-col gap-2 w-full">
 							{NAV_ITEMS.map((item) => {
@@ -129,7 +152,7 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 										<button
 											type="button"
 											onClick={() => handleSelect(item.id)}
-											className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-between cursor-pointer ${
+											className={`w-full text-left px-4 py-3 rounded-xl text-sm font-extrabold transition-all flex items-center justify-between cursor-pointer ${
 												isActive
 													? "bg-[#31135e] text-white shadow-md"
 													: "text-[#31135e] hover:bg-[#31135e]/10"
@@ -138,7 +161,7 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 											<div className="flex items-center gap-2">
 												<span>{item.label}</span>
 												{item.badge && (
-													<span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-600 text-white font-bold uppercase">
+													<span className="text-[9px] px-2 py-0.5 rounded-full bg-emerald-600 text-white font-black uppercase">
 														{item.badge}
 													</span>
 												)}

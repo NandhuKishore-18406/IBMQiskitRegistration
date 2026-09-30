@@ -4,6 +4,7 @@ import {
 	FileText,
 	History,
 	Home,
+	Info,
 	Menu,
 	Sparkles,
 	Users,
@@ -12,7 +13,7 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
-export type HeroView = "home" | "timeline" | "registration" | "organizers" | "past-events";
+export type HeroView = "home" | "about" | "timeline" | "registration" | "organizers" | "past-events";
 
 interface RevealMenuProps {
 	activeView: HeroView;
@@ -20,7 +21,8 @@ interface RevealMenuProps {
 }
 
 const NAV_ITEMS: { id: HeroView; label: string; icon: any; badge?: string }[] = [
-	{ id: "home", label: "About the Program", icon: Home },
+	{ id: "home", label: "Home", icon: Home },
+	{ id: "about", label: "About the Program", icon: Info },
 	{ id: "timeline", label: "Timeline", icon: Calendar },
 	{ id: "registration", label: "Interest/Enquiry Form", icon: FileText, badge: "Open" },
 	{ id: "organizers", label: "Organizers", icon: Users },
@@ -32,12 +34,6 @@ export default function RevealMenu({ activeView, onViewChange }: RevealMenuProps
 
 	const handleSelect = (viewId: HeroView) => {
 		onViewChange(viewId);
-		if (viewId === "home" && window.innerWidth < 1024) {
-			setTimeout(() => {
-				const el = document.getElementById("mobile-about-section");
-				if (el) el.scrollIntoView({ behavior: "smooth" });
-			}, 100);
-		}
 		setIsOpen(false);
 	};
 
@@ -107,7 +103,7 @@ export default function RevealMenu({ activeView, onViewChange }: RevealMenuProps
 									const Icon = item.icon;
 									const isActive = activeView === item.id;
 									return (
-										<li key={item.id}>
+										<li key={item.id} className={item.id === "about" ? "hidden lg:block" : ""}>
 											<button
 												type="button"
 												onClick={() => handleSelect(item.id)}

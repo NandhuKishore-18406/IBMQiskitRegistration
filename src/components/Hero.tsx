@@ -50,7 +50,6 @@ const HERO_ITEM_VARIANTS = {
 
 export default function Hero() {
 	const [activeView, setActiveView] = useState<HeroView>("home");
-	const [showAboutRight, setShowAboutRight] = useState(false);
 	const contentContainerRef = useRef<HTMLDivElement>(null);
 
 	// Auto scroll to top on activeView transition
@@ -62,7 +61,9 @@ export default function Hero() {
 
 	return (
 		<div className="w-full min-h-screen min-h-[100dvh] lg:h-screen lg:h-[100dvh] flex items-center justify-center p-1 sm:p-3 md:p-4 lg:p-5 bg-[#f2f4f8] box-border overflow-x-hidden select-none">
-			<section className="relative w-full min-h-screen min-h-[100dvh] lg:min-h-0 lg:h-full rounded-xl sm:rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden flex flex-col justify-between bg-white/10 group">
+			<section className={`relative w-full min-h-screen min-h-[100dvh] lg:min-h-0 lg:h-full rounded-xl sm:rounded-[1.5rem] md:rounded-[2.5rem] flex flex-col justify-between bg-white/10 group ${
+				activeView !== "home" ? "overflow-visible z-30" : "overflow-hidden"
+			}`}>
 				{/* Background Image Covered Over Entire Hero Card */}
 				<img
 					src={IMG_URL}
@@ -86,68 +87,43 @@ export default function Hero() {
 								initial="hidden"
 								animate="show"
 								exit="exit"
-								className="w-full h-full min-h-0 flex flex-col lg:flex-row items-stretch justify-between gap-4 lg:gap-6 p-3 sm:p-5 md:p-6 lg:p-7 overflow-hidden"
+								className="w-full h-full min-h-0 flex flex-col items-center justify-center p-3 sm:p-5 md:p-6 lg:p-7 overflow-hidden"
 							>
-								{/* LEFT / MAIN HALF: Information & Action Stack */}
+								{/* Information & Action Stack */}
 								<motion.div
-									layout
 									ref={contentContainerRef}
-									animate={{ width: showAboutRight ? "50%" : "100%" }}
-									transition={SMOOTH_EASE}
-									className={`w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth flex flex-col py-2 sm:py-4 select-text space-y-3 sm:space-y-4 shrink-0 ${
-										showAboutRight 
-											? "items-start justify-start text-left" 
-											: "items-center justify-start lg:justify-center text-center lg:my-auto"
-									}`}
+									className="w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth flex flex-col py-2 sm:py-4 select-text space-y-3 sm:space-y-4 shrink-0 items-center justify-start lg:justify-center text-center lg:my-auto"
 								>
 									{/* Top Header Information Stack */}
 									<motion.div 
-										layout
-										transition={SMOOTH_EASE}
-										className={`w-full flex flex-col ${
-											showAboutRight 
-												? "items-start text-left max-w-4xl gap-2.5 sm:gap-3" 
-												: "items-center text-center max-w-5xl mx-auto gap-3 sm:gap-4"
-										}`}
+										className="w-full flex flex-col items-center text-center max-w-5xl mx-auto gap-3 sm:gap-4"
 									>
 										
 										{/* CIT Logo */}
 										<motion.img
-											layout
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
 											src={LOGO1_URL}
 											alt="Coimbatore Institute of Technology Logo"
-											className={`w-auto object-contain drop-shadow-md shrink-0 ${
-												showAboutRight
-													? "h-14 sm:h-18 md:h-22 lg:h-26 xl:h-30"
-													: "h-16 sm:h-22 md:h-28 lg:h-32 xl:h-36"
-											}`}
+											className="h-16 sm:h-22 md:h-28 lg:h-32 xl:h-36 w-auto object-contain drop-shadow-md shrink-0"
 										/>
 
 										{/* Line 1 -> Coimbatore Institute of Technology Header Stack */}
 										<motion.div
-											layout
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className={`flex flex-col gap-1 w-full shrink-0 ${showAboutRight ? "items-start text-left" : "items-center text-center"}`}
+											className="flex flex-col gap-1 w-full shrink-0 items-center text-center"
 										>
-											<h2 className={`font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight ${
-												showAboutRight
-													? "text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-left"
-													: "text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-[46px] text-center"
-											}`}>
+											<h2 className="font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-[36px] text-center">
 												Coimbatore Institute of Technology
 											</h2>
 
 											{/* Affiliation & Location Lines */}
-											<div className={`flex flex-col gap-0.5 font-bold text-[#31135e]/90 ${
-												showAboutRight ? "items-start text-left" : "items-center justify-center text-center"
-											}`}>
+											<div className="flex flex-col gap-0.5 font-bold text-[#31135e]/90 items-center justify-center text-center">
 												<span className="text-xs sm:text-sm md:text-base font-bold text-[#31135e]/90">
 													(Affiliated to Anna University, Chennai)
 												</span>
-												<span className="text-sm sm:text-base md:text-lg lg:text-xl font-black text-[#31135e]">
+												<span className="text-xs sm:text-sm md:text-base lg:text-lg font-black text-[#31135e]">
 													Coimbatore, Tamil Nadu, India
 												</span>
 											</div>
@@ -155,14 +131,9 @@ export default function Hero() {
 
 										{/* Partner Logos Row (IIC Logo left, Qiskit middle, IBM Quantum right) */}
 										<motion.div
-											layout
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className={`w-full my-2 sm:my-3 flex items-center shrink-0 ${
-												showAboutRight
-													? "justify-start gap-4 sm:gap-8 md:gap-10"
-													: "justify-center gap-5 sm:gap-10 md:gap-14 lg:gap-16"
-											}`}
+											className="w-full my-2 sm:my-3 flex items-center shrink-0 justify-center gap-5 sm:gap-10 md:gap-14 lg:gap-16"
 										>
 											{/* Left: IIC Logo */}
 											<motion.img
@@ -171,9 +142,7 @@ export default function Hero() {
 												transition={HOVER_PHYSICS}
 												src={LOGO3_URL}
 												alt="IIC Logo"
-												className={`w-auto object-contain drop-shadow-md ${
-													showAboutRight ? "h-9 sm:h-12 md:h-15 lg:h-16" : "h-10 sm:h-14 md:h-16 lg:h-18"
-												}`}
+												className="h-10 sm:h-14 md:h-16 lg:h-18 w-auto object-contain drop-shadow-md"
 											/>
 
 											{/* Middle: Qiskit Logo */}
@@ -183,9 +152,7 @@ export default function Hero() {
 												transition={HOVER_PHYSICS}
 												src={LOGO4_URL}
 												alt="Qiskit Logo"
-												className={`w-auto object-contain drop-shadow-md ${
-													showAboutRight ? "h-8 sm:h-11 md:h-13 lg:h-15" : "h-9 sm:h-13 md:h-15 lg:h-16"
-												}`}
+												className="h-9 sm:h-13 md:h-15 lg:h-16 w-auto object-contain drop-shadow-md"
 											/>
 
 											{/* Right: IBM Quantum Logo */}
@@ -195,56 +162,42 @@ export default function Hero() {
 												transition={HOVER_PHYSICS}
 												src={LOGO2_URL}
 												alt="IBM Quantum Logo"
-												className={`w-auto object-contain drop-shadow-md ${
-													showAboutRight ? "h-9 sm:h-12 md:h-15 lg:h-16" : "h-10 sm:h-14 md:h-16 lg:h-18"
-												}`}
+												className="h-10 sm:h-14 md:h-16 lg:h-18 w-auto object-contain drop-shadow-md"
 											/>
 										</motion.div>
 
 										{/* Department of Computing Badge (Without Atom logo) */}
 										<motion.div
-											layout
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className={`w-full flex ${showAboutRight ? "justify-start text-left" : "justify-center text-center"}`}
+											className="w-full flex justify-center text-center"
 										>
 											<HeroBadge text="Department of Computing" />
 										</motion.div>
 
 										{/* Collaboration Statement */}
 										<motion.p
-											layout
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className={`text-xs sm:text-base md:text-lg font-bold text-[#31135e]/85 italic tracking-wide ${
-												showAboutRight ? "text-left" : "text-center"
-											}`}
+											className="text-xs sm:text-sm md:text-base font-bold text-[#31135e]/85 italic tracking-wide text-center"
 										>
 											in collaboration with <strong className="font-black text-[#31135e] not-italic">IBM Quantum</strong> and <strong className="font-black text-[#31135e] not-italic">IIC</strong>
 										</motion.p>
 
 										{/* Main Title: CIT - IBM Qiskit Fall Fest 2026 */}
 										<motion.h1
-											layout
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className={`font-black text-[#31135e] tracking-tight leading-[1.05] drop-shadow-xs my-1 sm:my-2 ${
-												showAboutRight
-													? "text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-left"
-													: "text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center"
-											}`}
+											className="font-black text-[#31135e] tracking-tight leading-[1.05] drop-shadow-xs my-1 sm:my-2 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center"
 										>
 											CIT - IBM Qiskit Fall Fest 2026
 										</motion.h1>
 
 										{/* Date & Mode Badges */}
 										<motion.div
-											layout
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className={`w-full flex flex-wrap items-center gap-2.5 sm:gap-3.5 my-2 sm:my-3 ${
-												showAboutRight ? "justify-start" : "justify-center"
-											}`}
+											className="w-full flex flex-wrap items-center gap-2.5 sm:gap-3.5 my-2 sm:my-3 justify-center"
 										>
 											{/* Timeline Date Badge Button */}
 											<motion.button
@@ -273,16 +226,11 @@ export default function Hero() {
 
 										{/* Page Navigation Links */}
 										<motion.div
-											layout
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className={`w-full mt-2 sm:mt-4 mb-1 sm:mb-2 flex ${
-												showAboutRight ? "justify-start" : "justify-center"
-											}`}
+											className="w-full mt-2 sm:mt-4 mb-1 sm:mb-2 flex justify-center"
 										>
-											<div className={`flex flex-wrap items-center gap-3 sm:gap-6 lg:gap-8 ${
-												showAboutRight ? "justify-start" : "justify-center"
-											}`}>
+											<div className="flex flex-wrap items-center gap-3 sm:gap-6 lg:gap-8 justify-center">
 												{NAV_ITEMS.map((item) => (
 													<motion.button
 														key={item.id}
@@ -290,20 +238,9 @@ export default function Hero() {
 														whileHover={{ scale: 1.05 }}
 														whileTap={{ scale: 0.95 }}
 														transition={HOVER_PHYSICS}
-														onClick={() => {
-															if (item.id === "home") {
-																if (window.innerWidth < 1024) {
-																	const el = document.getElementById("mobile-about-section");
-																	if (el) el.scrollIntoView({ behavior: "smooth" });
-																} else {
-																	setShowAboutRight(!showAboutRight);
-																}
-															} else {
-																setActiveView(item.id);
-															}
-														}}
+														onClick={() => setActiveView(item.id)}
 														className={`items-center gap-2 px-2.5 py-1.5 rounded-xl bg-transparent hover:bg-[#31135e]/10 text-[#31135e] text-sm sm:text-base md:text-lg font-black transition-colors group cursor-pointer active:scale-95 ${
-															item.id === "home" ? "hidden lg:inline-flex" : "inline-flex"
+															item.id === "home" ? "hidden" : item.id === "about" ? "hidden lg:inline-flex" : "inline-flex"
 														}`}
 													>
 														<span>{item.label}</span>
@@ -318,42 +255,17 @@ export default function Hero() {
 											</div>
 										</motion.div>
 
-									</motion.div>
-
-									{/* Embedded About Section on Mobile */}
-									<motion.div
-										layout
-										variants={HERO_ITEM_VARIANTS}
-										transition={SMOOTH_EASE}
-										className="w-full flex flex-col gap-3 pt-1 pb-2 items-center text-center"
-									>
-										{/* MOBILE ONLY: About Program Embedded Section */}
-										<div id="mobile-about-section" className="lg:hidden w-full pt-6 mt-2 border-t border-[#31135e]/15">
+										{/* MOBILE ONLY: Embedded About Program Section in Hero */}
+										<motion.div
+											variants={HERO_ITEM_VARIANTS}
+											transition={SMOOTH_EASE}
+											className="lg:hidden w-full pt-6 mt-4 border-t border-[#31135e]/15"
+										>
 											<AboutProgram />
-										</div>
+										</motion.div>
+
 									</motion.div>
 								</motion.div>
-
-								{/* DESKTOP RIGHT HALF: Synchronized smooth expanding/collapsing split panel */}
-								<AnimatePresence initial={false}>
-									{showAboutRight && (
-										<motion.div
-											key="about-right-panel"
-											layout
-											initial={{ width: "0%", opacity: 0, x: 40, scale: 0.96 }}
-											animate={{ width: "50%", opacity: 1, x: 0, scale: 1 }}
-											exit={{ width: "0%", opacity: 0, x: 40, scale: 0.96 }}
-											transition={SMOOTH_EASE}
-											className="hidden lg:flex shrink-0 h-full flex-col justify-stretch items-stretch relative select-none overflow-hidden min-h-0"
-										>
-											<div className="w-full h-full p-1 sm:p-2 pb-2 shrink-0 flex flex-col min-h-0">
-												<AboutProgram
-													onClose={() => setShowAboutRight(false)}
-												/>
-											</div>
-										</motion.div>
-									)}
-								</AnimatePresence>
 							</motion.div>
 						) : (
 							/* OTHER SUB-VIEWS: Full Screen View */
@@ -365,6 +277,11 @@ export default function Hero() {
 								transition={SMOOTH_EASE}
 								className="w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth p-4 sm:p-6 select-text"
 							>
+								{activeView === "about" && (
+									<div className="max-w-5xl mx-auto py-2 sm:py-6 px-2 sm:px-4">
+										<AboutProgram />
+									</div>
+								)}
 								{activeView === "registration" && <Registration />}
 								{activeView === "timeline" && <Timeline />}
 								{activeView === "organizers" && <Organizers />}
