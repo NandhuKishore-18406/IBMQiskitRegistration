@@ -152,7 +152,7 @@ body {
 /* Tier 0: Mobile devices (< 640px width) */
 @media (max-width: 639px) {
 	html {
-		font-size: 14px;
+		font-size: 16.5px;
 	}
 }
 

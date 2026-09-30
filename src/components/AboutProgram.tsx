@@ -31,11 +31,11 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 				transition={FAST_EASE}
 				className="w-full flex flex-col items-center space-y-3 sm:space-y-4 max-w-4xl mx-auto"
 			>
-				<h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#31135e] tracking-tight text-center">
+				<h3 className="text-xl sm:text-3xl md:text-4xl font-black text-[#31135e] tracking-tight text-center">
 					About the Institution
 				</h3>
 
-				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-justify w-full">
+				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-left sm:text-justify w-full">
 					<strong className="font-black text-[#31135e]">Coimbatore Institute of Technology (CIT)</strong>, established in 1956 by the V. Rangaswamy Naidu Educational Trust, is an autonomous Government-aided engineering institution affiliated to Anna University, Chennai. Recognized globally for academic excellence, NAAC & NBA accreditation, and pioneering research, CIT stands as a premier center of technical education and innovation in India.
 				</p>
 			</motion.div>
@@ -50,11 +50,11 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 				transition={{ ...FAST_EASE, delay: 0.1 }}
 				className="w-full flex flex-col items-center space-y-3 sm:space-y-4 max-w-4xl mx-auto"
 			>
-				<h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#31135e] tracking-tight text-center">
+				<h3 className="text-xl sm:text-3xl md:text-4xl font-black text-[#31135e] tracking-tight text-center">
 					About the Department
 				</h3>
 
-				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-justify w-full">
+				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-left sm:text-justify w-full">
 					The <strong className="font-black text-[#31135e]">Department of Computing</strong> at CIT is a premier academic department offering specialized programs in Software Systems, Data Science, and Artificial Intelligence. Equipped with state-of-the-art computational infrastructure, deep industry collaborations with global tech leaders like IBM, and a legacy of research excellence, the department empowers students to build next-generation software technologies.
 				</p>
 			</motion.div>
@@ -69,11 +69,11 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 				transition={{ ...FAST_EASE, delay: 0.2 }}
 				className="w-full flex flex-col items-center space-y-3 sm:space-y-4 max-w-4xl mx-auto"
 			>
-				<h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#31135e] tracking-tight text-center">
+				<h3 className="text-xl sm:text-3xl md:text-4xl font-black text-[#31135e] tracking-tight text-center">
 					About the Program
 				</h3>
 
-				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-justify w-full">
+				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-left sm:text-justify w-full">
 					The <strong className="font-black text-[#31135e]">CIT - IBM Qiskit Fall Fest 2026</strong> (4th Edition) is a 100% online global quantum event running from <strong className="font-black text-[#31135e]">November 20 to November 30, 2026</strong>. Hosted by the Department of Computing, CIT in collaboration with <strong className="font-black text-[#31135e]">IBM Quantum</strong> and <strong className="font-black text-[#31135e]">IIC</strong>, the event features expert quantum lectures, hands-on algorithm coding on real IBM Quantum hardware, team hackathon challenges, and certified IBM Advocate mentorship.
 				</p>
 			</motion.div>
