@@ -26,6 +26,28 @@ const MARQUEE_LOGOS = [
 const SMOOTH_EASE = { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const };
 const HOVER_PHYSICS = { type: "spring" as const, stiffness: 280, damping: 28 };
 
+const HERO_CONTAINER_VARIANTS = {
+	hidden: { opacity: 0, y: 24 },
+	show: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			...SMOOTH_EASE,
+			staggerChildren: 0.07,
+		},
+	},
+	exit: {
+		opacity: 0,
+		y: -24,
+		transition: SMOOTH_EASE,
+	},
+};
+
+const HERO_ITEM_VARIANTS = {
+	hidden: { opacity: 0, y: 16 },
+	show: { opacity: 1, y: 0, transition: SMOOTH_EASE },
+};
+
 export default function Hero() {
 	const [activeView, setActiveView] = useState<HeroView>("home");
 	const [showAboutRight, setShowAboutRight] = useState(false);
@@ -60,10 +82,10 @@ export default function Hero() {
 						{activeView === "home" ? (
 							<motion.div
 								key="home-layout"
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								exit={{ opacity: 0 }}
-								transition={SMOOTH_EASE}
+								variants={HERO_CONTAINER_VARIANTS}
+								initial="hidden"
+								animate="show"
+								exit="exit"
 								className="w-full h-full min-h-0 flex flex-col lg:flex-row items-stretch justify-between gap-4 lg:gap-6 p-3 sm:p-5 md:p-6 lg:p-7 overflow-hidden"
 							>
 								{/* LEFT / MAIN HALF: Information & Action Stack */}
@@ -92,6 +114,7 @@ export default function Hero() {
 										{/* CIT Logo */}
 										<motion.img
 											layout
+											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
 											src={LOGO1_URL}
 											alt="Coimbatore Institute of Technology Logo"
@@ -105,6 +128,7 @@ export default function Hero() {
 										{/* Line 1 -> Coimbatore Institute of Technology Header Stack */}
 										<motion.div
 											layout
+											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
 											className={`flex flex-col gap-1 w-full shrink-0 ${showAboutRight ? "items-start text-left" : "items-center text-center"}`}
 										>
@@ -132,6 +156,7 @@ export default function Hero() {
 										{/* Partner Logos Row (IIC Logo left, Qiskit middle, IBM Quantum right) */}
 										<motion.div
 											layout
+											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
 											className={`w-full my-2 sm:my-3 flex items-center shrink-0 ${
 												showAboutRight
@@ -179,6 +204,7 @@ export default function Hero() {
 										{/* Department of Computing Badge (Without Atom logo) */}
 										<motion.div
 											layout
+											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
 											className={`w-full flex ${showAboutRight ? "justify-start text-left" : "justify-center text-center"}`}
 										>
@@ -188,6 +214,7 @@ export default function Hero() {
 										{/* Collaboration Statement */}
 										<motion.p
 											layout
+											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
 											className={`text-xs sm:text-base md:text-lg font-bold text-[#31135e]/85 italic tracking-wide ${
 												showAboutRight ? "text-left" : "text-center"
@@ -199,6 +226,7 @@ export default function Hero() {
 										{/* Main Title: CIT - IBM Qiskit Fall Fest 2026 */}
 										<motion.h1
 											layout
+											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
 											className={`font-black text-[#31135e] tracking-tight leading-[1.05] drop-shadow-xs my-1 sm:my-2 ${
 												showAboutRight
@@ -212,6 +240,7 @@ export default function Hero() {
 										{/* Date & Mode Badges */}
 										<motion.div
 											layout
+											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
 											className={`w-full flex flex-wrap items-center gap-2.5 sm:gap-3.5 my-2 sm:my-3 ${
 												showAboutRight ? "justify-start" : "justify-center"
@@ -245,6 +274,7 @@ export default function Hero() {
 										{/* Page Navigation Links */}
 										<motion.div
 											layout
+											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
 											className={`w-full mt-2 sm:mt-4 mb-1 sm:mb-2 flex ${
 												showAboutRight ? "justify-start" : "justify-center"
@@ -293,6 +323,7 @@ export default function Hero() {
 									{/* Embedded About Section on Mobile */}
 									<motion.div
 										layout
+										variants={HERO_ITEM_VARIANTS}
 										transition={SMOOTH_EASE}
 										className="w-full flex flex-col gap-3 pt-1 pb-2 items-center text-center"
 									>
@@ -309,9 +340,9 @@ export default function Hero() {
 										<motion.div
 											key="about-right-panel"
 											layout
-											initial={{ width: "0%", opacity: 0, scale: 0.96 }}
-											animate={{ width: "50%", opacity: 1, scale: 1 }}
-											exit={{ width: "0%", opacity: 0, scale: 0.96 }}
+											initial={{ width: "0%", opacity: 0, x: 40, scale: 0.96 }}
+											animate={{ width: "50%", opacity: 1, x: 0, scale: 1 }}
+											exit={{ width: "0%", opacity: 0, x: 40, scale: 0.96 }}
 											transition={SMOOTH_EASE}
 											className="hidden lg:flex shrink-0 h-full flex-col justify-stretch items-stretch relative select-none overflow-hidden min-h-0"
 										>
