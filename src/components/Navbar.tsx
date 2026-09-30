@@ -34,11 +34,11 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 	};
 
 	return (
-		<nav className="w-full relative z-40 bg-white/50 backdrop-blur-2xl border-b border-white/60 shadow-sm px-3 sm:px-5 md:px-6 py-2 sm:py-3 flex items-center justify-between gap-2 sm:gap-4 box-border shrink-0 select-none">
+		<nav className="w-full relative z-40 bg-white/60 backdrop-blur-2xl border-b border-white/70 shadow-sm px-3 sm:px-5 md:px-6 lg:px-6 xl:px-8 py-2 lg:py-2.5 flex items-center justify-between gap-2 sm:gap-4 lg:gap-6 box-border shrink-0 select-none">
 			{/* Left: Brand Identity with CIT & Partner Logos */}
 			<div
 				onClick={() => handleSelect("home")}
-				className="flex items-center gap-2 sm:gap-3 cursor-pointer hover:opacity-95 transition-opacity shrink-0 min-w-0"
+				className="flex items-center gap-2 sm:gap-3 lg:gap-3.5 cursor-pointer hover:opacity-95 transition-opacity shrink-0 min-w-0"
 			>
 				{/* Logos Cluster Row */}
 				<div className="flex items-center gap-1 sm:gap-2 shrink-0">
@@ -46,35 +46,35 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 					<img
 						src={LOGO1_URL}
 						alt="CIT Logo"
-						className="h-7 sm:h-9 md:h-10 lg:h-11 w-auto object-contain drop-shadow-xs shrink-0"
+						className="h-7 sm:h-8 md:h-9 lg:h-9.5 xl:h-10.5 w-auto object-contain drop-shadow-xs shrink-0"
 					/>
-					<div className="h-4 sm:h-5 w-[1px] bg-[#31135e]/30 shrink-0 mx-0.5" />
+					<div className="h-4 sm:h-5 lg:h-5 w-[1px] bg-[#31135e]/30 shrink-0 mx-0.5 sm:mx-1" />
 					{/* IIC Logo */}
 					<img
 						src={LOGO3_URL}
 						alt="IIC Logo"
-						className="h-4.5 sm:h-6 md:h-7 w-auto object-contain drop-shadow-xs shrink-0"
+						className="h-4.5 sm:h-5.5 md:h-6 lg:h-6.5 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0"
 					/>
 					{/* Qiskit Logo */}
 					<img
 						src={LOGO4_URL}
 						alt="Qiskit Logo"
-						className="h-4 sm:h-5 md:h-6 w-auto object-contain drop-shadow-xs shrink-0"
+						className="h-4 sm:h-5 md:h-5.5 lg:h-6 xl:h-6.5 w-auto object-contain drop-shadow-xs shrink-0"
 					/>
 					{/* IBM Quantum Logo */}
 					<img
 						src={LOGO2_URL}
 						alt="IBM Quantum Logo"
-						className="h-4.5 sm:h-6 md:h-7 w-auto object-contain drop-shadow-xs shrink-0"
+						className="h-4.5 sm:h-5.5 md:h-6 lg:h-6.5 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0"
 					/>
 				</div>
 
 				{/* Responsive Text Branding Block */}
 				<div className="hidden md:flex flex-col text-left justify-center min-w-0">
-					<span className="text-xs sm:text-sm lg:text-base font-black text-[#31135e] uppercase tracking-wide leading-tight truncate">
+					<span className="text-xs sm:text-sm lg:text-sm xl:text-base font-black text-[#31135e] uppercase tracking-wide leading-tight truncate">
 						Coimbatore Institute of Technology
 					</span>
-					<span className="text-[10px] sm:text-xs font-bold text-[#31135e]/85 truncate">
+					<span className="text-[10px] sm:text-xs lg:text-[11px] xl:text-xs font-bold text-[#31135e]/85 truncate">
 						Department of Computing · IBM Qiskit Fall Fest 2026
 					</span>
 				</div>
@@ -82,7 +82,7 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 
 			{/* Right-Aligned Desktop Navigation Bar (Visible on lg and larger screens: 1024px+) */}
 			<div className="hidden lg:flex items-center justify-end flex-1 ml-auto">
-				<ul className="flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-white/60 backdrop-blur-xl border border-white/80 shadow-xs">
+				<ul className="flex items-center gap-1 sm:gap-1 lg:gap-1.5 p-1 rounded-full bg-white/70 backdrop-blur-xl border border-white/90 shadow-xs">
 					{NAV_ITEMS.map((item) => {
 						const isActive = activeView === item.id;
 						return (
@@ -90,7 +90,7 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 								<button
 									type="button"
 									onClick={() => handleSelect(item.id)}
-									className={`relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs lg:text-sm font-extrabold transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+									className={`relative px-3 lg:px-3.5 xl:px-4 py-1.5 rounded-full text-xs lg:text-xs xl:text-sm font-extrabold transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
 										isActive
 											? "text-white"
 											: "text-[#31135e] hover:bg-[#31135e]/15 hover:text-[#31135e]"
@@ -106,7 +106,7 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 									<span className="relative z-10">{item.label}</span>
 									{item.badge && (
 										<span
-											className={`relative z-10 text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wider ${
+											className={`relative z-10 text-[9px] xl:text-[9.5px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wider ${
 												isActive
 													? "bg-emerald-400 text-[#31135e]"
 													: "bg-emerald-600 text-white"

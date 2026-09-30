@@ -70,15 +70,15 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
 
 export default function Timeline() {
 	return (
-		<div className="w-full flex flex-col items-center justify-start py-4 sm:py-8 px-2 sm:px-4 max-w-4xl mx-auto min-h-full pb-20 sm:pb-28">
+		<div className="w-full flex flex-col items-center justify-start py-4 sm:py-8 lg:py-10 px-2 sm:px-4 lg:px-8 max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto min-h-full pb-20 sm:pb-28">
 			{/* Page Header */}
 			<motion.div
 				initial={{ opacity: 0, y: -15 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.4 }}
-				className="flex flex-col items-center text-center space-y-3 mb-8 sm:mb-12"
+				className="flex flex-col items-center text-center space-y-3 mb-8 sm:mb-12 lg:mb-14"
 			>
-				<h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#31135e] tracking-tight">
+				<h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#31135e] tracking-tight">
 					CIT - IBM Qiskit Fall Fest Timeline
 				</h2>
 

@@ -120,14 +120,14 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 
 export default function Organizers() {
 	return (
-		<div className="w-full flex flex-col gap-6 sm:gap-8 py-2 px-1 sm:px-2 text-left max-w-3xl mx-auto pb-20 sm:pb-28">
+		<div className="w-full flex flex-col gap-6 sm:gap-8 lg:gap-10 py-2 px-1 sm:px-2 lg:px-6 text-left max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto pb-20 sm:pb-28">
 			{/* Chief Patrons Section */}
 			<div className="w-full space-y-3">
-				<h3 className="text-lg sm:text-xl font-black text-[#31135e] tracking-tight">
+				<h3 className="text-lg sm:text-xl lg:text-2xl font-black text-[#31135e] tracking-tight">
 					Chief Patrons
 				</h3>
 
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-5">
 					{CHIEF_PATRONS.map((cp, idx) => (
 						<motion.div
 							key={cp.id}

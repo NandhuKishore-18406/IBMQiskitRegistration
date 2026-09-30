@@ -285,7 +285,7 @@ export default function PastEvents() {
 	const data = EDITIONS_DATA[activeYear];
 
 	return (
-		<div className="w-full max-w-6xl mx-auto py-2 sm:py-6 px-2 sm:px-6 space-y-6 sm:space-y-8 pb-16 sm:pb-24 select-text">
+		<div className="w-full max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1500px] mx-auto py-2 sm:py-6 lg:py-8 px-2 sm:px-6 space-y-6 sm:space-y-8 lg:space-y-10 pb-16 sm:pb-24 select-text">
 			{/* Top Year Switcher - Clean Glass Pill Bar */}
 			<div className="flex flex-col items-center justify-center space-y-3">
 				<span className="text-xs sm:text-sm font-bold text-[#31135e]/70 tracking-widest uppercase">

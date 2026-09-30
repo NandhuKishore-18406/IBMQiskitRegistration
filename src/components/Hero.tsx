@@ -1,10 +1,9 @@
-import { ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 import AboutProgram from "./AboutProgram";
 import HeroBadge from "./HeroBadge";
-import Navbar, { HeroView, NAV_ITEMS } from "./Navbar";
+import Navbar, { HeroView } from "./Navbar";
 import Organizers from "./Organizers";
 import PastEvents from "./PastEvents";
 import Registration from "./Registration";
@@ -61,9 +60,7 @@ export default function Hero() {
 
 	return (
 		<div className="w-full min-h-screen min-h-[100dvh] lg:h-screen lg:h-[100dvh] flex items-center justify-center p-1 sm:p-3 md:p-4 lg:p-5 bg-[#f2f4f8] box-border overflow-x-hidden select-none">
-			<section className={`relative w-full min-h-screen min-h-[100dvh] lg:min-h-0 lg:h-full rounded-xl sm:rounded-[1.5rem] md:rounded-[2.5rem] flex flex-col justify-between bg-white/10 group ${
-				activeView !== "home" ? "overflow-visible z-30" : "overflow-hidden"
-			}`}>
+			<section className="relative w-full min-h-screen min-h-[100dvh] lg:min-h-0 lg:h-full rounded-xl sm:rounded-[1.5rem] md:rounded-[2.5rem] flex flex-col justify-between bg-white/10 group overflow-hidden shadow-2xl border border-white/80">
 				{/* Background Image Covered Over Entire Hero Card */}
 				<img
 					src={IMG_URL}
@@ -71,10 +68,8 @@ export default function Hero() {
 					className="absolute inset-0 w-full h-full object-cover object-[65%] lg:object-center z-0"
 				/>
 
-				{/* Header Navigation Bar (Visible on sub-pages only) */}
-				{activeView !== "home" && (
-					<Navbar activeView={activeView} onViewChange={setActiveView} />
-				)}
+				{/* Header Navigation Bar (Persistent across ALL pages including Home) */}
+				<Navbar activeView={activeView} onViewChange={setActiveView} />
 
 				{/* Main Body Layout */}
 				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col justify-between overflow-hidden">
@@ -87,16 +82,16 @@ export default function Hero() {
 								initial="hidden"
 								animate="show"
 								exit="exit"
-								className="w-full h-full min-h-0 flex flex-col items-center justify-center p-3 sm:p-5 md:p-6 lg:p-7 overflow-hidden"
+								className="w-full h-full min-h-0 flex flex-col items-center justify-center p-3 sm:p-5 md:p-6 lg:p-8 xl:p-10 overflow-hidden"
 							>
 								{/* Information & Action Stack */}
 								<motion.div
 									ref={contentContainerRef}
-									className="w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth flex flex-col py-2 sm:py-4 select-text space-y-3 sm:space-y-4 shrink-0 items-center justify-start lg:justify-center text-center lg:my-auto"
+									className="w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth flex flex-col py-2 sm:py-4 select-text space-y-3 sm:space-y-4 lg:space-y-5 shrink-0 items-center justify-start lg:justify-center text-center lg:my-auto"
 								>
 									{/* Top Header Information Stack */}
 									<motion.div 
-										className="w-full flex flex-col items-center text-center max-w-5xl mx-auto gap-3 sm:gap-4"
+										className="w-full flex flex-col items-center text-center max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto gap-3 sm:gap-4 lg:gap-5"
 									>
 										
 										{/* CIT Logo */}
@@ -105,22 +100,22 @@ export default function Hero() {
 											transition={SMOOTH_EASE}
 											src={LOGO1_URL}
 											alt="Coimbatore Institute of Technology Logo"
-											className="h-16 sm:h-22 md:h-28 lg:h-32 xl:h-36 w-auto object-contain drop-shadow-md shrink-0"
+											className="h-12 sm:h-16 md:h-20 lg:h-22 xl:h-26 2xl:h-28 w-auto object-contain drop-shadow-md shrink-0"
 										/>
 
 										{/* Line 1 -> Coimbatore Institute of Technology Header Stack */}
 										<motion.div
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="flex flex-col gap-1 w-full shrink-0 items-center text-center"
+											className="flex flex-col gap-0.5 sm:gap-1 w-full shrink-0 items-center text-center"
 										>
-											<h2 className="font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-[36px] text-center">
+											<h2 className="font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-center">
 												Coimbatore Institute of Technology
 											</h2>
 
 											{/* Affiliation & Location Lines */}
 											<div className="flex flex-col gap-0.5 font-bold text-[#31135e]/90 items-center justify-center text-center">
-												<span className="text-xs sm:text-sm md:text-base font-bold text-[#31135e]/90">
+												<span className="text-[11px] sm:text-xs md:text-sm font-bold text-[#31135e]/90">
 													(Affiliated to Anna University, Chennai)
 												</span>
 												<span className="text-xs sm:text-sm md:text-base lg:text-lg font-black text-[#31135e]">
@@ -133,7 +128,7 @@ export default function Hero() {
 										<motion.div
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="w-full my-2 sm:my-3 flex items-center shrink-0 justify-center gap-5 sm:gap-10 md:gap-14 lg:gap-16"
+											className="w-full my-1.5 sm:my-2 lg:my-2.5 flex items-center shrink-0 justify-center gap-4 sm:gap-8 md:gap-10 lg:gap-12"
 										>
 											{/* Left: IIC Logo */}
 											<motion.img
@@ -142,7 +137,7 @@ export default function Hero() {
 												transition={HOVER_PHYSICS}
 												src={LOGO3_URL}
 												alt="IIC Logo"
-												className="h-10 sm:h-14 md:h-16 lg:h-18 w-auto object-contain drop-shadow-md"
+												className="h-8 sm:h-11 md:h-13 lg:h-14 xl:h-15 w-auto object-contain drop-shadow-md"
 											/>
 
 											{/* Middle: Qiskit Logo */}
@@ -152,7 +147,7 @@ export default function Hero() {
 												transition={HOVER_PHYSICS}
 												src={LOGO4_URL}
 												alt="Qiskit Logo"
-												className="h-9 sm:h-13 md:h-15 lg:h-16 w-auto object-contain drop-shadow-md"
+												className="h-7 sm:h-10 md:h-12 lg:h-13 xl:h-14 w-auto object-contain drop-shadow-md"
 											/>
 
 											{/* Right: IBM Quantum Logo */}
@@ -162,7 +157,7 @@ export default function Hero() {
 												transition={HOVER_PHYSICS}
 												src={LOGO2_URL}
 												alt="IBM Quantum Logo"
-												className="h-10 sm:h-14 md:h-16 lg:h-18 w-auto object-contain drop-shadow-md"
+												className="h-8 sm:h-11 md:h-13 lg:h-14 xl:h-15 w-auto object-contain drop-shadow-md"
 											/>
 										</motion.div>
 
@@ -179,7 +174,7 @@ export default function Hero() {
 										<motion.p
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="text-xs sm:text-sm md:text-base font-bold text-[#31135e]/85 italic tracking-wide text-center"
+											className="text-[11px] sm:text-xs md:text-sm lg:text-base font-bold text-[#31135e]/85 italic tracking-wide text-center"
 										>
 											in collaboration with <strong className="font-black text-[#31135e] not-italic">IBM Quantum</strong> and <strong className="font-black text-[#31135e] not-italic">IIC</strong>
 										</motion.p>
@@ -188,7 +183,7 @@ export default function Hero() {
 										<motion.h1
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="font-black text-[#31135e] tracking-tight leading-[1.05] drop-shadow-xs my-1 sm:my-2 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center"
+											className="font-black text-[#31135e] tracking-tight leading-[1.05] drop-shadow-xs my-1 sm:my-1.5 text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-center"
 										>
 											CIT - IBM Qiskit Fall Fest 2026
 										</motion.h1>
@@ -197,7 +192,7 @@ export default function Hero() {
 										<motion.div
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="w-full flex flex-wrap items-center gap-2.5 sm:gap-3.5 my-2 sm:my-3 justify-center"
+											className="w-full flex flex-wrap items-center gap-2 sm:gap-3 my-1.5 sm:my-2 justify-center"
 										>
 											{/* Timeline Date Badge Button */}
 											<motion.button
@@ -205,7 +200,7 @@ export default function Hero() {
 												whileTap={{ scale: 0.97 }}
 												transition={HOVER_PHYSICS}
 												onClick={() => setActiveView("timeline")}
-												className="h-11 sm:h-13 px-5 sm:px-7 rounded-full bg-white/50 backdrop-blur-xl border border-white/70 text-[#31135e] hover:bg-white/70 text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 cursor-pointer touch-manipulation flex items-center justify-center"
+												className="h-9 sm:h-11 lg:h-12 px-4 sm:px-6 rounded-full bg-white/50 backdrop-blur-xl border border-white/70 text-[#31135e] hover:bg-white/70 text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 cursor-pointer touch-manipulation flex items-center justify-center"
 											>
 												Nov 20 – Nov 30, 2026
 											</motion.button>
@@ -214,7 +209,7 @@ export default function Hero() {
 											<motion.div
 												whileHover={{ scale: 1.03 }}
 												transition={HOVER_PHYSICS}
-												className="h-11 sm:h-13 px-5 sm:px-6 rounded-full bg-emerald-500/15 backdrop-blur-xl border border-emerald-600/30 text-[#31135e] text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 flex items-center justify-center gap-2.5"
+												className="h-9 sm:h-11 lg:h-12 px-4 sm:px-5 rounded-full bg-emerald-500/15 backdrop-blur-xl border border-emerald-600/30 text-[#31135e] text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 flex items-center justify-center gap-2"
 											>
 												<span className="relative flex h-2 w-2 shrink-0">
 													<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -222,37 +217,6 @@ export default function Hero() {
 												</span>
 												<span>Mode: Online</span>
 											</motion.div>
-										</motion.div>
-
-										{/* Page Navigation Links */}
-										<motion.div
-											variants={HERO_ITEM_VARIANTS}
-											transition={SMOOTH_EASE}
-											className="w-full mt-2 sm:mt-4 mb-1 sm:mb-2 flex justify-center"
-										>
-											<div className="flex flex-wrap items-center gap-3 sm:gap-6 lg:gap-8 justify-center">
-												{NAV_ITEMS.map((item) => (
-													<motion.button
-														key={item.id}
-														type="button"
-														whileHover={{ scale: 1.05 }}
-														whileTap={{ scale: 0.95 }}
-														transition={HOVER_PHYSICS}
-														onClick={() => setActiveView(item.id)}
-														className={`items-center gap-2 px-2.5 py-1.5 rounded-xl bg-transparent hover:bg-[#31135e]/10 text-[#31135e] text-sm sm:text-base md:text-lg font-black transition-colors group cursor-pointer active:scale-95 ${
-															item.id === "home" ? "hidden" : item.id === "about" ? "hidden lg:inline-flex" : "inline-flex"
-														}`}
-													>
-														<span>{item.label}</span>
-														{item.badge && (
-															<span className="text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider bg-emerald-600 text-white shadow-2xs">
-																{item.badge}
-															</span>
-														)}
-														<ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#31135e] opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-													</motion.button>
-												))}
-											</div>
 										</motion.div>
 
 										{/* MOBILE ONLY: Embedded About Program Section in Hero */}
@@ -275,10 +239,10 @@ export default function Hero() {
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -15 }}
 								transition={SMOOTH_EASE}
-								className="w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth p-4 sm:p-6 select-text"
+								className="w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth p-3 sm:p-6 lg:p-8 xl:p-10 select-text"
 							>
 								{activeView === "about" && (
-									<div className="max-w-5xl mx-auto py-2 sm:py-6 px-2 sm:px-4">
+									<div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto py-2 sm:py-6 px-2 sm:px-4">
 										<AboutProgram />
 									</div>
 								)}

@@ -15,10 +15,10 @@ export default function Registration({
 	hideTallyTitle = true,
 }: RegistrationProps) {
 	return (
-		<div className="w-full flex flex-col gap-4 sm:gap-6 py-1 px-0.5 sm:px-1 text-left max-w-7xl mx-auto pb-20 sm:pb-28">
+		<div className="w-full flex flex-col gap-4 sm:gap-6 py-1 px-0.5 sm:px-1 lg:px-4 text-left max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto pb-20 sm:pb-28">
 			{showHeader && (
-				<div className="flex flex-col items-center text-center space-y-2 mb-2 sm:mb-4">
-					<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#31135e] tracking-tight">
+				<div className="flex flex-col items-center text-center space-y-2 mb-2 sm:mb-4 lg:mb-6">
+					<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#31135e] tracking-tight">
 						Interest Form
 					</h2>
 

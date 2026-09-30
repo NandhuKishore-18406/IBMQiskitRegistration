@@ -46,7 +46,7 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 	};
 
 	return (
-		<section className="w-full h-full overflow-y-auto custom-scrollbar p-3 sm:p-6 select-text relative bg-transparent flex flex-col items-center justify-between space-y-8 max-w-6xl mx-auto">
+		<section className="w-full h-full overflow-y-auto custom-scrollbar p-3 sm:p-6 lg:p-8 select-text relative bg-transparent flex flex-col items-center justify-between space-y-8 lg:space-y-12 max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1500px] mx-auto">
 			{/* Top Bar Close Button (if present) */}
 			{onClose && (
 				<div className="flex items-center justify-end w-full">
@@ -62,18 +62,18 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 			)}
 
 			{/* Main Title & Justified Summary */}
-			<div className="space-y-4 w-full text-center">
+			<div className="space-y-4 lg:space-y-6 w-full text-center">
 				<motion.h3
 					initial={{ opacity: 0, y: -15 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={FAST_EASE}
-					className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#31135e] tracking-tight leading-tight text-center"
+					className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-[#31135e] tracking-tight leading-tight text-center"
 				>
 					About the Program
 				</motion.h3>
 
 				{/* Wider & Justified Summary Paragraphs */}
-				<div className="space-y-4 text-sm sm:text-base md:text-lg lg:text-xl font-medium text-[#31135e]/95 leading-relaxed text-justify max-w-5xl mx-auto">
+				<div className="space-y-4 lg:space-y-6 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-medium text-[#31135e]/95 leading-relaxed text-justify max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto">
 					<motion.p
 						initial={{ opacity: 0, y: 12 }}
 						animate={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 			</div>
 
 			{/* Wider Accordion Section */}
-			<div className="mt-auto pt-4 flex flex-col items-center space-y-2.5 w-full max-w-5xl mx-auto">
+			<div className="mt-auto pt-4 flex flex-col items-center space-y-3 lg:space-y-4 w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto">
 				{PROGRAM_ITEMS.map((item, idx) => {
 					const Icon = item.icon;
 					const isOpen = openIndex === idx;
