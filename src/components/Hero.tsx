@@ -1,4 +1,4 @@
-import { ArrowUpRight, ExternalLink, Info } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -72,7 +72,9 @@ export default function Hero() {
 									ref={contentContainerRef}
 									animate={{ width: showAboutRight ? "50%" : "100%" }}
 									transition={SMOOTH_EASE}
-									className="h-full min-h-0 overflow-y-auto [::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth flex flex-col justify-between py-1 sm:py-2 select-text space-y-4 shrink-0"
+									className={`h-full min-h-0 overflow-y-auto [::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth flex flex-col py-1 sm:py-2 select-text space-y-4 shrink-0 ${
+										showAboutRight ? "items-start justify-start text-left" : "items-center justify-center text-center my-auto"
+									}`}
 								>
 									{/* Top Header Information Stack */}
 									<motion.div 
@@ -93,8 +95,8 @@ export default function Hero() {
 											alt="Coimbatore Institute of Technology Logo"
 											className={`w-auto object-contain drop-shadow-md ${
 												showAboutRight
-													? "h-16 sm:h-22 md:h-26 lg:h-32 xl:h-36"
-													: "h-20 sm:h-28 md:h-32 lg:h-38 xl:h-44"
+													? "h-14 sm:h-18 md:h-22 lg:h-26 xl:h-30"
+													: "h-16 sm:h-22 md:h-28 lg:h-32 xl:h-36"
 											}`}
 										/>
 
@@ -104,21 +106,24 @@ export default function Hero() {
 											transition={SMOOTH_EASE}
 											className={`flex flex-col gap-1 w-full ${showAboutRight ? "items-start text-left" : "items-center text-center"}`}
 										>
-											<h2 className={`font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight whitespace-nowrap ${
+											<h2 className={`font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight ${
 												showAboutRight
-													? "text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-[44px]"
-													: "text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px]"
+													? "text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-left"
+													: "text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-[46px] text-center"
 											}`}>
 												Coimbatore Institute of Technology
 											</h2>
 
-											{/* Coimbatore, India & Affiliation */}
-											<div className={`flex flex-col sm:flex-row gap-1 sm:gap-3 font-semibold text-[#31135e]/90 ${
+											{/* Affiliation & Location Lines */}
+											<div className={`flex flex-col gap-0.5 font-bold text-[#31135e]/90 ${
 												showAboutRight ? "items-start text-left" : "items-center justify-center text-center"
 											}`}>
-												<span className="text-base sm:text-lg md:text-xl font-extrabold text-[#31135e]">Coimbatore, India</span>
-												<span className="hidden sm:inline opacity-40">•</span>
-												<span className="text-xs sm:text-sm md:text-base font-semibold text-[#31135e]/80">(Affiliated to Anna University, Chennai)</span>
+												<span className="text-xs sm:text-sm md:text-base font-bold text-[#31135e]/90">
+													(Affiliated to Anna University, Chennai)
+												</span>
+												<span className="text-sm sm:text-base md:text-lg lg:text-xl font-black text-[#31135e]">
+													Coimbatore, Tamil Nadu, India
+												</span>
 											</div>
 										</motion.div>
 
@@ -126,10 +131,10 @@ export default function Hero() {
 										<motion.div
 											layout
 											transition={SMOOTH_EASE}
-											className={`w-full my-3 sm:my-5 flex items-center ${
+											className={`w-full my-2 sm:my-3 flex items-center ${
 												showAboutRight
-													? "justify-start gap-6 sm:gap-10 md:gap-12"
-													: "justify-center gap-6 sm:gap-12 md:gap-16 lg:gap-20"
+													? "justify-start gap-4 sm:gap-8 md:gap-10"
+													: "justify-center gap-5 sm:gap-10 md:gap-14 lg:gap-16"
 											}`}
 										>
 											{/* Left: IIC Logo */}
@@ -140,7 +145,7 @@ export default function Hero() {
 												src={LOGO3_URL}
 												alt="IIC Logo"
 												className={`w-auto object-contain drop-shadow-md ${
-													showAboutRight ? "h-11 sm:h-15 md:h-18 lg:h-20" : "h-12 sm:h-16 md:h-20 lg:h-22"
+													showAboutRight ? "h-9 sm:h-12 md:h-15 lg:h-16" : "h-10 sm:h-14 md:h-16 lg:h-18"
 												}`}
 											/>
 
@@ -152,7 +157,7 @@ export default function Hero() {
 												src={LOGO4_URL}
 												alt="Qiskit Logo"
 												className={`w-auto object-contain drop-shadow-md ${
-													showAboutRight ? "h-10 sm:h-14 md:h-16 lg:h-18" : "h-11 sm:h-15 md:h-18 lg:h-20"
+													showAboutRight ? "h-8 sm:h-11 md:h-13 lg:h-15" : "h-9 sm:h-13 md:h-15 lg:h-16"
 												}`}
 											/>
 
@@ -164,103 +169,52 @@ export default function Hero() {
 												src={LOGO2_URL}
 												alt="IBM Quantum Logo"
 												className={`w-auto object-contain drop-shadow-md ${
-													showAboutRight ? "h-11 sm:h-15 md:h-18 lg:h-20" : "h-12 sm:h-16 md:h-20 lg:h-22"
+													showAboutRight ? "h-9 sm:h-12 md:h-15 lg:h-16" : "h-10 sm:h-14 md:h-16 lg:h-18"
 												}`}
 											/>
 										</motion.div>
 
-										{/* Department of Computing Badge */}
+										{/* Department of Computing Badge (Without Atom logo) */}
 										<motion.div
 											layout
 											transition={SMOOTH_EASE}
+											className={`w-full flex ${showAboutRight ? "justify-start text-left" : "justify-center text-center"}`}
 										>
-											<HeroBadge text="Department of Computing" icon="atom" />
+											<HeroBadge text="Department of Computing" />
 										</motion.div>
 
 										{/* Collaboration Statement */}
 										<motion.p
 											layout
 											transition={SMOOTH_EASE}
-											className={`text-sm sm:text-lg md:text-xl font-bold text-[#31135e]/85 italic tracking-wide ${
+											className={`text-xs sm:text-base md:text-lg font-bold text-[#31135e]/85 italic tracking-wide ${
 												showAboutRight ? "text-left" : "text-center"
 											}`}
 										>
-											in collaboration with IIC and IBM Quantum
+											in collaboration with <strong className="font-black text-[#31135e] not-italic">IBM Quantum</strong> and <strong className="font-black text-[#31135e] not-italic">IIC</strong>
 										</motion.p>
 
 										{/* Main Title: CIT - IBM Qiskit Fall Fest 2026 */}
 										<motion.h1
 											layout
 											transition={SMOOTH_EASE}
-											className={`font-black text-[#31135e] tracking-tight leading-[1.02] drop-shadow-xs my-1 sm:my-2 ${
+											className={`font-black text-[#31135e] tracking-tight leading-[1.05] drop-shadow-xs my-1 sm:my-2 ${
 												showAboutRight
-													? "text-3xl sm:text-5xl md:text-6xl lg:text-[64px] xl:text-[72px] text-left"
-													: "text-3xl sm:text-5xl md:text-6xl lg:text-[68px] xl:text-[76px] 2xl:text-[84px] text-center sm:whitespace-nowrap"
+													? "text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-left"
+													: "text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center"
 											}`}
 										>
 											CIT - IBM Qiskit Fall Fest 2026
 										</motion.h1>
 
-										{/* Page Navigation Links */}
+										{/* Date & Mode Badges */}
 										<motion.div
 											layout
 											transition={SMOOTH_EASE}
-											className={`w-full mt-2 sm:mt-4 mb-1 sm:mb-2 flex ${
+											className={`w-full flex flex-wrap items-center gap-2.5 sm:gap-3.5 my-2 sm:my-3 ${
 												showAboutRight ? "justify-start" : "justify-center"
 											}`}
 										>
-											<div className="flex flex-wrap items-center gap-3 sm:gap-6 lg:gap-8 justify-center">
-												{NAV_ITEMS.filter((item) => item.id !== "home").map((item) => (
-													<motion.button
-														key={item.id}
-														type="button"
-														whileHover={{ scale: 1.05 }}
-														whileTap={{ scale: 0.95 }}
-														transition={HOVER_PHYSICS}
-														onClick={() => setActiveView(item.id)}
-														className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-transparent hover:bg-[#31135e]/10 text-[#31135e] text-sm sm:text-base md:text-lg font-black transition-colors group cursor-pointer active:scale-95"
-													>
-														<span>{item.label}</span>
-														{item.badge && (
-															<span className="text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider bg-emerald-600 text-white shadow-2xs">
-																{item.badge}
-															</span>
-														)}
-														<ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#31135e] opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-													</motion.button>
-												))}
-											</div>
-										</motion.div>
-
-									</motion.div>
-
-									{/* Action Buttons Cluster */}
-									<motion.div
-										layout
-										transition={SMOOTH_EASE}
-										className={`w-full flex flex-col gap-3 pt-1 pb-2 ${
-											showAboutRight ? "items-start text-left" : "items-center text-center"
-										}`}
-									>
-										<div className={`w-full flex flex-wrap items-center gap-2.5 sm:gap-3.5 ${
-											showAboutRight ? "justify-start" : "justify-center"
-										}`}>
-											{/* DESKTOP ONLY: About Program Toggle Button */}
-											<motion.button
-												whileHover={{ scale: 1.03 }}
-												whileTap={{ scale: 0.97 }}
-												transition={HOVER_PHYSICS}
-												onClick={() => setShowAboutRight(!showAboutRight)}
-												className={`hidden lg:flex h-11 sm:h-13 px-5 sm:px-7 rounded-full text-xs sm:text-sm font-extrabold shadow-md transition-colors duration-200 cursor-pointer touch-manipulation items-center justify-center gap-2.5 ${
-													showAboutRight
-														? "bg-[#31135e] text-white border border-white/30"
-														: "bg-white/60 backdrop-blur-xl border border-[#31135e]/30 text-[#31135e] hover:bg-white/80"
-												}`}
-											>
-												<Info className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-												<span>About Program</span>
-											</motion.button>
-
 											{/* Timeline Date Badge Button */}
 											<motion.button
 												whileHover={{ scale: 1.03 }}
@@ -284,27 +238,64 @@ export default function Hero() {
 												</span>
 												<span>Mode: Online</span>
 											</motion.div>
-										</div>
+										</motion.div>
 
-										{/* YouTube Channel Banner Link */}
-										<motion.a
-											whileHover={{ scale: 1.03 }}
-											whileTap={{ scale: 0.97 }}
-											transition={HOVER_PHYSICS}
-											href="https://www.youtube.com/@citquantumhackathon1549/videos"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="mt-1.5 inline-flex items-center gap-2.5 px-5 py-3 sm:px-7 sm:py-3.5 rounded-full bg-white/60 hover:bg-white/90 border border-white/80 shadow-md text-[#31135e] text-xs sm:text-sm md:text-base font-bold transition-all group touch-manipulation cursor-pointer"
+										{/* Page Navigation Links */}
+										<motion.div
+											layout
+											transition={SMOOTH_EASE}
+											className={`w-full mt-2 sm:mt-4 mb-1 sm:mb-2 flex ${
+												showAboutRight ? "justify-start" : "justify-center"
+											}`}
 										>
-											<svg className="w-5 h-5 sm:w-6 sm:h-6 fill-[#FF0000] shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
-												<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-											</svg>
-											<span>To view previous events – Visit our YouTube channel</span>
-											<ExternalLink className="w-4 h-4 sm:w-4.5 sm:h-4.5 opacity-70 group-hover:translate-x-0.5 transition-transform" />
-										</motion.a>
+											<div className={`flex flex-wrap items-center gap-3 sm:gap-6 lg:gap-8 ${
+												showAboutRight ? "justify-start" : "justify-center"
+											}`}>
+												{NAV_ITEMS.map((item) => (
+													<motion.button
+														key={item.id}
+														type="button"
+														whileHover={{ scale: 1.05 }}
+														whileTap={{ scale: 0.95 }}
+														transition={HOVER_PHYSICS}
+														onClick={() => {
+															if (item.id === "home") {
+																if (window.innerWidth < 1024) {
+																	const el = document.getElementById("mobile-about-section");
+																	if (el) el.scrollIntoView({ behavior: "smooth" });
+																} else {
+																	setShowAboutRight(!showAboutRight);
+																}
+															} else {
+																setActiveView(item.id);
+															}
+														}}
+														className={`items-center gap-2 px-2.5 py-1.5 rounded-xl bg-transparent hover:bg-[#31135e]/10 text-[#31135e] text-sm sm:text-base md:text-lg font-black transition-colors group cursor-pointer active:scale-95 ${
+															item.id === "home" ? "hidden lg:inline-flex" : "inline-flex"
+														}`}
+													>
+														<span>{item.label}</span>
+														{item.badge && (
+															<span className="text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider bg-emerald-600 text-white shadow-2xs">
+																{item.badge}
+															</span>
+														)}
+														<ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#31135e] opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+													</motion.button>
+												))}
+											</div>
+										</motion.div>
 
+									</motion.div>
+
+									{/* Embedded About Section on Mobile */}
+									<motion.div
+										layout
+										transition={SMOOTH_EASE}
+										className="w-full flex flex-col gap-3 pt-1 pb-2 items-center text-center"
+									>
 										{/* MOBILE ONLY: About Program Embedded Section */}
-										<div className="lg:hidden w-full pt-4 border-t border-[#31135e]/15">
+										<div id="mobile-about-section" className="lg:hidden w-full pt-6 mt-2 border-t border-[#31135e]/15">
 											<AboutProgram />
 										</div>
 									</motion.div>

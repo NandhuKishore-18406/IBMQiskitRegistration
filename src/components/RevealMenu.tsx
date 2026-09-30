@@ -20,9 +20,9 @@ interface RevealMenuProps {
 }
 
 const NAV_ITEMS: { id: HeroView; label: string; icon: any; badge?: string }[] = [
-	{ id: "home", label: "Overview", icon: Home },
+	{ id: "home", label: "About the Program", icon: Home },
 	{ id: "timeline", label: "Timeline", icon: Calendar },
-	{ id: "registration", label: "Enquiry Form", icon: FileText, badge: "Open" },
+	{ id: "registration", label: "Interest/Enquiry Form", icon: FileText, badge: "Open" },
 	{ id: "organizers", label: "Organizers", icon: Users },
 	{ id: "past-events", label: "Past Events", icon: History },
 ];
@@ -32,6 +32,12 @@ export default function RevealMenu({ activeView, onViewChange }: RevealMenuProps
 
 	const handleSelect = (viewId: HeroView) => {
 		onViewChange(viewId);
+		if (viewId === "home" && window.innerWidth < 1024) {
+			setTimeout(() => {
+				const el = document.getElementById("mobile-about-section");
+				if (el) el.scrollIntoView({ behavior: "smooth" });
+			}, 100);
+		}
 		setIsOpen(false);
 	};
 

@@ -60,7 +60,7 @@ const PATRONS: LeadershipMember[] = [
 	{
 		id: "umamaheswari",
 		name: "Dr. Umamaheswari .K",
-		designation: "Dean - Computing",
+		designation: "Dean - Department of Computing",
 		institution: "Coimbatore Institute of Technology",
 	},
 ];
@@ -69,7 +69,7 @@ const MAIN_ORGANIZER: FacultyOrganizer = {
 	id: "manjula",
 	name: "Dr. S. Manjula Gandhi",
 	role: "Main Organizer",
-	designation: "IBM Qiskit Advocate, Professor and Head",
+	designation: "Professor and Head",
 	department: "Department of Computing - Software Systems, CIT",
 	email: "hodss@cit.edu.in",
 	phone: "",
@@ -80,7 +80,7 @@ const CO_ORGANIZERS: FacultyOrganizer[] = [
 		id: "gayathri",
 		name: "Dr. S. Gayathri Devi",
 		role: "Co-Organizer",
-		designation: "IBM Qiskit Advocate, Associate Professor",
+		designation: "Associate Professor",
 		department: "Department of Computing - Data Science, CIT",
 		email: "sgayathridevi@cit.edu.in",
 		phone: "+91 9944561345",
@@ -111,28 +111,13 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 		department: "Department of Computing - MSc Software Systems, CIT",
 		year: "2nd Year",
 		role: "Student Organizer",
-		phone: "",
+		phone: "+91 9787298939",
 	},
 ];
 
 export default function Organizers() {
 	return (
 		<div className="w-full flex flex-col gap-6 sm:gap-8 py-2 px-1 sm:px-2 text-left max-w-3xl mx-auto pb-20 sm:pb-28">
-			{/* Page Header */}
-			<div className="flex flex-col items-center text-center space-y-3">
-				<div className="inline-flex items-center px-3.5 py-1 rounded-full bg-[#31135e]/15 border border-[#31135e]/25 text-[#31135e] text-xs font-bold uppercase tracking-wider shadow-2xs">
-					Organizing Committee
-				</div>
-
-				<h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#31135e] tracking-tight">
-					Meet Our Leadership & Committee
-				</h2>
-
-				<p className="text-xs sm:text-sm text-[#5E6470] max-w-lg font-semibold leading-relaxed">
-					The patronage, faculty leadership, and student organizers steering CIT - IBM Qiskit Fall Fest 2026.
-				</p>
-			</div>
-
 			{/* Chief Patrons Section (No icon, no chips) */}
 			<div className="w-full space-y-3">
 				<h3 className="text-lg sm:text-xl font-black text-[#31135e] tracking-tight">
@@ -164,7 +149,7 @@ export default function Organizers() {
 				</div>
 			</div>
 
-			{/* Patrons Section (No chips) */}
+			{/* Patrons Section (Dean has Convenor chip in top-left) */}
 			<div className="w-full space-y-3">
 				<h3 className="text-lg sm:text-xl font-black text-[#31135e] tracking-tight">
 					Patrons
@@ -177,8 +162,15 @@ export default function Organizers() {
 							initial={{ opacity: 0, y: 10 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.4, delay: idx * 0.1 }}
-							className="p-4 sm:p-5 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-md space-y-1"
+							className="p-4 sm:p-5 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-md space-y-1 relative flex flex-col justify-start"
 						>
+							{patron.id === "umamaheswari" && (
+								<div className="flex items-center justify-between gap-2">
+									<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs font-extrabold shrink-0">
+										Convenor
+									</span>
+								</div>
+							)}
 							<h4 className="text-base sm:text-lg font-black text-[#31135e] tracking-tight">
 								{patron.name}
 							</h4>

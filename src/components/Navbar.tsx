@@ -10,9 +10,9 @@ interface NavbarProps {
 }
 
 export const NAV_ITEMS: { id: HeroView; label: string; badge?: string }[] = [
-	{ id: "home", label: "Overview" },
+	{ id: "home", label: "About the Program" },
 	{ id: "timeline", label: "Timeline" },
-	{ id: "registration", label: "Enquiry/Interest Form", badge: "Open" },
+	{ id: "registration", label: "Interest Form", badge: "Open" },
 	{ id: "organizers", label: "Organizers" },
 	{ id: "past-events", label: "Past Events" },
 ];
@@ -25,6 +25,12 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 	const handleSelect = (viewId: HeroView) => {
 		if (onViewChange) {
 			onViewChange(viewId);
+		}
+		if (viewId === "home" && window.innerWidth < 1024) {
+			setTimeout(() => {
+				const el = document.getElementById("mobile-about-section");
+				if (el) el.scrollIntoView({ behavior: "smooth" });
+			}, 100);
 		}
 		setIsOpen(false);
 	};
@@ -51,7 +57,7 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 				</div>
 			</div>
 
-			{/* Right: Desktop Navigation Bar (Right-Aligned) */}
+			{/* Right-Aligned Desktop Navigation Bar */}
 			<div className="hidden xl:flex items-center justify-end flex-1 ml-auto">
 				<ul className="flex items-center gap-1 p-1.5 rounded-full bg-white/40 backdrop-blur-xl border border-white/60 shadow-xs">
 					{NAV_ITEMS.map((item) => {
