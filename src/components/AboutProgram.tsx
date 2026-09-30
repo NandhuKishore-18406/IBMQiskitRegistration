@@ -74,7 +74,7 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 				</h3>
 
 				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-justify w-full">
-					The <strong className="font-black text-[#31135e]">Qiskit Fall Fest 2026</strong> is a global quantum computing initiative supported by <strong className="font-black text-[#31135e]">IBM Quantum</strong> and hosted for the 4th consecutive year by the Department of Computing, CIT in collaboration with IBM Quantum and IIC. Celebrating ten years of cloud quantum access, this 100% online event features hands-on workshops, expert mentorship from certified IBM Advocates, and direct algorithm execution on utility-scale IBM Quantum hardware.
+					The <strong className="font-black text-[#31135e]">CIT - IBM Qiskit Fall Fest 2026</strong> (4th Edition) is a 100% online global quantum event running from <strong className="font-black text-[#31135e]">November 20 to November 30, 2026</strong>. Hosted by the Department of Computing, CIT in collaboration with <strong className="font-black text-[#31135e]">IBM Quantum</strong> and <strong className="font-black text-[#31135e]">IIC</strong>, the event features expert quantum lectures, hands-on algorithm coding on real IBM Quantum hardware, team hackathon challenges, and certified IBM Advocate mentorship.
 				</p>
 			</motion.div>
 		</section>
