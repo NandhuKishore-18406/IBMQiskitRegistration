@@ -308,13 +308,14 @@ export default function Hero() {
 									{showAboutRight && (
 										<motion.div
 											key="about-right-panel"
-											initial={{ width: "0%", opacity: 0, x: 25 }}
-											animate={{ width: "50%", opacity: 1, x: 0 }}
-											exit={{ width: "0%", opacity: 0, x: 25 }}
+											layout
+											initial={{ width: "0%", opacity: 0, scale: 0.96 }}
+											animate={{ width: "50%", opacity: 1, scale: 1 }}
+											exit={{ width: "0%", opacity: 0, scale: 0.96 }}
 											transition={SMOOTH_EASE}
-											className="hidden lg:flex shrink-0 w-full flex-1 flex-col justify-stretch items-stretch relative select-none min-h-0"
+											className="hidden lg:flex shrink-0 h-full flex-col justify-stretch items-stretch relative select-none overflow-hidden min-h-0"
 										>
-											<div className="w-full flex-1 p-1 sm:p-2 pb-2 shrink-0 flex flex-col min-h-0">
+											<div className="w-full h-full p-1 sm:p-2 pb-2 shrink-0 flex flex-col min-h-0">
 												<AboutProgram
 													onClose={() => setShowAboutRight(false)}
 												/>
