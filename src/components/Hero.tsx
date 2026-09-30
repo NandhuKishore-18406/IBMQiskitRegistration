@@ -71,8 +71,8 @@ export default function Hero() {
 	}, [activeView]);
 
 	return (
-		<div className="w-full min-h-screen min-h-[100dvh] lg:h-screen lg:h-[100dvh] flex flex-col items-center justify-center p-1 sm:p-3 md:p-4 lg:p-5 bg-[#f2f4f8] box-border overflow-x-hidden select-none">
-			<section className="relative w-full min-h-screen min-h-[100dvh] lg:min-h-0 lg:h-full rounded-xl sm:rounded-[1.5rem] md:rounded-[2.5rem] flex flex-col justify-between bg-white/10 group overflow-hidden shadow-2xl border border-white/80">
+		<div className="w-full min-h-screen min-h-[100dvh] lg:h-screen lg:h-[100dvh] flex flex-col items-center justify-center p-0 m-0 bg-[#f2f4f8] box-border overflow-x-hidden select-none">
+			<section className="relative w-full min-h-screen min-h-[100dvh] lg:min-h-0 lg:h-full flex flex-col justify-between bg-white/10 group overflow-hidden border-none shadow-none">
 				{/* Background Image Covered Over Entire Hero Card */}
 				<img
 					src={IMG_URL}

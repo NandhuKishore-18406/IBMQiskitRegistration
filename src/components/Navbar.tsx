@@ -26,6 +26,7 @@ interface BrandSlide {
 	id: string;
 	title: string;
 	subtitle: string;
+	titleClassName?: string;
 	logos: { src: string; alt: string; className: string }[];
 }
 
@@ -34,28 +35,20 @@ const BRAND_SLIDES: BrandSlide[] = [
 		id: "cit",
 		title: "Coimbatore Institute of Technology",
 		subtitle: "Department of Computing · Est. 1956",
+		titleClassName: "text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl font-black text-[#31135e] uppercase tracking-wide leading-tight whitespace-nowrap",
 		logos: [
-			{ src: LOGO1_URL, alt: "CIT Logo", className: "h-7 sm:h-8 md:h-9 lg:h-9.5 xl:h-10 w-auto object-contain drop-shadow-xs shrink-0" },
+			{ src: LOGO1_URL, alt: "CIT Logo", className: "h-9 sm:h-10.5 md:h-12 lg:h-13 xl:h-14 w-auto object-contain drop-shadow-xs shrink-0" },
 		],
 	},
 	{
-		id: "fallfest",
+		id: "partners",
 		title: "IBM Qiskit Fall Fest 2026",
-		subtitle: "Department of Computing · 4th Edition",
+		subtitle: "Department of Computing · Nov 20–30, 2026",
+		titleClassName: "text-[11px] xs:text-xs sm:text-sm lg:text-base xl:text-lg font-black text-[#31135e] uppercase tracking-wide leading-tight whitespace-nowrap",
 		logos: [
-			{ src: LOGO4_URL, alt: "Qiskit Logo", className: "h-6 sm:h-7 md:h-7.5 lg:h-8 xl:h-8.5 w-auto object-contain drop-shadow-xs shrink-0" },
-			{ src: LOGO2_URL, alt: "IBM Quantum Logo", className: "h-6 sm:h-7 md:h-7.5 lg:h-8 xl:h-8.5 w-auto object-contain drop-shadow-xs shrink-0" },
-		],
-	},
-	{
-		id: "all",
-		title: "CIT - IBM Qiskit Fall Fest 2026",
-		subtitle: "Nov 20 – Nov 30, 2026 · Online Event",
-		logos: [
-			{ src: LOGO1_URL, alt: "CIT Logo", className: "h-6 sm:h-7 md:h-7.5 lg:h-8 xl:h-8.5 w-auto object-contain drop-shadow-xs shrink-0" },
-			{ src: LOGO3_URL, alt: "IIC Logo", className: "h-5 sm:h-6 md:h-6.5 lg:h-7 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0" },
-			{ src: LOGO4_URL, alt: "Qiskit Logo", className: "h-5 sm:h-6 md:h-6.5 lg:h-7 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0" },
-			{ src: LOGO2_URL, alt: "IBM Quantum Logo", className: "h-5 sm:h-6 md:h-6.5 lg:h-7 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0" },
+			{ src: LOGO3_URL, alt: "IIC Logo", className: "h-7.5 sm:h-8.5 md:h-9.5 lg:h-10.5 xl:h-11.5 w-auto object-contain drop-shadow-xs shrink-0" },
+			{ src: LOGO4_URL, alt: "Qiskit Logo", className: "h-7.5 sm:h-8.5 md:h-9.5 lg:h-10.5 xl:h-11.5 w-auto object-contain drop-shadow-xs shrink-0" },
+			{ src: LOGO2_URL, alt: "IBM Quantum Logo", className: "h-7.5 sm:h-8.5 md:h-9.5 lg:h-10.5 xl:h-11.5 w-auto object-contain drop-shadow-xs shrink-0" },
 		],
 	},
 ];
@@ -82,11 +75,11 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 	const activeSlide = BRAND_SLIDES[brandIndex];
 
 	return (
-		<nav className="w-full relative z-40 bg-white/60 backdrop-blur-2xl border-b border-white/70 shadow-sm px-2.5 sm:px-4 md:px-5 lg:px-6 xl:px-8 py-1 lg:py-1.5 flex items-center justify-between gap-1.5 sm:gap-4 lg:gap-6 box-border shrink-0 select-none">
-			{/* Left: Compact Vertical Timer Switch Brand Identity */}
+		<nav className="w-full relative z-40 bg-white/60 backdrop-blur-2xl border-b border-white/70 shadow-sm px-2.5 sm:px-4 md:px-5 lg:px-6 xl:px-8 py-1.5 lg:py-2 flex items-center justify-between gap-1.5 sm:gap-4 lg:gap-6 box-border shrink-0 select-none">
+			{/* Left: 2-Slide Timer Switch Brand Identity */}
 			<div
 				onClick={() => handleSelect("home")}
-				className="flex items-center gap-1.5 sm:gap-2.5 cursor-pointer hover:opacity-95 transition-opacity shrink-0 min-w-0 overflow-hidden h-8 sm:h-9 md:h-10"
+				className="flex items-center gap-1.5 sm:gap-2.5 cursor-pointer hover:opacity-95 transition-opacity shrink-0 min-w-0 overflow-hidden h-10 sm:h-12 md:h-14 lg:h-15"
 			>
 				{/* Timer Switch Animated Slide Container */}
 				<AnimatePresence mode="wait">
@@ -96,10 +89,10 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 						animate={{ y: 0, opacity: 1 }}
 						exit={{ y: -14, opacity: 0 }}
 						transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-						className="flex items-center gap-1.5 sm:gap-2.5 shrink-0 min-w-0"
+						className="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0"
 					>
-						{/* Dynamic Prominent Logos Cluster */}
-						<div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+						{/* Dynamic Logos Cluster */}
+						<div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
 							{activeSlide.logos.map((logo, idx) => (
 								<img
 									key={idx}
@@ -111,27 +104,19 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 						</div>
 
 						{/* Vertical Separator */}
-						<div className="h-3.5 sm:h-4 lg:h-5 w-[1px] bg-[#31135e]/25 shrink-0 mx-0.5" />
+						<div className="h-4 sm:h-5 lg:h-6 w-[1px] bg-[#31135e]/25 shrink-0 mx-0.5" />
 
-						{/* Dynamic Text Branding Block - Fully Visible on Mobile */}
+						{/* Dynamic Text Branding Block */}
 						<div className="flex flex-col text-left justify-center min-w-0">
-							<span className="text-[10px] xs:text-[11px] sm:text-xs lg:text-xs xl:text-sm font-black text-[#31135e] uppercase tracking-wide leading-tight whitespace-nowrap">
+							<span className={activeSlide.titleClassName || "text-xs xs:text-sm sm:text-base font-black text-[#31135e] uppercase tracking-wide leading-tight whitespace-nowrap"}>
 								{activeSlide.title}
 							</span>
-							<span className="text-[8.5px] xs:text-[9.5px] sm:text-[10px] lg:text-[10.5px] xl:text-xs font-bold text-[#31135e]/85 whitespace-nowrap">
+							<span className="text-[9px] xs:text-[10px] sm:text-xs lg:text-[11px] xl:text-xs font-bold text-[#31135e]/85 whitespace-nowrap">
 								{activeSlide.subtitle}
 							</span>
 						</div>
 					</motion.div>
 				</AnimatePresence>
-
-				{/* Subtle Timer Switch Visual Pulse Indicator */}
-				<div className="hidden xl:flex items-center gap-1 ml-1 pl-2 border-l border-[#31135e]/20 shrink-0">
-					<span className="relative flex h-2 w-2">
-						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#31135e] opacity-75"></span>
-						<span className="relative inline-flex rounded-full h-2 w-2 bg-[#31135e]"></span>
-					</span>
-				</div>
 			</div>
 
 			{/* Right-Aligned Desktop Navigation Bar (Visible on lg and larger screens: 1024px+) */}
@@ -232,6 +217,7 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 		</nav>
 	);
 }
+
 
 
 
