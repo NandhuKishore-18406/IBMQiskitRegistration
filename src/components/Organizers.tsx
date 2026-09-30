@@ -57,6 +57,9 @@ const PATRONS: LeadershipMember[] = [
 		designation: "Chief Academic Officer",
 		institution: "CIT and CIT Sandwich Polytechnic College Coimbatore",
 	},
+];
+
+const CONVENORS: LeadershipMember[] = [
 	{
 		id: "umamaheswari",
 		name: "Dr. Umamaheswari .K",
@@ -118,7 +121,7 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 export default function Organizers() {
 	return (
 		<div className="w-full flex flex-col gap-6 sm:gap-8 py-2 px-1 sm:px-2 text-left max-w-3xl mx-auto pb-20 sm:pb-28">
-			{/* Chief Patrons Section (No icon, no chips) */}
+			{/* Chief Patrons Section */}
 			<div className="w-full space-y-3">
 				<h3 className="text-lg sm:text-xl font-black text-[#31135e] tracking-tight">
 					Chief Patrons
@@ -149,7 +152,7 @@ export default function Organizers() {
 				</div>
 			</div>
 
-			{/* Patrons Section (Dean has Convenor chip in top-left) */}
+			{/* Patrons Section */}
 			<div className="w-full space-y-3">
 				<h3 className="text-lg sm:text-xl font-black text-[#31135e] tracking-tight">
 					Patrons
@@ -164,13 +167,6 @@ export default function Organizers() {
 							transition={{ duration: 0.4, delay: idx * 0.1 }}
 							className="p-4 sm:p-5 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-md space-y-1 relative flex flex-col justify-start"
 						>
-							{patron.id === "umamaheswari" && (
-								<div className="flex items-center justify-between gap-2">
-									<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs font-extrabold shrink-0">
-										Convenor
-									</span>
-								</div>
-							)}
 							<h4 className="text-base sm:text-lg font-black text-[#31135e] tracking-tight">
 								{patron.name}
 							</h4>
@@ -180,6 +176,37 @@ export default function Organizers() {
 							{patron.institution && (
 								<div className="text-xs text-[#5E6470] font-semibold">
 									{patron.institution}
+								</div>
+							)}
+						</motion.div>
+					))}
+				</div>
+			</div>
+
+			{/* Convenor & Dean Section (No chip) */}
+			<div className="w-full space-y-3">
+				<h3 className="text-lg sm:text-xl font-black text-[#31135e] tracking-tight">
+					Convenor
+				</h3>
+
+				<div className="grid grid-cols-1 gap-3.5">
+					{CONVENORS.map((conv, idx) => (
+						<motion.div
+							key={conv.id}
+							initial={{ opacity: 0, y: 10 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.4, delay: idx * 0.1 }}
+							className="p-4 sm:p-5 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-md space-y-1 relative flex flex-col justify-start"
+						>
+							<h4 className="text-base sm:text-lg font-black text-[#31135e] tracking-tight">
+								{conv.name}
+							</h4>
+							<div className="text-xs sm:text-sm font-bold text-[#31135e]/90">
+								{conv.designation}
+							</div>
+							{conv.institution && (
+								<div className="text-xs text-[#5E6470] font-semibold">
+									{conv.institution}
 								</div>
 							)}
 						</motion.div>
