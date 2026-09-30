@@ -100,7 +100,7 @@ export default function Hero() {
 											transition={SMOOTH_EASE}
 											src={LOGO1_URL}
 											alt="Coimbatore Institute of Technology Logo"
-											className="h-12 sm:h-16 md:h-20 lg:h-22 xl:h-26 2xl:h-28 w-auto object-contain drop-shadow-md shrink-0"
+											className="h-10 sm:h-14 md:h-18 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain drop-shadow-md shrink-0"
 										/>
 
 										{/* Line 1 -> Coimbatore Institute of Technology Header Stack */}
@@ -109,16 +109,16 @@ export default function Hero() {
 											transition={SMOOTH_EASE}
 											className="flex flex-col gap-0.5 sm:gap-1 w-full shrink-0 items-center text-center"
 										>
-											<h2 className="font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-center">
+											<h2 className="font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-center">
 												Coimbatore Institute of Technology
 											</h2>
 
 											{/* Affiliation & Location Lines */}
 											<div className="flex flex-col gap-0.5 font-bold text-[#31135e]/90 items-center justify-center text-center">
-												<span className="text-[11px] sm:text-xs md:text-sm font-bold text-[#31135e]/90">
+												<span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#31135e]/90">
 													(Affiliated to Anna University, Chennai)
 												</span>
-												<span className="text-xs sm:text-sm md:text-base lg:text-lg font-black text-[#31135e]">
+												<span className="text-xs sm:text-xs md:text-sm lg:text-base xl:text-lg font-black text-[#31135e]">
 													Coimbatore, Tamil Nadu, India
 												</span>
 											</div>
@@ -128,7 +128,7 @@ export default function Hero() {
 										<motion.div
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="w-full my-1.5 sm:my-2 lg:my-2.5 flex items-center shrink-0 justify-center gap-4 sm:gap-8 md:gap-10 lg:gap-12"
+											className="w-full my-1 sm:my-2 lg:my-2.5 flex items-center shrink-0 justify-center gap-3 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12"
 										>
 											{/* Left: IIC Logo */}
 											<motion.img
@@ -137,7 +137,7 @@ export default function Hero() {
 												transition={HOVER_PHYSICS}
 												src={LOGO3_URL}
 												alt="IIC Logo"
-												className="h-8 sm:h-11 md:h-13 lg:h-14 xl:h-15 w-auto object-contain drop-shadow-md"
+												className="h-7 sm:h-9 md:h-11 lg:h-12 xl:h-14 2xl:h-15 w-auto object-contain drop-shadow-md"
 											/>
 
 											{/* Middle: Qiskit Logo */}
@@ -147,7 +147,7 @@ export default function Hero() {
 												transition={HOVER_PHYSICS}
 												src={LOGO4_URL}
 												alt="Qiskit Logo"
-												className="h-7 sm:h-10 md:h-12 lg:h-13 xl:h-14 w-auto object-contain drop-shadow-md"
+												className="h-6 sm:h-8 md:h-10 lg:h-11 xl:h-13 2xl:h-14 w-auto object-contain drop-shadow-md"
 											/>
 
 											{/* Right: IBM Quantum Logo */}
@@ -157,7 +157,7 @@ export default function Hero() {
 												transition={HOVER_PHYSICS}
 												src={LOGO2_URL}
 												alt="IBM Quantum Logo"
-												className="h-8 sm:h-11 md:h-13 lg:h-14 xl:h-15 w-auto object-contain drop-shadow-md"
+												className="h-7 sm:h-9 md:h-11 lg:h-12 xl:h-14 2xl:h-15 w-auto object-contain drop-shadow-md"
 											/>
 										</motion.div>
 
@@ -174,7 +174,7 @@ export default function Hero() {
 										<motion.p
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="text-[11px] sm:text-xs md:text-sm lg:text-base font-bold text-[#31135e]/85 italic tracking-wide text-center"
+											className="text-[10px] sm:text-xs md:text-sm lg:text-base font-bold text-[#31135e]/85 italic tracking-wide text-center"
 										>
 											in collaboration with <strong className="font-black text-[#31135e] not-italic">IBM Quantum</strong> and <strong className="font-black text-[#31135e] not-italic">IIC</strong>
 										</motion.p>
@@ -183,7 +183,7 @@ export default function Hero() {
 										<motion.h1
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="font-black text-[#31135e] tracking-tight leading-[1.05] drop-shadow-xs my-1 sm:my-1.5 text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-center"
+											className="font-black text-[#31135e] tracking-tight leading-[1.05] drop-shadow-xs my-1 sm:my-1.5 text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-center"
 										>
 											CIT - IBM Qiskit Fall Fest 2026
 										</motion.h1>
@@ -192,7 +192,7 @@ export default function Hero() {
 										<motion.div
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="w-full flex flex-wrap items-center gap-2 sm:gap-3 my-1.5 sm:my-2 justify-center"
+											className="w-full flex flex-wrap items-center gap-2 sm:gap-3 my-1 sm:my-2 justify-center"
 										>
 											{/* Timeline Date Badge Button */}
 											<motion.button
@@ -200,7 +200,7 @@ export default function Hero() {
 												whileTap={{ scale: 0.97 }}
 												transition={HOVER_PHYSICS}
 												onClick={() => setActiveView("timeline")}
-												className="h-9 sm:h-11 lg:h-12 px-4 sm:px-6 rounded-full bg-white/50 backdrop-blur-xl border border-white/70 text-[#31135e] hover:bg-white/70 text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 cursor-pointer touch-manipulation flex items-center justify-center"
+												className="h-8 sm:h-10 lg:h-11 px-3 sm:px-5 lg:px-6 rounded-full bg-white/50 backdrop-blur-xl border border-white/70 text-[#31135e] hover:bg-white/70 text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 cursor-pointer touch-manipulation flex items-center justify-center"
 											>
 												Nov 20 – Nov 30, 2026
 											</motion.button>
@@ -209,7 +209,7 @@ export default function Hero() {
 											<motion.div
 												whileHover={{ scale: 1.03 }}
 												transition={HOVER_PHYSICS}
-												className="h-9 sm:h-11 lg:h-12 px-4 sm:px-5 rounded-full bg-emerald-500/15 backdrop-blur-xl border border-emerald-600/30 text-[#31135e] text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 flex items-center justify-center gap-2"
+												className="h-8 sm:h-10 lg:h-11 px-3 sm:px-4 lg:px-5 rounded-full bg-emerald-500/15 backdrop-blur-xl border border-emerald-600/30 text-[#31135e] text-xs sm:text-sm font-bold shadow-xs transition-colors duration-200 flex items-center justify-center gap-2"
 											>
 												<span className="relative flex h-2 w-2 shrink-0">
 													<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
