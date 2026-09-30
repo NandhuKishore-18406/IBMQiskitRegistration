@@ -39,8 +39,8 @@ export default function Hero() {
 	}, [activeView]);
 
 	return (
-		<div className="w-full min-h-screen min-h-[100dvh] md:h-screen md:h-[100dvh] flex items-center justify-center p-1 sm:p-3 md:p-4 lg:p-5 bg-[#f2f4f8] box-border overflow-x-hidden md:overflow-hidden select-none">
-			<section className="relative w-full min-h-screen min-h-[100dvh] md:min-h-0 md:h-full rounded-xl sm:rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden flex flex-col justify-between bg-white/10 group">
+		<div className="w-full min-h-screen min-h-[100dvh] lg:h-screen lg:h-[100dvh] flex items-center justify-center p-1 sm:p-3 md:p-4 lg:p-5 bg-[#f2f4f8] box-border overflow-x-hidden select-none">
+			<section className="relative w-full min-h-screen min-h-[100dvh] lg:min-h-0 lg:h-full rounded-xl sm:rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden flex flex-col justify-between bg-white/10 group">
 				{/* Background Image Covered Over Entire Hero Card */}
 				<img
 					src={IMG_URL}
@@ -54,7 +54,7 @@ export default function Hero() {
 				)}
 
 				{/* Main Body Layout */}
-				<div className="relative z-10 w-full flex-1 min-h-0 flex flex-col justify-between overflow-hidden">
+				<div className="relative z-10 w-full flex-1 flex flex-col justify-between min-h-0">
 					
 					<AnimatePresence mode="wait">
 						{activeView === "home" ? (
@@ -64,7 +64,7 @@ export default function Hero() {
 								animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }}
 								transition={SMOOTH_EASE}
-								className="w-full h-full min-h-0 flex flex-col lg:flex-row items-stretch justify-between gap-4 lg:gap-6 p-3 sm:p-5 md:p-6 lg:p-7 overflow-hidden"
+								className="w-full flex-1 flex flex-col lg:flex-row items-stretch justify-between gap-4 lg:gap-6 p-3 sm:p-5 md:p-6 lg:p-7 min-h-0"
 							>
 								{/* LEFT / MAIN HALF: Information & Action Stack */}
 								<motion.div
@@ -72,8 +72,10 @@ export default function Hero() {
 									ref={contentContainerRef}
 									animate={{ width: showAboutRight ? "50%" : "100%" }}
 									transition={SMOOTH_EASE}
-									className={`h-full min-h-0 overflow-y-auto [::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth flex flex-col py-1 sm:py-2 select-text space-y-4 shrink-0 ${
-										showAboutRight ? "items-start justify-start text-left" : "items-center justify-center text-center my-auto"
+									className={`w-full flex-1 min-h-0 overflow-y-auto custom-scrollbar scroll-smooth flex flex-col py-2 sm:py-4 select-text space-y-3 sm:space-y-4 shrink-0 ${
+										showAboutRight 
+											? "items-start justify-start text-left" 
+											: "items-center justify-start lg:justify-center text-center lg:my-auto"
 									}`}
 								>
 									{/* Top Header Information Stack */}
@@ -93,7 +95,7 @@ export default function Hero() {
 											transition={SMOOTH_EASE}
 											src={LOGO1_URL}
 											alt="Coimbatore Institute of Technology Logo"
-											className={`w-auto object-contain drop-shadow-md ${
+											className={`w-auto object-contain drop-shadow-md shrink-0 ${
 												showAboutRight
 													? "h-14 sm:h-18 md:h-22 lg:h-26 xl:h-30"
 													: "h-16 sm:h-22 md:h-28 lg:h-32 xl:h-36"
@@ -104,7 +106,7 @@ export default function Hero() {
 										<motion.div
 											layout
 											transition={SMOOTH_EASE}
-											className={`flex flex-col gap-1 w-full ${showAboutRight ? "items-start text-left" : "items-center text-center"}`}
+											className={`flex flex-col gap-1 w-full shrink-0 ${showAboutRight ? "items-start text-left" : "items-center text-center"}`}
 										>
 											<h2 className={`font-black text-[#31135e] uppercase tracking-wider drop-shadow-xs leading-tight ${
 												showAboutRight
@@ -131,7 +133,7 @@ export default function Hero() {
 										<motion.div
 											layout
 											transition={SMOOTH_EASE}
-											className={`w-full my-2 sm:my-3 flex items-center ${
+											className={`w-full my-2 sm:my-3 flex items-center shrink-0 ${
 												showAboutRight
 													? "justify-start gap-4 sm:gap-8 md:gap-10"
 													: "justify-center gap-5 sm:gap-10 md:gap-14 lg:gap-16"
@@ -310,9 +312,9 @@ export default function Hero() {
 											animate={{ width: "50%", opacity: 1, x: 0 }}
 											exit={{ width: "0%", opacity: 0, x: 25 }}
 											transition={SMOOTH_EASE}
-											className="hidden lg:flex shrink-0 h-full flex-col justify-stretch items-stretch relative select-none overflow-hidden min-h-0"
+											className="hidden lg:flex shrink-0 w-full flex-1 flex-col justify-stretch items-stretch relative select-none min-h-0"
 										>
-											<div className="w-full h-full p-1 sm:p-2 pb-2 shrink-0 flex flex-col min-h-0">
+											<div className="w-full flex-1 p-1 sm:p-2 pb-2 shrink-0 flex flex-col min-h-0">
 												<AboutProgram
 													onClose={() => setShowAboutRight(false)}
 												/>
@@ -329,7 +331,7 @@ export default function Hero() {
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -15 }}
 								transition={SMOOTH_EASE}
-								className="w-full h-full min-h-0 overflow-y-auto [::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth p-4 sm:p-6 select-text"
+								className="w-full flex-1 min-h-0 overflow-y-auto custom-scrollbar scroll-smooth p-4 sm:p-6 select-text"
 							>
 								{activeView === "registration" && <Registration />}
 								{activeView === "timeline" && <Timeline />}

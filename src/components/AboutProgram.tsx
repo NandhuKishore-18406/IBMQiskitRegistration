@@ -46,7 +46,7 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 	};
 
 	return (
-		<section className="w-full h-full overflow-y-auto [::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] p-3 sm:p-5 text-left select-text relative bg-transparent flex flex-col justify-between space-y-6">
+		<section className="w-full h-full overflow-y-auto custom-scrollbar p-3 sm:p-5 text-left select-text relative bg-transparent flex flex-col justify-between space-y-6">
 			{/* Top Bar Close Button (if present) */}
 			{onClose && (
 				<div className="flex items-center justify-end w-full">
