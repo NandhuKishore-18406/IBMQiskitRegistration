@@ -149,21 +149,28 @@ body {
 
 /* Multi-Tier Resolution & Viewport Sizing System */
 
-/* Tier 1: Lower-resolution & compact height displays (e.g. 1024x768, 1280x720, 1366x768, 1440x900 @ 125%+ scale) */
-@media (max-width: 1280px) {
-	html {
-		font-size: 14.5px;
-	}
-}
-
-@media (min-width: 1024px) and (max-height: 720px) {
+/* Tier 0: Mobile devices (< 640px width) */
+@media (max-width: 639px) {
 	html {
 		font-size: 14px;
 	}
 }
 
+/* Tier 1: Lower-resolution & compact height displays (e.g. 1024x768, 1280x720, 1366x768, 1440x900 @ 125%+ scale) */
+@media (min-width: 640px) and (max-width: 1280px) {
+	html {
+		font-size: 14.5px;
+	}
+}
+
+@media (min-width: 1024px) and (max-height: 750px) {
+	html {
+		font-size: 13.5px;
+	}
+}
+
 /* Tier 2: Standard HD & 1080p Viewports (1281px to 1920px width, min-height 721px) */
-@media (min-width: 1281px) and (max-width: 1920px) and (min-height: 721px) {
+@media (min-width: 1281px) and (max-width: 1920px) and (min-height: 751px) {
 	html {
 		font-size: 16px;
 	}

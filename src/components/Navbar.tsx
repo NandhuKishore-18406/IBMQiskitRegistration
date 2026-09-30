@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type HeroView = "home" | "about" | "timeline" | "registration" | "organizers" | "past-events";
 
@@ -22,8 +22,55 @@ const LOGO2_URL = `${import.meta.env.BASE_URL}assets/images-removebg-preview(1)(
 const LOGO3_URL = `${import.meta.env.BASE_URL}assets/iic.webp`;
 const LOGO4_URL = `${import.meta.env.BASE_URL}assets/qiskit.png`;
 
+interface BrandSlide {
+	id: string;
+	title: string;
+	subtitle: string;
+	logos: { src: string; alt: string; className: string }[];
+}
+
+const BRAND_SLIDES: BrandSlide[] = [
+	{
+		id: "cit",
+		title: "Coimbatore Institute of Technology",
+		subtitle: "Department of Computing · Est. 1956",
+		logos: [
+			{ src: LOGO1_URL, alt: "CIT Logo", className: "h-7 sm:h-8 md:h-9 lg:h-9.5 xl:h-10 w-auto object-contain drop-shadow-xs shrink-0" },
+		],
+	},
+	{
+		id: "fallfest",
+		title: "IBM Qiskit Fall Fest 2026",
+		subtitle: "Department of Computing · 4th Edition",
+		logos: [
+			{ src: LOGO4_URL, alt: "Qiskit Logo", className: "h-6 sm:h-7 md:h-7.5 lg:h-8 xl:h-8.5 w-auto object-contain drop-shadow-xs shrink-0" },
+			{ src: LOGO2_URL, alt: "IBM Quantum Logo", className: "h-6 sm:h-7 md:h-7.5 lg:h-8 xl:h-8.5 w-auto object-contain drop-shadow-xs shrink-0" },
+		],
+	},
+	{
+		id: "all",
+		title: "CIT - IBM Qiskit Fall Fest 2026",
+		subtitle: "Nov 20 – Nov 30, 2026 · Online Event",
+		logos: [
+			{ src: LOGO1_URL, alt: "CIT Logo", className: "h-6 sm:h-7 md:h-7.5 lg:h-8 xl:h-8.5 w-auto object-contain drop-shadow-xs shrink-0" },
+			{ src: LOGO3_URL, alt: "IIC Logo", className: "h-5 sm:h-6 md:h-6.5 lg:h-7 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0" },
+			{ src: LOGO4_URL, alt: "Qiskit Logo", className: "h-5 sm:h-6 md:h-6.5 lg:h-7 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0" },
+			{ src: LOGO2_URL, alt: "IBM Quantum Logo", className: "h-5 sm:h-6 md:h-6.5 lg:h-7 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0" },
+		],
+	},
+];
+
 export default function Navbar({ activeView = "home", onViewChange }: NavbarProps) {
 	const [isOpen, setIsOpen] = useState(false);
+	const [brandIndex, setBrandIndex] = useState(0);
+
+	// Slow fixed timer switch interval (3.5s timer loop)
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setBrandIndex((prev) => (prev + 1) % BRAND_SLIDES.length);
+		}, 3500);
+		return () => clearInterval(interval);
+	}, []);
 
 	const handleSelect = (viewId: HeroView) => {
 		if (onViewChange) {
@@ -32,49 +79,57 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 		setIsOpen(false);
 	};
 
+	const activeSlide = BRAND_SLIDES[brandIndex];
+
 	return (
-		<nav className="w-full relative z-40 bg-white/60 backdrop-blur-2xl border-b border-white/70 shadow-sm px-3 sm:px-5 md:px-6 lg:px-6 xl:px-8 py-2 lg:py-2.5 flex items-center justify-between gap-2 sm:gap-4 lg:gap-6 box-border shrink-0 select-none">
-			{/* Left: Brand Identity with CIT & Partner Logos */}
+		<nav className="w-full relative z-40 bg-white/60 backdrop-blur-2xl border-b border-white/70 shadow-sm px-2.5 sm:px-4 md:px-5 lg:px-6 xl:px-8 py-1 lg:py-1.5 flex items-center justify-between gap-1.5 sm:gap-4 lg:gap-6 box-border shrink-0 select-none">
+			{/* Left: Compact Vertical Timer Switch Brand Identity */}
 			<div
 				onClick={() => handleSelect("home")}
-				className="flex items-center gap-2 sm:gap-3 lg:gap-3.5 cursor-pointer hover:opacity-95 transition-opacity shrink-0 min-w-0"
+				className="flex items-center gap-1.5 sm:gap-2.5 cursor-pointer hover:opacity-95 transition-opacity shrink-0 min-w-0 overflow-hidden h-8 sm:h-9 md:h-10"
 			>
-				{/* Logos Cluster Row */}
-				<div className="flex items-center gap-1 sm:gap-2 shrink-0">
-					{/* CIT Logo */}
-					<img
-						src={LOGO1_URL}
-						alt="CIT Logo"
-						className="h-7 sm:h-8 md:h-9 lg:h-9.5 xl:h-10.5 w-auto object-contain drop-shadow-xs shrink-0"
-					/>
-					<div className="h-4 sm:h-5 lg:h-5 w-[1px] bg-[#31135e]/30 shrink-0 mx-0.5 sm:mx-1" />
-					{/* IIC Logo */}
-					<img
-						src={LOGO3_URL}
-						alt="IIC Logo"
-						className="h-4.5 sm:h-5.5 md:h-6 lg:h-6.5 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0"
-					/>
-					{/* Qiskit Logo */}
-					<img
-						src={LOGO4_URL}
-						alt="Qiskit Logo"
-						className="h-4 sm:h-5 md:h-5.5 lg:h-6 xl:h-6.5 w-auto object-contain drop-shadow-xs shrink-0"
-					/>
-					{/* IBM Quantum Logo */}
-					<img
-						src={LOGO2_URL}
-						alt="IBM Quantum Logo"
-						className="h-4.5 sm:h-5.5 md:h-6 lg:h-6.5 xl:h-7.5 w-auto object-contain drop-shadow-xs shrink-0"
-					/>
-				</div>
+				{/* Timer Switch Animated Slide Container */}
+				<AnimatePresence mode="wait">
+					<motion.div
+						key={activeSlide.id}
+						initial={{ y: 14, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						exit={{ y: -14, opacity: 0 }}
+						transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+						className="flex items-center gap-1.5 sm:gap-2.5 shrink-0 min-w-0"
+					>
+						{/* Dynamic Prominent Logos Cluster */}
+						<div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+							{activeSlide.logos.map((logo, idx) => (
+								<img
+									key={idx}
+									src={logo.src}
+									alt={logo.alt}
+									className={logo.className}
+								/>
+							))}
+						</div>
 
-				{/* Responsive Text Branding Block */}
-				<div className="hidden md:flex flex-col text-left justify-center min-w-0">
-					<span className="text-xs sm:text-sm lg:text-sm xl:text-base font-black text-[#31135e] uppercase tracking-wide leading-tight truncate">
-						Coimbatore Institute of Technology
-					</span>
-					<span className="text-[10px] sm:text-xs lg:text-[11px] xl:text-xs font-bold text-[#31135e]/85 truncate">
-						Department of Computing · IBM Qiskit Fall Fest 2026
+						{/* Vertical Separator */}
+						<div className="h-3.5 sm:h-4 lg:h-5 w-[1px] bg-[#31135e]/25 shrink-0 mx-0.5" />
+
+						{/* Dynamic Text Branding Block - Fully Visible on Mobile */}
+						<div className="flex flex-col text-left justify-center min-w-0">
+							<span className="text-[10px] xs:text-[11px] sm:text-xs lg:text-xs xl:text-sm font-black text-[#31135e] uppercase tracking-wide leading-tight whitespace-nowrap">
+								{activeSlide.title}
+							</span>
+							<span className="text-[8.5px] xs:text-[9.5px] sm:text-[10px] lg:text-[10.5px] xl:text-xs font-bold text-[#31135e]/85 whitespace-nowrap">
+								{activeSlide.subtitle}
+							</span>
+						</div>
+					</motion.div>
+				</AnimatePresence>
+
+				{/* Subtle Timer Switch Visual Pulse Indicator */}
+				<div className="hidden xl:flex items-center gap-1 ml-1 pl-2 border-l border-[#31135e]/20 shrink-0">
+					<span className="relative flex h-2 w-2">
+						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#31135e] opacity-75"></span>
+						<span className="relative inline-flex rounded-full h-2 w-2 bg-[#31135e]"></span>
 					</span>
 				</div>
 			</div>
@@ -126,10 +181,10 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 				<button
 					type="button"
 					onClick={() => setIsOpen(!isOpen)}
-					className="p-2 sm:p-2.5 rounded-full bg-[#31135e] text-white hover:bg-[#230c45] active:scale-95 transition-all shadow-md focus:outline-none cursor-pointer"
+					className="p-1.5 sm:p-2 rounded-full bg-[#31135e] text-white hover:bg-[#230c45] active:scale-95 transition-all shadow-md focus:outline-none cursor-pointer"
 					aria-label="Toggle navigation menu"
 				>
-					{isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+					{isOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
 				</button>
 			</div>
 
@@ -177,3 +232,6 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 		</nav>
 	);
 }
+
+
+
