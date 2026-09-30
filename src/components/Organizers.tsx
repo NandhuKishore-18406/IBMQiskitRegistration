@@ -86,7 +86,7 @@ const CO_ORGANIZERS: FacultyOrganizer[] = [
 		designation: "Associate Professor",
 		department: "Department of Computing - Data Science, CIT",
 		email: "sgayathridevi@cit.edu.in",
-		phone: "+91 9944561345",
+		phone: "",
 	},
 	{
 		id: "anandhi",
@@ -106,7 +106,7 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 		department: "Department of Computing - MSc Software Systems, CIT",
 		year: "3rd Year",
 		role: "Student Lead",
-		phone: "+91 9489622705",
+		phone: "",
 	},
 	{
 		id: "ashraff",
@@ -114,7 +114,7 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 		department: "Department of Computing - MSc Software Systems, CIT",
 		year: "2nd Year",
 		role: "Student Organizer",
-		phone: "+91 9787298939",
+		phone: "",
 	},
 ];
 
