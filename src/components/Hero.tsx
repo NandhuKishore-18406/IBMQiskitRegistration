@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { ArrowLeft, ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -286,6 +286,19 @@ export default function Hero() {
 								transition={SMOOTH_EASE}
 								className="w-full h-full min-h-0 overflow-y-auto custom-scrollbar scroll-smooth p-3 sm:p-6 lg:p-8 xl:p-10 select-text"
 							>
+								{/* Site Page Back Button Header */}
+								<div className="w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto mb-4 sm:mb-6 flex items-center justify-start">
+									<motion.button
+										whileHover={{ scale: 1.04, x: -3 }}
+										whileTap={{ scale: 0.96 }}
+										onClick={() => setActiveView("home")}
+										className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl bg-transparent hover:bg-[#31135e]/10 border border-[#31135e]/30 text-[#31135e] active:scale-95 transition-all text-xs sm:text-sm font-black cursor-pointer group"
+									>
+										<ArrowLeft className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#31135e] group-hover:-translate-x-0.5 transition-transform" />
+										<span>Back to Home</span>
+									</motion.button>
+								</div>
+
 								{activeView === "registration" && <Registration />}
 								{activeView === "timeline" && <Timeline />}
 								{activeView === "organizers" && <Organizers />}

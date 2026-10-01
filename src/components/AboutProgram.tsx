@@ -55,7 +55,7 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 				</h3>
 
 				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-left sm:text-justify w-full">
-					The <strong className="font-black text-[#31135e]">Department of Computing</strong> at CIT is a premier academic department offering specialized programs in Software Systems, Data Science, and Artificial Intelligence. Equipped with state-of-the-art computational infrastructure, deep industry collaborations with global tech leaders like IBM, and a legacy of research excellence, the department empowers students to build next-generation software technologies.
+					The <strong className="font-black text-[#31135e]">Department of Computing</strong> at CIT is a premier academic department offering specialized programs in Software Systems, Data Science, Decision and Computing Science and Artificial Intelligence. Equipped with state-of-the-art computational infrastructure, deep industry collaborations with global tech leaders like IBM, and a legacy of research excellence, the department empowers students to build next-generation software technologies.
 				</p>
 			</motion.div>
 

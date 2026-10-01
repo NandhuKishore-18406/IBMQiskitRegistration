@@ -10,7 +10,6 @@ interface NavbarProps {
 }
 
 export const NAV_ITEMS: { id: HeroView; label: string; badge?: string }[] = [
-	{ id: "home", label: "Home" },
 	{ id: "timeline", label: "Timeline" },
 	{ id: "registration", label: "Interest Form", badge: "Open" },
 	{ id: "organizers", label: "Organizers" },
@@ -217,7 +216,3 @@ export default function Navbar({ activeView = "home", onViewChange }: NavbarProp
 		</nav>
 	);
 }
-
-
-
-
