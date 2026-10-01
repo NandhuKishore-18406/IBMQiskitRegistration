@@ -195,7 +195,7 @@ export default function Hero() {
 										<motion.h1
 											variants={HERO_ITEM_VARIANTS}
 											transition={SMOOTH_EASE}
-											className="font-black text-[#31135e] tracking-tight leading-[1.1] sm:leading-[1.05] drop-shadow-xs my-2 sm:my-3 text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-center px-1"
+											className="font-black text-[#31135e] tracking-tight leading-[1.1] sm:leading-[1.05] drop-shadow-xs my-2 sm:my-3 text-2xl xs:text-3xl sm:text-[2.2rem] md:text-[2.75rem] lg:text-[3.5rem] xl:text-[4.25rem] 2xl:text-[5.25rem] sm:whitespace-nowrap text-center px-1"
 										>
 											CIT - IBM Qiskit Fall Fest 2026
 										</motion.h1>

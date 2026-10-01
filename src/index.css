@@ -169,10 +169,10 @@ body {
 	}
 }
 
-/* Tier 2: Standard HD & 1080p Viewports (1281px to 1920px width, min-height 721px) */
-@media (min-width: 1281px) and (max-width: 1920px) and (min-height: 751px) {
+/* Tier 2: Standard HD & 1080p Viewports (1281px to 1920px width) */
+@media (min-width: 1281px) and (max-width: 1920px) {
 	html {
-		font-size: 16px;
+		font-size: 13.6px; /* 85% default zoom scale for 1920x1080 */
 	}
 }
 

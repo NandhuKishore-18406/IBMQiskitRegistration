@@ -78,7 +78,7 @@ export default function Timeline() {
 				transition={{ duration: 0.4 }}
 				className="flex flex-col items-center text-center space-y-3 mb-8 sm:mb-12 lg:mb-14"
 			>
-				<h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#31135e] tracking-tight">
+				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#31135e] tracking-tight sm:whitespace-nowrap">
 					CIT - IBM Qiskit Fall Fest Timeline
 				</h2>
 
