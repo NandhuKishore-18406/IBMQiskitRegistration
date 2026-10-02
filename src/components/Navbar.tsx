@@ -33,7 +33,7 @@ const BRAND_SLIDES: BrandSlide[] = [
 	{
 		id: "cit",
 		title: "Coimbatore Institute of Technology",
-		subtitle: "Department of Computing · Est. 1956",
+		subtitle: "Department of Computing",
 		titleClassName: "text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl font-black text-[#31135e] uppercase tracking-wide leading-tight whitespace-nowrap",
 		logos: [
 			{ src: LOGO1_URL, alt: "CIT Logo", className: "h-9 sm:h-10.5 md:h-12 lg:h-13 xl:h-14 w-auto object-contain drop-shadow-xs shrink-0" },
