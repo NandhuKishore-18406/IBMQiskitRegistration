@@ -40,6 +40,7 @@ const UMAMAHESWARI_IMG = `${import.meta.env.BASE_URL}assets/organizers/Dr.K.Umam
 const MANJULA_IMG = `${import.meta.env.BASE_URL}assets/organizers/ManjulaGandhi.png`;
 const GAYATHRI_IMG = `${import.meta.env.BASE_URL}assets/organizers/DrSGayathriDevi.jpg`;
 const ANANDHI_IMG = `${import.meta.env.BASE_URL}assets/organizers/Aanadhi.jpg`;
+const ASHRAF_IMG = `${import.meta.env.BASE_URL}assets/organizers/asraf.jpeg`;
 
 const CHIEF_PATRONS: LeadershipMember[] = [
 	{
@@ -135,6 +136,7 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 		year: "2nd Year",
 		role: "Student Organizer",
 		phone: "",
+		image: ASHRAF_IMG,
 	},
 ];
 
@@ -402,43 +404,57 @@ export default function Organizers() {
 					Student Organizers
 				</h3>
 
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
 					{STUDENT_ORGANIZERS.map((student, index) => (
 						<motion.div
 							key={student.id}
 							initial={{ opacity: 0, y: 12 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.4, delay: 0.1 * index }}
-							className="p-5 sm:p-6 md:p-7 rounded-3xl bg-white/50 backdrop-blur-2xl border border-white/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-3"
+							className="p-5 sm:p-6 md:p-7 rounded-3xl bg-white/50 backdrop-blur-2xl border border-white/80 shadow-lg flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 hover:shadow-xl transition-all duration-300"
 						>
-							<div className="space-y-2">
-								<div className="flex items-center justify-between gap-2">
-									<span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs xs:text-sm font-extrabold shrink-0">
-										<GraduationCap className="w-4 h-4" />
-										{student.year} • {student.role}
-									</span>
-								</div>
-
-								<h4 className="text-xl xs:text-2xl sm:text-2xl md:text-3xl font-black text-[#31135e] tracking-tight">
-									{student.name}
-								</h4>
-
-								<div className="text-xs xs:text-sm sm:text-base md:text-lg font-bold text-[#5E6470]">
-									{student.department}
-								</div>
-							</div>
-
-							{student.phone && (
-								<div className="pt-2">
-									<a
-										href={`tel:${student.phone}`}
-										className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs xs:text-sm sm:text-base font-bold transition-all shadow-sm cursor-pointer active:scale-95"
-									>
-										<Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-										<span>{student.phone}</span>
-									</a>
+							{student.image ? (
+								<img
+									src={student.image}
+									alt={student.name}
+									className="w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl object-cover object-top shadow-md ring-4 ring-white/90 shrink-0"
+								/>
+							) : (
+								<div className="w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl bg-[#31135e]/10 flex items-center justify-center text-[#31135e] shrink-0">
+									<User className="w-12 h-12" />
 								</div>
 							)}
+
+							<div className="flex-1 text-center sm:text-left space-y-1.5 flex flex-col justify-between h-full">
+								<div>
+									<div className="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
+										<span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs xs:text-sm font-extrabold shrink-0">
+											<GraduationCap className="w-4 h-4" />
+											{student.year}
+										</span>
+									</div>
+
+									<h4 className="text-xl xs:text-2xl sm:text-2xl md:text-3xl font-black text-[#31135e] tracking-tight">
+										{student.name}
+									</h4>
+
+									<div className="text-xs xs:text-sm sm:text-base md:text-lg font-bold text-[#5E6470] mt-1">
+										{student.department}
+									</div>
+								</div>
+
+								{student.phone && (
+									<div className="pt-2 flex justify-center sm:justify-start">
+										<a
+											href={`tel:${student.phone}`}
+											className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs xs:text-sm sm:text-base font-bold transition-all shadow-sm cursor-pointer active:scale-95"
+										>
+											<Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+											<span>{student.phone}</span>
+										</a>
+									</div>
+								)}
+							</div>
 						</motion.div>
 					))}
 				</div>
