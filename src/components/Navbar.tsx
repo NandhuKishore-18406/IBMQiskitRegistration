@@ -11,7 +11,7 @@ interface NavbarProps {
 
 export const NAV_ITEMS: { id: HeroView; label: string; badge?: string }[] = [
 	{ id: "timeline", label: "Timeline" },
-	{ id: "registration", label: "Interest Form", badge: "Open" },
+	{ id: "registration", label: "Registration", badge: "Open" },
 	{ id: "organizers", label: "Organizers" },
 	{ id: "past-events", label: "Past Events" },
 ];

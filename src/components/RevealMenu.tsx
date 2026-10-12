@@ -24,7 +24,7 @@ const NAV_ITEMS: { id: HeroView; label: string; icon: any; badge?: string }[] = 
 	{ id: "home", label: "Home", icon: Home },
 	{ id: "about", label: "About the Program", icon: Info },
 	{ id: "timeline", label: "Timeline", icon: Calendar },
-	{ id: "registration", label: "Interest/Enquiry Form", icon: FileText, badge: "Open" },
+	{ id: "registration", label: "Registration", icon: FileText, badge: "Open" },
 	{ id: "organizers", label: "Organizers", icon: Users },
 	{ id: "past-events", label: "Past Events", icon: History },
 ];

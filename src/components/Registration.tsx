@@ -19,11 +19,11 @@ export default function Registration({
 			{showHeader && (
 				<div className="flex flex-col items-center text-center space-y-2 mb-2 sm:mb-4 lg:mb-6">
 					<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#31135e] tracking-tight">
-						Interest Form
+						Registration
 					</h2>
 
 					<p className="text-base sm:text-lg md:text-xl text-[#31135e]/85 max-w-2xl font-medium leading-relaxed">
-						Fill this interest form to get complete details about CIT - IBM Qiskit Fall Fest 2026.
+						Fill this registration form to register for CIT - IBM Qiskit Fall Fest 2026.
 					</p>
 				</div>
 			)}
@@ -31,7 +31,7 @@ export default function Registration({
 			{/* Main Tally Embed Container */}
 			<TallyEmbed
 				formUrlOrId="dWMdMK"
-				title="CIT - IBM Qiskit Fall Fest 2026 Inquiry form"
+				title="CIT - IBM Qiskit Fall Fest 2026 Registration"
 				hideTitle={hideTallyTitle}
 				transparentBackground={true}
 				minHeight="720px"
