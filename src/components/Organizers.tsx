@@ -41,7 +41,7 @@ const MANJULA_IMG = `${import.meta.env.BASE_URL}assets/organizers/ManjulaGandhi.
 const GAYATHRI_IMG = `${import.meta.env.BASE_URL}assets/organizers/DrSGayathriDevi.jpg`;
 const ANANDHI_IMG = `${import.meta.env.BASE_URL}assets/organizers/Aanadhi.jpg`;
 const ASHRAF_IMG = `${import.meta.env.BASE_URL}assets/organizers/asraf.jpeg`;
-
+const NANDHU_IMG = `${import.meta.env.BASE_URL}assets/organizers/nandhu.jpeg`;
 const CHIEF_PATRONS: LeadershipMember[] = [
 	{
 		id: "santossh",
@@ -128,6 +128,7 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 		year: "3rd Year",
 		role: "Student Lead",
 		phone: "",
+		image:NANDHU_IMG,
 	},
 	{
 		id: "ashraff",
