@@ -92,7 +92,7 @@ const MAIN_ORGANIZER: FacultyOrganizer = {
 	role: "Lead Organizer",
 	designation: "Professor and Head",
 	department: "Department of Computing - Software Systems, CIT",
-	email: "hodss@cit.edu.in",
+	email: "manjulagandhi@cit.edu.in ",
 	phone: "",
 	image: MANJULA_IMG,
 };
