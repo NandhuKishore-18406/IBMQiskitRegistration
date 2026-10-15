@@ -124,7 +124,7 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 	{
 		id: "nandhu",
 		name: "Nandhu Kishore S",
-		department: "Department of Computing - MSc Software Systems, CIT",
+		department: "Department of Computing - five year Integrated MSc Software Systems, CIT",
 		year: "3rd Year",
 		role: "Student Lead",
 		phone: "",
@@ -133,7 +133,7 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 	{
 		id: "ashraff",
 		name: "Ashraf S",
-		department: "Department of Computing - MSc Software Systems, CIT",
+		department: "Department of Computing - five year Integrated MSc Software Systems, CIT",
 		year: "2nd Year",
 		role: "Student Organizer",
 		phone: "",
