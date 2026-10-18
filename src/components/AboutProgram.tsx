@@ -55,7 +55,7 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 				</h3>
 
 				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-left sm:text-justify w-full">
-					The <strong className="font-black text-[#31135e]">Department of Computing</strong> at CIT is a premier academic department offering specialized programs in Software Systems, Data Science, Decision and Computing Science and Artificial Intelligence. Equipped with state-of-the-art computational infrastructure, deep industry collaborations with global tech leaders like IBM, and a legacy of research excellence, the department empowers students to build next-generation software technologies.
+					The <strong className="font-black text-[#31135e]">Department of Computing</strong> at CIT is a premier academic department offering Integrated programme in Software Systems, Data Science, Decision and Computing Science and Artificial Intelligence and Machine Learning. Equipped with state-of-the-art computational infrastructure, deep industry collaborations with global tech leaders like IBM, and a legacy of research excellence, the department empowers students to be innovative.
 				</p>
 			</motion.div>
 
@@ -74,7 +74,7 @@ export default function AboutProgram({ onClose }: AboutProgramProps) {
 				</h3>
 
 				<p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-[#31135e]/90 leading-relaxed text-left sm:text-justify w-full">
-					The <strong className="font-black text-[#31135e]">CIT - IBM Qiskit Fall Fest 2026</strong> (4th Edition) is a 100% online global quantum event running from <strong className="font-black text-[#31135e]">November 20 to November 30, 2026</strong>. Hosted by the Department of Computing, CIT in collaboration with <strong className="font-black text-[#31135e]">IBM Quantum</strong> and <strong className="font-black text-[#31135e]">IIC</strong>, the event features expert quantum lectures, hands-on algorithm coding on real IBM Quantum hardware, team hackathon challenges, and certified IBM Advocate mentorship.
+					The <strong className="font-black text-[#31135e]">CIT - IBM Qiskit Fall Fest 2026</strong> (4th Edition) is a 100% online global quantum event running from <strong className="font-black text-[#31135e]">November 20 to November 30, 2026</strong>. Hosted by the Department of Computing, CIT in collaboration with <strong className="font-black text-[#31135e]">IBM Quantum</strong> and <strong className="font-black text-[#31135e]">IIC</strong>, the event features expert quantum lectures, hands-on algorithm coding on real IBM Quantum hardware, team hackathon challenges and demonstration.
 				</p>
 			</motion.div>
 		</section>
