@@ -4,7 +4,6 @@ import {
 	FileText,
 	History,
 	Home,
-	Info,
 	Menu,
 	Phone,
 	Sparkles,
