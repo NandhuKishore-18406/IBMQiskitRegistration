@@ -98,9 +98,7 @@ export default function ContactUs() {
 					<h3 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-black text-[#31135e] tracking-tight">
 						Faculty Coordinators
 					</h3>
-					<span className="text-xs sm:text-sm font-bold text-[#31135e]/70 hidden sm:inline-block">
-						Academic & Program Inquiries
-					</span>
+
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
@@ -170,9 +168,7 @@ export default function ContactUs() {
 					<h3 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-black text-[#31135e] tracking-tight">
 						Student Coordinators & Helpdesk
 					</h3>
-					<span className="text-xs sm:text-sm font-bold text-[#31135e]/70 hidden sm:inline-block">
-						Direct Support & Queries
-					</span>
+					
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
