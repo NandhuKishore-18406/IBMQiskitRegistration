@@ -2,7 +2,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-export type HeroView = "home" | "about" | "timeline" | "registration" | "organizers" | "past-events";
+export type HeroView = "home" | "about" | "timeline" | "registration" | "organizers" | "past-events" | "contact";
 
 interface NavbarProps {
 	activeView?: HeroView;
@@ -14,6 +14,7 @@ export const NAV_ITEMS: { id: HeroView; label: string; badge?: string }[] = [
 	{ id: "registration", label: "Registration", badge: "Open" },
 	{ id: "organizers", label: "Organizers" },
 	{ id: "past-events", label: "Past Events" },
+	{ id: "contact", label: "Contact Us" },
 ];
 
 const LOGO1_URL = `${import.meta.env.BASE_URL}assets/logo.png`;

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 import AboutProgram from "./AboutProgram";
+import ContactUs from "./ContactUs";
 import HeroBadge from "./HeroBadge";
 import Navbar, { HeroView } from "./Navbar";
 import Organizers from "./Organizers";
@@ -303,6 +304,7 @@ export default function Hero() {
 								{activeView === "timeline" && <Timeline />}
 								{activeView === "organizers" && <Organizers />}
 								{activeView === "past-events" && <PastEvents />}
+								{activeView === "contact" && <ContactUs />}
 							</motion.div>
 						)}
 					</AnimatePresence>

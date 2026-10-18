@@ -6,6 +6,7 @@ import {
 	Home,
 	Info,
 	Menu,
+	Phone,
 	Sparkles,
 	Users,
 	X,
@@ -13,7 +14,7 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
-export type HeroView = "home" | "about" | "timeline" | "registration" | "organizers" | "past-events";
+export type HeroView = "home" | "about" | "timeline" | "registration" | "organizers" | "past-events" | "contact";
 
 interface RevealMenuProps {
 	activeView: HeroView;
@@ -22,11 +23,11 @@ interface RevealMenuProps {
 
 const NAV_ITEMS: { id: HeroView; label: string; icon: any; badge?: string }[] = [
 	{ id: "home", label: "Home", icon: Home },
-	{ id: "about", label: "About the Program", icon: Info },
 	{ id: "timeline", label: "Timeline", icon: Calendar },
 	{ id: "registration", label: "Registration", icon: FileText, badge: "Open" },
 	{ id: "organizers", label: "Organizers", icon: Users },
 	{ id: "past-events", label: "Past Events", icon: History },
+	{ id: "contact", label: "Contact Us", icon: Phone },
 ];
 
 export default function RevealMenu({ activeView, onViewChange }: RevealMenuProps) {

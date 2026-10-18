@@ -126,17 +126,16 @@ const STUDENT_ORGANIZERS: StudentOrganizer[] = [
 		name: "Nandhu Kishore S",
 		department: "Department of Computing - five year Integrated MSc Software Systems, CIT",
 		year: "3rd Year",
-		role: "Student Lead",
-		phone: "",
-		image:NANDHU_IMG,
+		email: "nandhukishore18406@gmail.com",
+		phone: "+91 9489622705",
+		image: NANDHU_IMG,
 	},
 	{
 		id: "ashraff",
 		name: "Ashraf S",
 		department: "Department of Computing - five year Integrated MSc Software Systems, CIT",
 		year: "2nd Year",
-		role: "Student Organizer",
-		phone: "",
+		phone: "+91 9787298939",
 		image: ASHRAF_IMG,
 	},
 ];
@@ -280,10 +279,10 @@ export default function Organizers() {
 				</div>
 			</div>
 
-			{/* Lead Organizer Section */}
-			<div className="w-full space-y-4">
+			{/* Faculty Organizers Section */}
+			<div className="w-full space-y-6">
 				<h3 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-black text-[#31135e] tracking-tight border-b-2 border-[#31135e]/15 pb-2.5">
-					Lead Organizer
+					Faculty Organizers
 				</h3>
 
 				<motion.div
@@ -305,9 +304,6 @@ export default function Organizers() {
 					)}
 
 					<div className="flex-1 text-center sm:text-left space-y-2">
-						<div className="inline-block px-3 py-1 rounded-full bg-[#31135e]/10 text-[#31135e] text-xs sm:text-sm font-extrabold tracking-wider uppercase mb-1">
-							{MAIN_ORGANIZER.role}
-						</div>
 						<h3 className="text-2xl xs:text-3xl sm:text-3xl md:text-4xl font-black text-[#31135e] tracking-tight">
 							{MAIN_ORGANIZER.name}
 						</h3>
@@ -331,13 +327,6 @@ export default function Organizers() {
 						)}
 					</div>
 				</motion.div>
-			</div>
-
-			{/* Co-Organizers Section */}
-			<div className="w-full space-y-4">
-				<h3 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-black text-[#31135e] tracking-tight border-b-2 border-[#31135e]/15 pb-2.5">
-					Co-Organizers
-				</h3>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
 					{CO_ORGANIZERS.map((org, index) => (
@@ -444,17 +433,26 @@ export default function Organizers() {
 									</div>
 								</div>
 
-								{student.phone && (
-									<div className="pt-2 flex justify-center sm:justify-start">
+								<div className="pt-2 flex flex-wrap gap-2 justify-center sm:justify-start">
+									{student.phone && (
 										<a
-											href={`tel:${student.phone}`}
+											href={`tel:${student.phone.replace(/\s+/g, "")}`}
 											className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#31135e] hover:bg-[#230c45] text-white text-xs xs:text-sm sm:text-base font-bold transition-all shadow-sm cursor-pointer active:scale-95"
 										>
 											<Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
 											<span>{student.phone}</span>
 										</a>
-									</div>
-								)}
+									)}
+									{student.email && (
+										<a
+											href={`mailto:${student.email}`}
+											className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/70 hover:bg-white text-[#31135e] border border-[#31135e]/25 text-xs xs:text-sm sm:text-base font-bold transition-all shadow-xs cursor-pointer active:scale-95"
+										>
+											<Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+											<span>{student.email}</span>
+										</a>
+									)}
+								</div>
 							</div>
 						</motion.div>
 					))}
